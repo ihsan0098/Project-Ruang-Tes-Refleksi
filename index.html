@@ -176,7 +176,7 @@ nav .burger{display:none;font-size:24px;background:none;border:none;color:var(--
 .edu-banner{width:100%;max-width:1050px;background:linear-gradient(135deg,rgba(52,152,219,.12),rgba(46,204,113,.08));border:1px solid rgba(52,152,219,.35);border-radius:14px;padding:30px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:space-between;}
 .edu-banner .txt h3{margin-bottom:6px;}
 .edu-banner .txt p{color:var(--muted);font-size:14px;}
-.dlbtn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;text-decoration:none;padding:14px 24px;border-radius:8px;font-weight:700;font-size:14px;transition:.3s;}
+.dlbtn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;text-decoration:none;padding:14px 24px;border:0;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;transition:.3s;}
 .dlbtn:hover{filter:brightness(1.15);transform:translateY(-2px);}
 .dlbtn svg{width:18px;height:18px;fill:#fff;}
 /* === 5. MODERASI === */
@@ -247,6 +247,11 @@ input:focus,textarea:focus{border-color:rgba(98,174,232,.75);box-shadow:0 0 0 3p
 .leaf.u{background:rgba(73,212,154,.16);border-color:var(--green);}
 .ldetail{border-style:solid;border-color:var(--line);background:linear-gradient(145deg,#172128,#11181d);border-radius:15px;line-height:1.8;}
 .edu-banner{border-radius:18px;padding:clamp(22px,4vw,34px);}
+.guide-card{width:100%;max-width:1050px;margin-top:20px;}
+.guide-card h3{margin-bottom:12px;}
+.guide-card ol{padding-left:24px;color:var(--muted);}
+.guide-card li{margin:12px 0;}
+.guide-card strong{color:var(--light);}
 .fab-wrap{right:clamp(14px,3vw,26px);bottom:clamp(14px,3vw,24px);}
 .fab{animation:none;box-shadow:0 10px 28px rgba(192,57,43,.3);}
 .back-top{position:fixed;right:clamp(18px,3vw,28px);bottom:92px;z-index:1100;width:44px;height:44px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(18,26,32,.88);backdrop-filter:blur(12px);color:var(--light);font-size:18px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s,border-color .2s;}
@@ -273,6 +278,13 @@ section{padding-left:18px;padding-right:18px;}
 .back-top{bottom:84px;width:40px;height:40px;}
 .fab{padding:12px 16px;font-size:12px;}
 }
+@media print{
+body>*:not(#edukasi){display:none!important;}
+body,#edukasi{background:#fff!important;color:#111!important;}
+#edukasi{display:block!important;max-width:none;padding:0;margin:0;}
+#edukasi .sub,.guide-card,.edu-banner{color:#111!important;background:#fff!important;box-shadow:none!important;border-color:#bbb!important;}
+#edukasi .guide-card *,.edu-banner *{color:#111!important;}
+}
 @media(prefers-reduced-motion:reduce){
 *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
 .reveal{opacity:1;transform:none;}
@@ -293,6 +305,8 @@ section{padding-left:18px;padding-right:18px;}
 <li><a href="#forum">Forum</a></li>
 <li><a href="#tim">Tim</a></li>
 <li><a href="#kontak">Kontak</a></li>
+<li><a href="#edukasi">Edukasi</a></li>
+<li><a href="#faq">FAQ</a></li>
 <li><a href="admin.html" target="_blank" style="color:var(--gold);">Admin</a></li>
 </ul>
 </nav>
@@ -305,6 +319,8 @@ section{padding-left:18px;padding-right:18px;}
 <a href="#forum">Forum</a>
 <a href="#tim">Tim</a>
 <a href="#kontak">Kontak</a>
+<a href="#edukasi">Edukasi</a>
+<a href="#faq">FAQ</a>
 <a href="admin.html">Admin</a>
 </div>
 <section id="beranda">
@@ -473,16 +489,13 @@ section{padding-left:18px;padding-right:18px;}
 <p class="sub">Hubungi kami untuk kolaborasi, pertanyaan, atau dukungan kampanye.</p>
 <div style="display:flex;gap:32px;flex-wrap:wrap;justify-content:center;width:100%;">
 <div class="card" style="max-width:430px;">
-<h3 style="color:var(--red);margin-bottom:12px;">📞 Narahubung</h3>
-<p style="color:var(--muted);margin-bottom:6px;"><strong style="color:var(--light)">Email:</strong> hello@projectruang.id</p>
-<p style="color:var(--muted);margin-bottom:6px;"><strong style="color:var(--light)">WhatsApp:</strong> +62 812-3456-7890</p>
-<p style="color:var(--muted);margin-bottom:6px;"><strong style="color:var(--light)">Jam aktif:</strong> Senin–Jumat, 09.00–17.00 WIB</p>
+<h3 style="color:var(--red);margin-bottom:12px;">💬 Narahubung</h3>
+<p style="color:var(--muted);margin-bottom:15px;">Kirim pesan melalui formulir. Sertakan email atau nomor WhatsApp aktif agar admin dapat menghubungi Anda kembali.</p>
 <p style="color:var(--muted);margin-bottom:15px;font-size:14px;"><strong style="color:var(--light)">Kemitraan (Pentahelix):</strong> Instansi Akademik • Instansi Pemerintah (BKKBN) • Pihak Swasta (Biro Psikologi) • Media</p>
-<a href="https://wa.me/6281234567890" target="_blank" class="btn green sm">WhatsApp</a>
-<a href="mailto:hello@projectruang.id" class="btn blue sm">Email</a>
+<a href="#kontakForm" class="btn blue sm">Kirim pesan ke admin</a>
 <div class="refbox" style="margin-top:18px;">Butuh bantuan darurat? Layanan kesehatan mental gratis: <strong>119 ext. 8</strong> (Kemenkes SEJIWA).</div>
 </div>
-<div class="fbox" style="max-width:430px;">
+<div class="fbox" id="kontakForm" style="max-width:430px;">
 <h3 style="margin-bottom:15px;">✉️ Kirim Pesan / Ajukan Kerja Sama</h3>
 <label for="knama">Nama / Instansi</label>
 <input id="knama" maxlength="80" placeholder="Nama lengkap / instansi">
@@ -498,17 +511,28 @@ section{padding-left:18px;padding-right:18px;}
 <!-- MATERI EDUKASI -->
 <section id="edukasi">
 <h2>Materi Edukasi</h2>
-<p class="sub">Panduan gratis untuk membuka obrolan hati ke hati antara orang tua dan anak — di rumah, di sekolah, dan di komunitas.</p>
+<p class="sub">Panduan singkat untuk membuka obrolan hati ke hati antara orang tua dan anak — di rumah, di sekolah, dan di komunitas.</p>
 <div class="edu-banner">
 <div class="txt">
 <h3>📘 Panduan Obrolan Hati ke Hati</h3>
-<p>Materi PDF yang bisa Anda unduh dan bagikan: cara memulai percakapan empatik, membaca sinyal kebisuan anak, dan melanjutkan dialog keluarga.</p>
+<p>Panduan ini tersedia langsung di halaman dan dapat dicetak atau disimpan sebagai PDF dari browser.</p>
 </div>
-<a href="data:application/pdf;base64," download="Panduan-Obrolan-Hati-ke-Hati.pdf" class="dlbtn" aria-label="Unduh Panduan Obrolan Hati ke Hati (PDF)">
+<button type="button" onclick="window.print()" class="dlbtn" aria-label="Cetak atau simpan Panduan Obrolan Hati ke Hati sebagai PDF">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-8 4h16v-2H4v2z"/></svg>
-Unduh Panduan Obrolan Hati ke Hati (PDF)
-</a>
+Cetak / simpan sebagai PDF
+</button>
 </div>
+<article class="card guide-card">
+<h3>Mulai percakapan dengan empati</h3>
+<ol>
+<li><strong>Pilih waktu yang tenang.</strong> Singkirkan gawai sejenak dan tanyakan apakah anak siap untuk bercerita.</li>
+<li><strong>Gunakan pertanyaan terbuka.</strong> Misalnya, “Apa hal yang paling berat atau paling menyenangkan hari ini?” Dengarkan sampai selesai tanpa menyela.</li>
+<li><strong>Validasi perasaannya.</strong> Coba katakan, “Terima kasih sudah cerita. Aku bisa mengerti ini terasa berat.” Hindari mengecilkan masalah atau langsung menyalahkan.</li>
+<li><strong>Tanyakan dukungan yang dibutuhkan.</strong> “Kamu ingin aku mendengarkan saja, atau kita mencari jalan keluarnya bersama?” Jangan memaksa anak untuk langsung bercerita lebih banyak.</li>
+<li><strong>Tindak lanjuti dengan konsisten.</strong> Tanyakan kembali kabarnya dan tawarkan bantuan orang dewasa tepercaya atau tenaga profesional bila diperlukan.</li>
+</ol>
+<p style="color:var(--muted);margin-top:16px;">Jika ada risiko keselamatan yang segera, jangan biarkan anak sendirian dan hubungi layanan darurat atau tenaga profesional di wilayah Anda.</p>
+</article>
 </section>
 <!-- FAQ -->
 <section id="faq">
@@ -557,13 +581,10 @@ f.scrollIntoView({behavior:'smooth',block:'center'});
 
 /* ================= NAV ================= */
 document.querySelectorAll('nav ul li a, .mobilemenu a').forEach(a=>{
-a.addEventListener('click',function(e){
+a.addEventListener('click',function(){
 if(this.getAttribute('href').endsWith('.html'))return;
-e.preventDefault();
-document.querySelectorAll('nav ul li a').forEach(x=>x.classList.remove('active'));
-this.classList.add('active');
-const t=document.querySelector(this.getAttribute('href'));
-if(t) window.scrollTo({top:t.offsetTop-58,behavior:'smooth'});
+const target=this.getAttribute('href');
+document.querySelectorAll('nav ul li a').forEach(x=>x.classList.toggle('active',x.getAttribute('href')===target));
 document.getElementById('mm').classList.remove('open');
 document.querySelector('.burger').setAttribute('aria-expanded','false');
 });
@@ -741,7 +762,7 @@ let h='<div class="res"><div class="scorebadge">Skor: '+skor+' / 12 — '+katego
 h+='<h2>'+cfg.hasil.judul+'</h2><p style="font-size:18px;font-weight:600;margin-bottom:15px;">'+cfg.hasil.pesan+'</p>';
 h+='<div class="qbox" style="text-align:left;">'+cfg.hasil.quote+'</div>';
 if(perluBantuan){
-h+='<div class="refbox"><strong>🧭 Indikasi pola asuh represif terdeteksi.</strong><br>Anda sangat kami anjurkan berkonsultasi dengan narahubung dan layanan profesional:<br><br>• <strong>Narahubung Project Ruang:</strong> WhatsApp +62 812-3456-7890 / hello@projectruang.id<br>• <strong>Layanan SEJIWA Kemenkes:</strong> 119 ext. 8 (gratis, 24 jam)<br>• <strong>Biro Psikologi / Konseling:</strong> hubungi fasilitas terdekat di kota Anda</div>';
+h+='<div class="refbox"><strong>🧭 Anda mungkin terbantu dengan dukungan tambahan.</strong><br>Pertimbangkan berbicara dengan orang dewasa tepercaya atau tenaga profesional. Anda juga dapat mengirim pesan kepada tim Project Ruang melalui <a href="#kontakForm" style="color:var(--blue)">formulir kontak</a>.<br><br>• <strong>Layanan SEJIWA Kemenkes:</strong> 119 ext. 8<br>• <strong>Biro Psikologi / Konseling:</strong> hubungi fasilitas terdekat di kota Anda</div>';
 }else{
 h+='<div class="refbox" style="border-color:var(--green);background:rgba(46,204,113,.07);"><strong style="color:var(--green)">✓ Respons Anda menunjukkan empati yang baik.</strong><br>Bagikan pemahaman ini kepada orang-orang di sekitarmu. Jika ingin berdiskusi, narahubung kami siap mendengarkan.</div>';
 }
@@ -749,8 +770,7 @@ h+=simpanSkorTes
  ?'<p id="tesSyncStatus" role="status" aria-live="polite" style="color:var(--muted);font-size:14px;margin-top:15px;">Mengirim skor anonim ke dashboard admin…</p>'
  :'<p style="color:var(--muted);font-size:14px;margin-top:15px;">Skor tidak dikirim ke server karena persetujuan penyimpanan tidak diberikan. 🙏</p>';
 h+='<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px;">';
-h+='<a href="#kontak" class="btn sm" onclick="document.getElementById(\'tesHub\').style.display=\'grid\';document.getElementById(\'tesHasil\').style.display=\'none\'">📞 Hubungi Narahubung</a>';
-h+='<a href="https://wa.me/6281234567890?text=Halo%20Project%20Ruang%2C%20saya%20baru%20menyelesaikan%20Tes%20Refleksi%20dan%20ingin%20berdiskusi." target="_blank" class="btn green sm">💬 Konsultasi via WhatsApp</a>';
+h+='<a href="#kontakForm" class="btn sm">💬 Hubungi narahubung</a>';
 h+='<button class="btn gold sm" onclick="bukaTes(\''+tesAktif+'\')">Ulangi Tes</button></div></div>';
 const box=document.getElementById('tesHasil');
 box.innerHTML=h;box.style.display='block';

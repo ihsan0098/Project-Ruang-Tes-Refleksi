@@ -12,6 +12,8 @@ Website kampanye digital LIDM 2026 Universitas Negeri Padang: tes refleksi, gale
 - Penghitung mencatat satu kunjungan per tab per sesi browser; ini bukan hitungan pengguna unik dan tidak memakai proteksi bot/rate-limit.
 - Data lama yang tersimpan di browser tidak otomatis dimigrasikan ke Firebase.
 - Kiriman Pohon Dialog/Forum dan unggahan media dapat masuk tanpa moderasi awal. Aturan validasi panjang, ukuran, dan bentuk data tidak mencegah spam sepenuhnya. Untuk rate limiting dan anti-spam yang kuat perlu backend tepercaya.
+- Bagian Edukasi dan FAQ tersedia dari navigasi desktop maupun mobile. Panduan percakapan dapat dibaca langsung dan dicetak/disimpan sebagai PDF melalui browser.
+- Pesan narahubung dikirim melalui formulir realtime di situs. Tombol kontak langsung tidak ditampilkan sampai alamat email dan nomor WhatsApp resmi tersedia.
 
 ## Menyiapkan akses admin dengan aman
 
