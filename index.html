@@ -414,12 +414,14 @@ body,#edukasi{background:#fff!important;color:#111!important;}
 <section id="galeri">
 <h2>Galeri Foto &amp; Video</h2>
 <p class="sub">Bagikan momen kampanye dalam bentuk foto atau video. Kiriman akan tampil di galeri setelah disetujui admin.</p>
+<p class="sync-status" data-sync-status role="status" aria-live="polite">Memeriksa status sinkronisasi…</p>
 <div class="upzone" id="upzone">
 <div class="big">📷 🎬</div>
 <strong style="font-size:16px;">Klik untuk unggah foto atau video</strong>
 <p style="color:var(--muted);font-size:13px;margin-top:6px;">atau seret &amp; letakkan file di sini — foto/video maksimal 1 MB per file, menunggu persetujuan admin</p>
 <input type="file" id="upfile" accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/ogg" multiple style="display:none;">
 </div>
+<p id="galleryUploadStatus" class="sync-status" role="status" aria-live="polite"></p>
 <div style="width:100%;max-width:1050px;margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
 <input id="upcap" placeholder="Keterangan foto/video (opsional), mis. Sosialisasi" style="flex:1;min-width:220px;margin-bottom:0;">
 <p class="upok" id="upok">Terima kasih! Kiriman Anda menunggu persetujuan admin sebelum ditampilkan.</p>
@@ -900,12 +902,15 @@ g.appendChild(el);
 });
 }
 async function simpanFoto(file,caption){
+const status=document.getElementById('galleryUploadStatus');
+status.textContent=`Mengunggah ${file.name}…`;
 try{
 await simpanMediaGaleri(file,caption);
+status.textContent=`${file.name} berhasil dikirim dan menunggu persetujuan admin.`;
 const ok=document.getElementById('upok');ok.style.display='block';setTimeout(()=>ok.style.display='none',3500);
 }catch(error){
 console.error('Gagal menyimpan media galeri:',error);
-alert('Media gagal dikirim: '+error.message);
+status.textContent=`Media gagal dikirim: ${error.message}`;
 }
 }
 document.getElementById('upfile').addEventListener('change',async e=>{

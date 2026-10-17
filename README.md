@@ -5,10 +5,12 @@ Website kampanye digital LIDM 2026 Universitas Negeri Padang: tes refleksi, gale
 ## Sinkronisasi dan privasi
 
 - Pohon Dialog dan Forum tersinkron realtime ke Firebase dan dapat dibaca semua pengunjung. Nama/inisial serta pesan yang dikirim bersifat publik.
+- Aturan database memvalidasi setiap kolom kiriman yang diizinkan; kiriman baru hanya dibuat (tidak dapat diubah pengunjung) dan kolom tak dikenal ditolak.
 - Skor tes hanya dikirim jika pengunjung mencentang persetujuan eksplisit. Hanya kategori dan skor akhir anonim yang disimpan; hasil hanya dapat dibaca admin yang telah diizinkan di Firebase.
 - Pesan kontak disimpan di koleksi privat dan hanya dapat dibaca admin yang telah diizinkan.
 - Dashboard menerima pembaruan tes, pesan kontak, Pohon Dialog, Forum, galeri, dan penghitung kunjungan secara realtime. Data privat/moderasi hanya dibaca admin yang diizinkan melalui Firebase Authentication.
 - Foto/video disimpan sebagai Data URL di Realtime Database dan dibaca publik setelah admin menyetujui kiriman. Batas unggah adalah 1 MB per file; hapus media yang tidak lagi dibutuhkan karena media ikut memakai kuota penyimpanan dan unduhan database.
+- Galeri menampilkan status koneksi dan hasil unggah. Kiriman yang menunggu moderasi hanya dapat dilihat admin; publik melihatnya setelah disetujui.
 - Penghitung mencatat satu kunjungan per tab per sesi browser; ini bukan hitungan pengguna unik dan tidak memakai proteksi bot/rate-limit.
 - Data lama yang tersimpan di browser tidak otomatis dimigrasikan ke Firebase.
 - Kiriman Pohon Dialog/Forum dan unggahan media dapat masuk tanpa moderasi awal. Aturan validasi panjang, ukuran, dan bentuk data tidak mencegah spam sepenuhnya. Untuk rate limiting dan anti-spam yang kuat perlu backend tepercaya.

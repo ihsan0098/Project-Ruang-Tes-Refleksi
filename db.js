@@ -21,6 +21,8 @@ const PRIVATE_COLLECTIONS = {
 let database = null;
 let auth = null;
 let connectionError = null;
+let firebaseConnected = false;
+const syncIssues = new Set();
 let publicGallery = [];
 let pendingGallery = [];
 let adminData = {
@@ -36,6 +38,22 @@ function setRuangSyncStatus(message) {
    document.querySelectorAll('[data-sync-status]').forEach(status => {
       status.textContent = message;
    });
+}
+
+function updateRuangSyncStatus() {
+   if (connectionError) {
+      setRuangSyncStatus('Realtime tidak tersambung. Periksa koneksi internet lalu muat ulang halaman.');
+      return;
+   }
+   if (!firebaseConnected) {
+      setRuangSyncStatus('Menghubungkan ke Firebase realtime…');
+      return;
+   }
+   if (syncIssues.size) {
+      setRuangSyncStatus(`Firebase tersambung, tetapi gagal memuat: ${[...syncIssues].join(', ')}.`);
+      return;
+   }
+   setRuangSyncStatus('Realtime tersambung: Pohon Dialog, Forum, galeri yang disetujui, dan statistik kunjungan.');
 }
 
 function loadFirebaseScript(src) {
@@ -103,29 +121,42 @@ async function connectFirebase() {
 
       Object.entries(PUBLIC_COLLECTIONS).forEach(([collection, config]) => {
          database.ref(`public/${collection}`).on('value', snapshot => {
+            syncIssues.delete(collection);
             const rows = readRows(snapshot).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
             if (collection === 'forum') rows.reverse();
             updateLocalCollection(config.storageKey, rows);
+            updateRuangSyncStatus();
          }, error => {
             console.error(`Gagal membaca kiriman publik (${collection}):`, error);
-            setRuangSyncStatus('Gagal memuat kiriman publik. Coba muat ulang halaman.');
+            syncIssues.add(collection === 'daun' ? 'Pohon Dialog' : 'Forum');
+            updateRuangSyncStatus();
          });
       });
 
       database.ref('gallery/published').on('value', snapshot => {
+         syncIssues.delete('Galeri');
          publicGallery = readRows(snapshot).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
          refreshAdminGallery();
          document.dispatchEvent(new CustomEvent('ruang:remote'));
+         updateRuangSyncStatus();
       }, error => {
          console.error('Gagal membaca galeri publik:', error);
-         setRuangSyncStatus('Gagal memuat galeri publik. Coba muat ulang halaman.');
+         syncIssues.add('Galeri');
+         updateRuangSyncStatus();
       });
 
-      setRuangSyncStatus('Realtime aktif: Pohon Dialog, Forum, galeri yang disetujui, dan statistik kunjungan tersinkron. Jangan masukkan data pribadi pada kiriman publik.');
+      database.ref('.info/connected').on('value', snapshot => {
+         firebaseConnected = snapshot.val() === true;
+         updateRuangSyncStatus();
+      }, error => {
+         console.error('Gagal memeriksa koneksi realtime Firebase:', error);
+         firebaseConnected = false;
+         updateRuangSyncStatus();
+      });
    } catch (error) {
       connectionError = error;
       console.error('Firebase gagal diinisialisasi:', error);
-      setRuangSyncStatus('Realtime tidak tersambung. Data publik, galeri, dan statistik tidak dapat disinkronkan.');
+      updateRuangSyncStatus();
    }
 }
 
