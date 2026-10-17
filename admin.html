@@ -61,6 +61,58 @@ td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.05);}
 .act.approve{border-color:var(--green);color:var(--green);}
 .act.reject{border-color:var(--red);color:var(--red);}
 footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-align:center;}
+/* Dashboard visual system */
+:root{--bg:#0a1014;--card:#121b21;--red:#f07868;--blue:#77b9e7;--gold:#f2d083;--green:#70d5a9;--light:#f4f5f2;--muted:#a5b2b9;--line:rgba(231,239,243,.1);}
+body{background:radial-gradient(ellipse at 50% -25%,rgba(113,68,76,.18),transparent 50%),var(--bg);padding:34px clamp(14px,4vw,38px);line-height:1.65;}
+.logo{font-size:14px;letter-spacing:2.6px;color:#edf1f2;margin-bottom:28px;}
+.wrap{max-width:1180px;}
+.loginbox,.stat,.chartbox,.tblwrap{background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(18,27,33,.98) 60%);border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 38px rgba(0,0,0,.16);}
+.loginbox{border-color:rgba(240,120,104,.22);padding:clamp(24px,5vw,40px);}
+.loginbox h2{font-size:26px;letter-spacing:-.5px;}
+.loginbox p{line-height:1.75;}
+input{background:rgba(5,10,13,.55);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:13px 14px;}
+input:focus{border-color:rgba(119,185,231,.72);box-shadow:0 0 0 3px rgba(119,185,231,.12);outline:none;}
+label{font-size:12px;font-weight:700;color:#c3cdd2;}
+.btn{background:linear-gradient(135deg,#ed7162,#d95653);border-radius:10px;box-shadow:0 8px 20px rgba(217,86,83,.17);transition:transform .2s,filter .2s;}
+.btn:hover,.act:hover,.btnout:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.top{padding:17px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(18,27,33,.72);backdrop-filter:blur(12px);}
+.top h2{font-size:22px;letter-spacing:-.5px;}
+.btnout,.act{border-radius:9px;transition:transform .2s,filter .2s,border-color .2s;}
+.stats{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
+.stat{text-align:left;position:relative;overflow:hidden;padding:20px 21px;border-top:1px solid var(--line)!important;min-height:135px;}
+.stat::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--blue);}
+.stat:nth-child(4n+1)::before{background:var(--gold);}
+.stat:nth-child(4n+2)::before{background:var(--blue);}
+.stat:nth-child(4n+3)::before{background:var(--green);}
+.stat:nth-child(4n)::before{background:var(--red);}
+.stat p{font-size:10px;letter-spacing:.8px;line-height:1.5;}
+.stat h3{font-size:32px;letter-spacing:-1px;}
+.stat small{line-height:1.55;display:block;}
+.chartbox,.tblwrap{padding:clamp(18px,3vw,25px);margin-bottom:18px;}
+.chartbox h3,.tblwrap h3{font-size:16px;margin-bottom:16px;}
+.bar{margin-bottom:19px;}
+.bar:last-child{margin-bottom:0;}
+.bar .track{height:10px;border-radius:999px;background:rgba(255,255,255,.07);}
+.bar .fill{border-radius:999px;}
+.tblwrap{overflow-x:auto;}
+table{min-width:620px;border-collapse:separate;border-spacing:0;font-size:12px;}
+th{padding:11px 12px;color:#b6c3c9;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025);}
+td{padding:12px;border-bottom:1px solid rgba(255,255,255,.055);vertical-align:top;line-height:1.6;}
+tbody tr:hover{background:rgba(255,255,255,.025);}
+.badge{display:inline-block;border-radius:999px;padding:5px 10px;}
+.mediaqueue{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+.mediacard{background:rgba(5,10,13,.45);border:1px solid var(--line);border-radius:13px;}
+.mediacard img,.mediacard video{height:200px;}
+.mediainfo{padding:14px;}
+.mediaactions .act{padding:9px 12px;}
+.actions{padding:0 2px 20px;}
+.actions .act{padding:12px 16px;}
+.admin-links{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 21px;}
+.admin-links a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);color:#c2d0d6;text-decoration:none;font-size:11px;font-weight:700;transition:.2s;}
+.admin-links a:hover{color:#d8efff;border-color:rgba(119,185,231,.4);background:rgba(119,185,231,.08);}
+#adminSync{display:inline-block;padding:8px 12px;border:1px solid rgba(119,185,231,.16);border-radius:999px;background:rgba(119,185,231,.055);color:#b8d9ed!important;font-size:11px!important;line-height:1.5;}
+footer{padding:30px 0 4px;}
+@media(max-width:640px){body{padding-top:22px;}.top{align-items:flex-start;}.top>div{display:flex;gap:7px;flex-wrap:wrap;}.top .act,.btnout{font-size:11px;padding:8px 10px;}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}.stat{min-height:124px;padding:15px;}.stat h3{font-size:28px;}.stat p{font-size:9px;}.stat small{font-size:10px;}.mediaqueue{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -93,17 +145,20 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 </div>
 <p id="adminSync" data-sync-status role="status" aria-live="polite" style="color:var(--gold);margin:-16px 0 22px;"></p>
 <p id="adminIdentity" style="color:var(--muted);font-size:12px;margin:-14px 0 22px;"></p>
+<nav class="admin-links" aria-label="Pintasan dashboard">
+<a href="#stats">Ringkasan</a><a href="#tesDashboard">Hasil tes</a><a href="#daunDashboard">Pohon Dialog</a><a href="#forumDashboard">Forum</a><a href="#kontakDashboard">Kontak</a><a href="#galeriDashboard">Moderasi galeri</a>
+</nav>
 
 <div class="stats" id="stats"></div>
 
-<div class="chartbox">
+<div class="chartbox" id="tesDashboard">
 <h3>📈 Ringkasan Hasil Tes (Dampak Kampanye)</h3>
 <div class="bar"><div class="lbl"><span style="color:var(--green)">✓ Sesuai (Empatik / Inklusif)</span><span id="l1">0%</span></div><div class="track"><div class="fill" id="f1" style="background:var(--green);width:0%"></div></div></div>
 <div class="bar"><div class="lbl"><span style="color:var(--gold)">≈ Cukup</span><span id="l2">0%</span></div><div class="track"><div class="fill" id="f2" style="background:var(--gold);width:0%"></div></div></div>
 <div class="bar"><div class="lbl"><span style="color:var(--red)">✗ Perlu Edukasi / Indikasi Represif</span><span id="l3">0%</span></div><div class="track"><div class="fill" id="f3" style="background:var(--red);width:0%"></div></div></div>
 </div>
 
-<div class="tblwrap">
+<div class="tblwrap" id="riwayatDashboard">
 <h3>🧾 Riwayat Pengisi Tes Refleksi</h3>
 <table>
 <thead><tr><th>Waktu</th><th>Kategori</th><th>Skor</th><th>Hasil</th></tr></thead>
@@ -111,7 +166,7 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 </table>
 </div>
 
-<div class="tblwrap">
+<div class="tblwrap" id="daunDashboard">
 <h3>🌱 Daun Dialog dari Pengunjung</h3>
 <table>
 <thead><tr><th>Waktu</th><th>Nama</th><th>Pesan</th></tr></thead>
@@ -119,7 +174,7 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 </table>
 </div>
 
-<div class="tblwrap">
+<div class="tblwrap" id="forumDashboard">
 <h3>💬 Pesan Forum (Ruang Cerita)</h3>
 <table>
 <thead><tr><th>Waktu</th><th>Nama</th><th>Pesan</th></tr></thead>
@@ -127,7 +182,7 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 </table>
 </div>
 
-<div class="tblwrap">
+<div class="tblwrap" id="kontakDashboard">
 <h3>✉️ Pesan Kontak / Kemitraan Masuk</h3>
 <table>
 <thead><tr><th>Waktu</th><th>Nama / Instansi</th><th>Kontak</th><th>Pesan</th></tr></thead>
@@ -135,7 +190,7 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 </table>
 </div>
 
-<div class="tblwrap">
+<div class="tblwrap" id="galeriDashboard">
 <h3>📷 Moderasi Galeri Foto &amp; Video</h3>
 <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Kiriman media tersinkron realtime. Media yang disetujui tampil untuk semua pengunjung.</p>
 <div class="mediaqueue" id="mediaQueue"></div>
