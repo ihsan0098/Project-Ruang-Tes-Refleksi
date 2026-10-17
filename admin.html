@@ -70,16 +70,16 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 <!-- LOGIN -->
 <div class="loginbox" id="loginbox">
 <h2>🔐 Portal Admin</h2>
-<p>Halaman khusus — masuk untuk melihat data kampanye.</p>
+<p>Masuk dengan akun admin Firebase untuk melihat data kampanye realtime.</p>
 <form onsubmit="login(event)">
-<label>ID / Username</label>
-<input id="u" type="text" placeholder="admin" required>
+<label>Email admin</label>
+<input id="u" type="email" autocomplete="username" placeholder="admin@contoh.com" required>
 <label>Password</label>
-<input id="p" type="password" placeholder="••••••••" required>
+<input id="p" type="password" autocomplete="current-password" required>
 <button class="btn" type="submit">Masuk Dashboard</button>
 </form>
-<p class="err" id="err">ID atau password salah. Coba lagi.</p>
-<p class="hint">Hubungi ketua tim untuk kredensial resmi.</p>
+<p class="err" id="err" role="alert"></p>
+<p class="hint">Akun harus dibuat di Firebase Authentication dan UID-nya diizinkan pada aturan database.</p>
 </div>
 
 <!-- DASHBOARD -->
@@ -91,6 +91,8 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 <button class="btnout" onclick="logout()">Keluar</button>
 </div>
 </div>
+<p id="adminSync" data-sync-status role="status" aria-live="polite" style="color:var(--gold);margin:-16px 0 22px;"></p>
+<p id="adminIdentity" style="color:var(--muted);font-size:12px;margin:-14px 0 22px;"></p>
 
 <div class="stats" id="stats"></div>
 
@@ -135,13 +137,12 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 
 <div class="tblwrap">
 <h3>📷 Moderasi Galeri Foto &amp; Video</h3>
-<p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Setujui kiriman agar tampil di galeri publik, atau hapus kiriman yang tidak sesuai.</p>
+<p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Kiriman media tersinkron realtime. Media yang disetujui tampil untuk semua pengunjung.</p>
 <div class="mediaqueue" id="mediaQueue"></div>
 </div>
 
 <div class="actions">
 <button class="act" onclick="exportCSV()">⬇ Unduh Semua Data (CSV)</button>
-<button class="act" onclick="resetData()" style="border-color:var(--red);color:var(--red);">🗑 Reset Semua Data</button>
 </div>
 </div>
 <footer>&copy; 2026 Project Ruang — LIDM 2026 Universitas Negeri Padang</footer>
@@ -150,21 +151,21 @@ footer{margin-top:auto;padding-top:35px;color:var(--muted);font-size:12px;text-a
 function get(k){try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return[]}}
 function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
 
-const PASS='ruang2026';
-function login(e){
+async function login(e){
 e.preventDefault();
-if(document.getElementById('u').value.trim()==='admin'&&document.getElementById('p').value===PASS){
-document.getElementById('loginbox').style.display='none';
-document.getElementById('dash').style.display='block';
-render();
-}else{
-document.getElementById('err').style.display='block';
+const error=document.getElementById('err');
+error.style.display='none';
+try{
+await loginAdmin(document.getElementById('u').value.trim(),document.getElementById('p').value);
+document.getElementById('p').value='';
+}catch(reason){
+error.textContent='Login gagal: '+reason.message;
+error.style.display='block';
 }
 }
-function logout(){
-document.getElementById('dash').style.display='none';
-document.getElementById('loginbox').style.display='block';
-document.getElementById('err').style.display='none';
+async function logout(){
+try{await logoutAdmin();}
+catch(error){alert('Gagal keluar: '+error.message);}
 }
 function badge(s){
 if(s>=8)return'<span class="badge b-ok">Sesuai</span>';
@@ -172,23 +173,23 @@ if(s>=5)return'<span class="badge b-cu">Cukup</span>';
 return'<span class="badge b-re">Perlu Edukasi</span>';
 }
 function render(){
-const tes=get('ruangTes');
+const tes=getAdminData('ruangTes');
 const daun=get('ruangDaun');
 const forum=get('ruangForum');
-const kontak=get('ruangKontak');
-const galeri=get('ruangGaleri');
+const kontak=getAdminData('ruangKontak');
+const galeri=getAdminData('ruangGaleri');
 const pendingMedia=galeri.filter(item=>item.status==='pending').length;
-const alerts=get('ruangAlert');
-const views=parseInt(localStorage.getItem('ruangViews')||'0');
+const alerts=tes.filter(t=>t.skor<6);
+const views=getAdminData('ruangViews');
 const nOrang=tes.filter(t=>t.jenis==='orangtua').length;
 const nAnak=tes.filter(t=>t.jenis==='anak').length;
 const nMas=tes.filter(t=>t.jenis==='masyarakat').length;
 document.getElementById('stats').innerHTML=
-`<div class="stat" style="border-top-color:var(--gold)"><p>Statistik Pengunjung</p><h3>${views}</h3><small>Total akses website (perangkat ini)</small></div>
-<div class="stat" style="border-top-color:var(--blue)"><p>Total Pengisi Tes</p><h3>${tes.length}</h3><small>Semua kategori</small></div>
-<div class="stat"><p>Tes Orang Tua</p><h3>${nOrang}</h3><small>Pengisi</small></div>
-<div class="stat"><p>Tes Anak</p><h3>${nAnak}</h3><small>Pengisi</small></div>
-<div class="stat"><p>Tes Masyarakat</p><h3>${nMas}</h3><small>Pengisi</small></div>
+`<div class="stat" style="border-top-color:var(--gold)"><p>Statistik Pengunjung</p><h3>${views.toLocaleString('id-ID')}</h3><small>Total sesi pengunjung lintas perangkat · realtime</small></div>
+<div class="stat" style="border-top-color:var(--blue)"><p>Total Skor Tes Tersimpan</p><h3>${tes.length}</h3><small>Hanya yang menyetujui penyimpanan</small></div>
+<div class="stat"><p>Tes Orang Tua</p><h3>${nOrang}</h3><small>Skor tersimpan</small></div>
+<div class="stat"><p>Tes Anak</p><h3>${nAnak}</h3><small>Skor tersimpan</small></div>
+<div class="stat"><p>Tes Masyarakat</p><h3>${nMas}</h3><small>Skor tersimpan</small></div>
 <div class="stat" style="border-top-color:var(--green)"><p>Daun Dialog</p><h3>${daun.length}</h3><small>Ditanam pengunjung</small></div>
 <div class="stat" style="border-top-color:var(--gold)"><p>Pesan Forum</p><h3>${forum.length}</h3><small>Dinding cerita</small></div>
 <div class="stat" style="border-top-color:var(--red)"><p>Pesan Kontak</p><h3>${kontak.length}</h3><small>Dari form narahubung</small></div>
@@ -202,10 +203,10 @@ document.getElementById('l2').textContent=Math.round(cu/n*100)+'%';
 document.getElementById('f2').style.width=(cu/n*100)+'%';
 document.getElementById('l3').textContent=Math.round(re/n*100)+'%';
 document.getElementById('f3').style.width=(re/n*100)+'%';
-document.getElementById('tbodyTes').innerHTML=tes.length?tes.slice().reverse().map(t=>`<tr><td>${t.waktu}</td><td>${t.jenis==='orangtua'?'Orang Tua':t.jenis==='anak'?'Anak':'Masyarakat'}</td><td>${t.skor}/12</td><td>${badge(t.skor)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada data. Silakan isi tes di halaman utama.</td></tr>';
-document.getElementById('tbodyDaun').innerHTML=daun.length?daun.slice().reverse().map(d=>`<tr><td>${d.waktu}</td><td>${esc(d.nama)}</td><td>${esc(d.pesan)}</td></tr>`).join(''):'<tr><td colspan="3" style="color:var(--muted)">Belum ada daun.</td></tr>';
-document.getElementById('tbodyForum').innerHTML=forum.length?forum.map(f=>`<tr><td>${f.waktu}</td><td>${esc(f.nama)}</td><td>${esc(f.pesan)}</td></tr>`).join(''):'<tr><td colspan="3" style="color:var(--muted)">Belum ada pesan forum.</td></tr>';
-document.getElementById('tbodyKontak').innerHTML=kontak.length?kontak.slice().reverse().map(c=>`<tr><td>${c.waktu}</td><td>${esc(c.nama)}</td><td>${esc(c.email)}</td><td>${esc(c.pesan)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada pesan masuk.</td></tr>';
+document.getElementById('tbodyTes').innerHTML=tes.length?tes.slice().reverse().map(t=>`<tr><td>${esc(t.waktu)}</td><td>${t.jenis==='orangtua'?'Orang Tua':t.jenis==='anak'?'Anak':'Masyarakat'}</td><td>${t.skor}/12</td><td>${badge(t.skor)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada hasil tes yang disetujui untuk disimpan.</td></tr>';
+document.getElementById('tbodyDaun').innerHTML=daun.length?daun.slice().reverse().map(d=>`<tr><td>${esc(d.waktu)}</td><td>${esc(d.nama)}</td><td>${esc(d.pesan)}</td></tr>`).join(''):'<tr><td colspan="3" style="color:var(--muted)">Belum ada daun.</td></tr>';
+document.getElementById('tbodyForum').innerHTML=forum.length?forum.map(f=>`<tr><td>${esc(f.waktu)}</td><td>${esc(f.nama)}</td><td>${esc(f.pesan)}</td></tr>`).join(''):'<tr><td colspan="3" style="color:var(--muted)">Belum ada pesan forum.</td></tr>';
+document.getElementById('tbodyKontak').innerHTML=kontak.length?kontak.slice().reverse().map(c=>`<tr><td>${esc(c.waktu)}</td><td>${esc(c.nama)}</td><td>${esc(c.email)}</td><td>${esc(c.pesan)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada pesan masuk.</td></tr>';
 renderMediaQueue(galeri);
 }
 function renderMediaQueue(galeri){
@@ -213,7 +214,6 @@ const queue=document.getElementById('mediaQueue');
 queue.innerHTML='';
 if(!galeri.length){queue.innerHTML='<p style="color:var(--muted)">Belum ada kiriman media.</p>';return}
 galeri.slice().reverse().forEach((item,reverseIndex)=>{
-const index=galeri.length-1-reverseIndex;
 const card=document.createElement('div');card.className='mediacard';
 const source=item.src||item.img;
 const type=item.type||(item.img?'image':'video');
@@ -228,49 +228,62 @@ const date=document.createElement('small');date.textContent=item.waktu||'';
 const status=document.createElement('small');status.style.display='block';status.textContent=item.status==='pending'?'Menunggu persetujuan':item.status==='rejected'?'Ditolak':'Tampil di publik';
 const actions=document.createElement('div');actions.className='mediaactions';
 if(item.status==='pending'){
-const approve=document.createElement('button');approve.className='act approve';approve.textContent='Setujui';approve.onclick=()=>moderasiMedia(index,'approved');
-const reject=document.createElement('button');reject.className='act reject';reject.textContent='Tolak';reject.onclick=()=>moderasiMedia(index,'rejected');
+const approve=document.createElement('button');approve.className='act approve';approve.textContent='Setujui';approve.onclick=()=>moderasiMedia(item.id,'approved');
+const reject=document.createElement('button');reject.className='act reject';reject.textContent='Tolak';reject.onclick=()=>moderasiMedia(item.id,'rejected');
 actions.append(approve,reject);
 }else{
-const remove=document.createElement('button');remove.className='act reject';remove.textContent='Hapus';remove.onclick=()=>moderasiMedia(index,'deleted');
+const remove=document.createElement('button');remove.className='act reject';remove.textContent='Hapus';remove.onclick=()=>moderasiMedia(item.id,'deleted');
 actions.appendChild(remove);
 }
 info.append(caption,date,status,actions);card.appendChild(info);queue.appendChild(card);
 });
 }
-function moderasiMedia(index,status){
-const media=get('ruangGaleri');
-if(!media[index])return;
-if(status==='deleted')media.splice(index,1);
-else if(status==='rejected')media.splice(index,1);
-else media[index].status=status;
-localStorage.setItem('ruangGaleri',JSON.stringify(media));
-render();
+async function moderasiMedia(id,status){
+try{
+await moderasiMediaGaleri(id,status);
+}catch(error){
+alert('Moderasi gagal: '+error.message);
+}
 }
 function exportCSV(){
-let csv='Kategori;Nama/Skor;Detail;Waktu\n';
-get('ruangTes').forEach(t=>csv+=`Tes (${t.jenis});Skor ${t.skor}/12;${t.skor>=8?'Sesuai':t.skor>=5?'Cukup':'Perlu Edukasi'};${t.waktu}\n`);
-get('ruangAlert').forEach(a=>csv+=`🚨 Kasus Terdeteksi (${a.jenis});Skor ${a.skor}/12;${a.status};${a.waktu}\n`);
-get('ruangDaun').forEach(d=>csv+=`Daun Dialog;${d.nama};${d.pesan.replace(/;/g,',')};${d.waktu}\n`);
-get('ruangForum').forEach(f=>csv+=`Forum;${f.nama};${f.pesan.replace(/;/g,',')};${f.waktu}\n`);
-get('ruangKontak').forEach(c=>csv+=`Kontak;${c.nama};${c.email};${c.pesan.replace(/;/g,',')};${c.waktu}\n`);
-get('ruangGaleri').forEach(g=>csv+=`Galeri ${g.type==='video'?'Video':'Foto'};${g.cap||'-'};${g.status||'approved'};${g.waktu}\n`);
+const rows=[['Kategori','Nama/Skor','Detail','Waktu']];
+const cell=value=>{
+const text=String(value??'');
+const safe=/^[\s\u0000-\u001f]*[=+\-@]/.test(text)?`'${text}`:text;
+return`"${safe.replace(/"/g,'""')}"`;
+};
+const addRow=(...values)=>rows.push(values.map(cell));
+getAdminData('ruangTes').forEach(t=>addRow(`Tes (${t.jenis})`,`Skor ${t.skor}/12`,t.skor>=8?'Sesuai':t.skor>=5?'Cukup':'Perlu Edukasi',t.waktu));
+getAdminData('ruangTes').filter(t=>t.skor<6).forEach(t=>addRow(`Kasus Terdeteksi (${t.jenis})`,`Skor ${t.skor}/12`,'Perlu tindak lanjut',t.waktu));
+get('ruangDaun').forEach(d=>addRow('Daun Dialog',d.nama,d.pesan,d.waktu));
+get('ruangForum').forEach(f=>addRow('Forum',f.nama,f.pesan,f.waktu));
+getAdminData('ruangKontak').forEach(c=>addRow('Kontak',c.nama,`${c.email||''}${c.email&&c.pesan?' — ':''}${c.pesan||''}`,c.waktu));
+getAdminData('ruangGaleri').forEach(g=>addRow(`Galeri ${g.type==='video'?'Video':'Foto'}`,g.cap||'-',g.status||'approved',g.waktu));
+const csv=rows.map(row=>row.join(';')).join('\r\n')+'\r\n';
 const a=document.createElement('a');
-a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+a.href='data:text/csv;charset=utf-8,%EF%BB%BF'+encodeURIComponent(csv);
 a.download='data-project-ruang.csv';
 a.click();
 }
-function resetData(){
-if(confirm('Yakin hapus SEMUA data tes, daun, forum, kontak, dan pengunjung?')){
-['ruangTes','ruangDaun','ruangForum','ruangKontak','ruangGaleri','ruangViews','ruangAlert'].forEach(k=>localStorage.removeItem(k));
-render();
-}
-}
-/* REALTIME: Firebase remote + sync antar-tab + auto-refresh */
+/* Firebase listeners refresh the dashboard only when authenticated data changes. */
 document.addEventListener('ruang:remote',render);
 window.addEventListener('storage',e=>{if(e.key&&e.key.startsWith('ruang'))render();});
-setInterval(render,1000);
-render();
+pantauDataAdmin(user=>{
+document.getElementById('loginbox').style.display=user?'none':'block';
+document.getElementById('dash').style.display=user?'block':'none';
+document.getElementById('adminIdentity').textContent=user
+?`Login: ${user.email||'admin'} · UID untuk aturan database: ${user.uid}`
+:'';
+document.getElementById('adminSync').textContent=user
+?'Memuat data realtime. Jika izin ditolak, UID di atas belum dimasukkan ke aturan database.'
+:'Masuk untuk menghubungkan data kampanye realtime.';
+if(user)render();
+},error=>{
+const message='Firebase Auth/Database: '+error.message;
+document.getElementById('err').textContent=message;
+document.getElementById('err').style.display='block';
+document.getElementById('adminSync').textContent=message;
+});
 </script>
 </body>
 </html>

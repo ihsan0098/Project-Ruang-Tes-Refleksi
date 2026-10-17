@@ -1,33 +1,35 @@
 # Project Ruang — Tes Refleksi
 
-Website kampanye digital LIDM 2026 Universitas Negeri Padang: film pendek, tes refleksi (Orang Tua / Anak / Masyarakat), galeri foto, pohon dialog, forum, dan dashboard admin.
+Website kampanye digital LIDM 2026 Universitas Negeri Padang: tes refleksi, galeri foto/video, Pohon Dialog, forum, dan dashboard admin.
 
-## Galeri foto dan video
-Pengunjung dapat mengirim foto JPG/PNG/GIF/WebP dan video MP4/WebM/OGG (maksimal 3 MB per video). Kiriman baru berstatus menunggu persetujuan; admin dapat menyetujui atau menghapusnya dari bagian **Moderasi Galeri Foto & Video** di dashboard. Hanya media yang disetujui yang tampil di galeri publik.
+## Sinkronisasi dan privasi
 
-Tanpa konfigurasi Firebase, data tersimpan di browser yang digunakan dan tidak dibagikan ke perangkat lain. Firebase opsional di `db.js` menyinkronkan data, tetapi penyimpanan file tetap memakai Realtime Database. Login dashboard dan persetujuan di aplikasi statis ini bukan kontrol akses yang aman untuk produksi; izin admin yang benar-benar terjamin memerlukan autentikasi dan validasi status di server serta aturan database yang membatasi perubahan status hanya untuk admin.
+- Pohon Dialog dan Forum tersinkron realtime ke Firebase dan dapat dibaca semua pengunjung. Nama/inisial serta pesan yang dikirim bersifat publik.
+- Skor tes hanya dikirim jika pengunjung mencentang persetujuan eksplisit. Hanya kategori dan skor akhir anonim yang disimpan; hasil hanya dapat dibaca admin yang telah diizinkan di Firebase.
+- Pesan kontak disimpan di koleksi privat dan hanya dapat dibaca admin yang telah diizinkan.
+- Dashboard menerima pembaruan tes, pesan kontak, Pohon Dialog, Forum, galeri, dan penghitung kunjungan secara realtime. Data privat/moderasi hanya dibaca admin yang diizinkan melalui Firebase Authentication.
+- Foto/video disimpan sebagai Data URL di Realtime Database dan dibaca publik setelah admin menyetujui kiriman. Batas unggah adalah 1 MB per file; hapus media yang tidak lagi dibutuhkan karena media ikut memakai kuota penyimpanan dan unduhan database.
+- Penghitung mencatat satu kunjungan per tab per sesi browser; ini bukan hitungan pengguna unik dan tidak memakai proteksi bot/rate-limit.
+- Data lama yang tersimpan di browser tidak otomatis dimigrasikan ke Firebase.
+- Kiriman Pohon Dialog/Forum dan unggahan media dapat masuk tanpa moderasi awal. Aturan validasi panjang, ukuran, dan bentuk data tidak mencegah spam sepenuhnya. Untuk rate limiting dan anti-spam yang kuat perlu backend tepercaya.
 
-Kiriman Pohon Dialog dan Forum langsung tampil di halaman setelah dikirim. Pembaruan langsung antarperangkat membutuhkan konfigurasi Firebase di `db.js`; tanpa konfigurasi, data hanya tersimpan pada browser/perangkat tersebut (tab lain pada browser yang sama akan menerima pembaruan).
+## Menyiapkan akses admin dengan aman
+
+1. Di Firebase Console, buka **Authentication → Sign-in method** dan aktifkan **Email/Password**.
+2. Di **Authentication → Users**, tambahkan akun admin dengan kata sandi kuat. Salin UID akun yang ditampilkan Firebase; jangan masukkan kata sandi ke kode sumber.
+3. UID admin yang sudah didaftarkan adalah `SBtTiBYjL4dBMD2HIYJpFKaGmVB2`; berkas [`database.rules.json`](./database.rules.json) sudah memakai UID ini pada aturan data privat. Pastikan hanya akun admin tepercaya yang memakai UID tersebut.
+4. Buka **Realtime Database → Rules**, terbitkan aturan terbaru dari [`database.rules.json`](./database.rules.json). Aturan menolak akses root, memberi baca publik hanya pada Pohon Dialog/Forum, penghitung, dan media yang disetujui; data tes, kontak, serta antrian moderasi hanya dapat dibaca admin.
+5. Tambahkan domain Vercel/custom domain ke **Authentication → Settings → Authorized domains** bila belum ada.
+6. Deploy file website yang sudah diperbarui ke Vercel. Login di `/admin.html` dengan akun Firebase tersebut; UID yang tampil harus sama dengan UID yang dimasukkan ke aturan.
+7. Uji dari browser lain: Pohon Dialog/Forum dan media yang disetujui harus muncul bagi semua pengunjung; unggahan baru hanya terlihat di dashboard sebelum disetujui; skor tes (setelah persetujuan) dan pesan kontak hanya terlihat di dashboard admin.
+
+Galeri memakai Realtime Database agar tidak memerlukan layanan Storage tambahan. Karena file media menjadi bagian dari data database yang diunduh pengunjung, pendekatan ini cocok hanya untuk galeri kecil dengan unggahan terbatas; jangan menganggap layanan gratis tanpa batas.
+
+Jangan membuka `.read` atau `.write` untuk seluruh database. Konfigurasi Web Firebase di [`db.js`](./db.js) memang digunakan pada browser dan bukan secret; service-account key atau kredensial admin tidak boleh dimasukkan ke file frontend.
 
 ## Struktur
-- `index.html` — halaman utama
-- `admin.html` — dashboard admin (ID: admin)
-- `db.js` — sinkronisasi realtime (Firebase, opsional)
 
-## Publikasi website
-Workflow GitHub Pages tersedia di `.github/workflows/deploy-pages.yml`.
-
-1. Push perubahan ke branch `main`.
-2. Di GitHub, buka **Settings → Pages**, lalu pilih **GitHub Actions** sebagai *Build and deployment source*.
-3. Setelah workflow **Publish website to GitHub Pages** selesai, website tersedia di `https://ihsan0098.github.io/Project-Ruang-Tes-Refleksi/`.
-
-GitHub Pages hanya meng-host file website. Supaya Pohon Dialog dan Forum tersinkron real-time ke semua perangkat, website juga memerlukan Firebase Realtime Database yang dikonfigurasi dan aturan akses yang aman. Firebase belum diaktifkan di `db.js`.
-
-## Menyiapkan Firebase
-1. Buat project di [Firebase Console](https://console.firebase.google.com/).
-2. Tambahkan aplikasi Web dan salin konfigurasi Firebase (`apiKey`, `databaseURL`, `projectId`, dan nilai lain yang ditampilkan).
-3. Buat Realtime Database dalam mode terkunci dan catat URL database. Jangan aktifkan aturan `.write: true` untuk seluruh `/ruang`: semua pengunjung dapat membaca, mengubah, atau menghapus data yang tersimpan di sana.
-4. Sebelum membuka akses tulis untuk kiriman publik, gunakan aturan yang hanya mengizinkan kiriman baru pada Pohon Dialog/Forum dan perubahan moderasi oleh admin yang terautentikasi. Sistem login admin statis saat ini belum cukup untuk melindungi perubahan data di Firebase.
-5. Setelah project Firebase dibuat, konfigurasi web dapat digunakan untuk menghubungkan database; jangan mengirim password, service-account key, atau secret server.
-
-Hanya kiriman Pohon Dialog, Forum, dan media galeri yang disetujui yang sebaiknya dipublikasikan. Hasil tes individual dan pesan kontak harus tetap privat. Konfigurasi sinkronisasi saat ini masih memerlukan penyesuaian aturan dan akses sebelum dipakai dengan data publik; jangan mengaktifkan aturan database terbuka untuk seluruh data.
+- `index.html` — halaman utama dan formulir publik
+- `admin.html` — dashboard realtime dengan Firebase Authentication
+- `db.js` — koneksi Firebase, kiriman publik, dan data privat
+- `database.rules.json` — aturan akses Realtime Database; isi UID admin sebelum diterbitkan

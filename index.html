@@ -23,6 +23,7 @@ nav ul li a:hover,nav ul li a.active{color:var(--red);border-bottom-color:var(--
 section{padding:95px 22px 70px;display:flex;flex-direction:column;align-items:center;max-width:1150px;margin:0 auto;}
 h2{font-size:30px;margin-bottom:8px;text-align:center;}
 .sub{color:var(--muted);margin-bottom:35px;text-align:center;max-width:680px;}
+.sync-status{color:var(--gold);font-size:12px;margin-top:-26px;}
 h3{font-size:20px;}
 .hero{text-align:center;max-width:840px;}
 .hero h1{font-size:42px;font-weight:800;margin-bottom:18px;line-height:1.25;}
@@ -354,13 +355,17 @@ section{padding-left:18px;padding-right:18px;}
 </section>
 <section id="tes">
 <h2>Tes Refleksi</h2>
-<p class="sub">Pilih peranmu — 12 pertanyaan reflektif. Jawabanmu tercatat dan membantu mengukur dampak kampanye ini.</p>
+<p class="sub">Pilih peranmu — 12 pertanyaan reflektif. Skor hanya dikirim untuk statistik jika Anda menyetujuinya.</p>
 <!-- ALERT REALTIME (masalah terdeteksi dari hasil tes) -->
 <div class="alertbar" id="alertBar" role="alert">
 <strong>🧭 Perhatian:</strong> <span id="alertTxt"></span>
 </div>
 <!-- SCAN QR UNTUK AKSES TES DARI HP -->
 <div class="qrrow" id="qrRow"></div>
+<label style="display:flex;gap:10px;align-items:flex-start;max-width:740px;margin:0 auto 22px;color:var(--muted);">
+<input id="consentTes" type="checkbox" style="width:auto;margin:4px 0 0;">
+<span>Saya setuju skor akhir tes tanpa nama disimpan di Firebase dan hanya dapat dilihat admin untuk statistik kampanye. Hasil tidak ditampilkan ke publik. Jika tidak dicentang, skor hanya tersimpan di browser ini.</span>
+</label>
 <div class="grid" id="tesHub">
 <div class="card tcard p" onclick="bukaTes('orangtua')">
 <div class="ticon">👨‍👦</div><h3>Tes Refleksi Orang Tua</h3>
@@ -388,7 +393,7 @@ section{padding-left:18px;padding-right:18px;}
 <div id="soalWrap"></div>
 </div>
 <div class="card tsteps" id="tesHasil"></div>
-<p class="disclaimer" style="max-width:740px;text-align:center;">Disclaimer: Tes ini bersifat sebagai asesmen awal untuk refleksi diri, bukan diagnosis klinis profesional. Privasi Anda terjaga; data yang Anda kirimkan bersifat anonim.</p>
+<p class="disclaimer" style="max-width:740px;text-align:center;">Disclaimer: Tes ini adalah asesmen awal untuk refleksi diri, bukan diagnosis klinis profesional. Hanya skor akhir anonim yang disimpan jika Anda memberi persetujuan eksplisit.</p>
 </section>
 <section id="galeri">
 <h2>Galeri Foto &amp; Video</h2>
@@ -396,7 +401,7 @@ section{padding-left:18px;padding-right:18px;}
 <div class="upzone" id="upzone">
 <div class="big">📷 🎬</div>
 <strong style="font-size:16px;">Klik untuk unggah foto atau video</strong>
-<p style="color:var(--muted);font-size:13px;margin-top:6px;">atau seret &amp; letakkan file di sini — pilih beberapa foto atau video (video maks. 3 MB)</p>
+<p style="color:var(--muted);font-size:13px;margin-top:6px;">atau seret &amp; letakkan file di sini — foto/video maksimal 1 MB per file, menunggu persetujuan admin</p>
 <input type="file" id="upfile" accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/ogg" multiple style="display:none;">
 </div>
 <div style="width:100%;max-width:1050px;margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
@@ -407,7 +412,8 @@ section{padding-left:18px;padding-right:18px;}
 </section>
 <section id="pohon">
 <h2>Pohon Dialog</h2>
-<p class="sub">Klik daun untuk membaca suara hati yang terpendam — dan tanam daunmu sendiri. Kiriman baru langsung tampil; pembaruan antarperangkat memerlukan Firebase aktif.</p>
+<p class="sub">Klik daun untuk membaca suara hati yang terpendam — dan tanam daunmu sendiri.</p>
+<p class="sync-status" data-sync-status role="status" aria-live="polite">Memeriksa status sinkronisasi…</p>
 <div class="pvis" id="pvis">
 <div class="trunk"></div>
 <div class="leaf n1" onclick="leaf('Luka Fisik & Mental','“Ayah, luka jatuh dari sepeda tidak seberapa dibanding kata-kata kasar yang membentak eksistensiku.”')">Daun 1</div>
@@ -422,17 +428,18 @@ section{padding-left:18px;padding-right:18px;}
 <div class="fbox">
 <h3 style="margin-bottom:15px;">🌱 Tanam Daunmu — Tulis Pesanmu</h3>
 <label for="lnama">Nama / Inisial (boleh anonim)</label>
-<input id="lnama" placeholder="mis. Anonim">
+<input id="lnama" maxlength="40" placeholder="mis. Anonim">
 <label for="lpesan">Suara hatimu</label>
-<textarea id="lpesan" placeholder="Tuliskan pesan, pengalaman, atau harapanmu…"></textarea>
+<textarea id="lpesan" maxlength="500" placeholder="Tuliskan pesan, pengalaman, atau harapanmu…"></textarea>
 <button class="btn" onclick="tambahDaun()">Tanam di Pohon Dialog</button>
 <p class="ok" id="okDaun" role="status" aria-live="polite">Terima kasih! Daun Anda langsung tampil di Pohon Dialog.</p>
-<p class="disclaimer">Disclaimer: Pesan Anda bersifat anonim. Privasi Anda terjaga; data yang Anda kirimkan bersifat anonim.</p>
+<p class="disclaimer">Kiriman dapat dibaca semua pengunjung. Hindari nama lengkap, nomor telepon, alamat, atau informasi pribadi.</p>
 </div>
 </section>
 <section id="forum">
 <h2>Ruang Cerita (Forum)</h2>
-<p class="sub">Dinding pesan anonim — tempat berbagi perasaan dan saling menguatkan. Pesan baru langsung tampil; pembaruan antarperangkat memerlukan Firebase aktif.</p>
+<p class="sub">Dinding pesan anonim — tempat berbagi perasaan dan saling menguatkan.</p>
+<p class="sync-status" data-sync-status role="status" aria-live="polite">Memeriksa status sinkronisasi…</p>
 <div class="forum-tools">
 <label for="forumSearch">Cari cerita di forum</label>
 <input id="forumSearch" type="search" placeholder="Cari nama atau kata dalam pesan…" oninput="renderForum()">
@@ -442,12 +449,12 @@ section{padding-left:18px;padding-right:18px;}
 <div class="fbox" style="margin-top:25px;">
 <h3 style="margin-bottom:15px;">💬 Tinggalkan Pesan Dukungan</h3>
 <label for="fnama">Nama / Inisial (boleh anonim)</label>
-<input id="fnama" placeholder="Seseorang yang peduli">
+<input id="fnama" maxlength="40" placeholder="Seseorang yang peduli">
 <label for="fpesan">Pesan dukungan</label>
-<textarea id="fpesan" placeholder="Tulis kata-kata penguat di sini…"></textarea>
+<textarea id="fpesan" maxlength="1000" placeholder="Tulis kata-kata penguat di sini…"></textarea>
 <button class="btn gold" onclick="tambahForum()">Kirim ke Forum</button>
 <p class="ok" id="okForum" role="status" aria-live="polite">Terima kasih! Pesan Anda langsung tampil di Ruang Cerita.</p>
-<p class="disclaimer">Disclaimer: Pesan Anda bersifat anonim. Privasi Anda terjaga; data yang Anda kirimkan bersifat anonim.</p>
+<p class="disclaimer">Kiriman dapat dibaca semua pengunjung. Hindari nama lengkap, nomor telepon, alamat, atau informasi pribadi.</p>
 </div>
 </section>
 <section id="tim">
@@ -478,13 +485,14 @@ section{padding-left:18px;padding-right:18px;}
 <div class="fbox" style="max-width:430px;">
 <h3 style="margin-bottom:15px;">✉️ Kirim Pesan / Ajukan Kerja Sama</h3>
 <label for="knama">Nama / Instansi</label>
-<input id="knama" placeholder="Nama lengkap / instansi">
+<input id="knama" maxlength="80" placeholder="Nama lengkap / instansi">
 <label for="kemail">Email / WhatsApp</label>
-<input id="kemail" placeholder="email@contoh.com">
+<input id="kemail" maxlength="120" placeholder="email@contoh.com">
 <label for="kpesan">Pesan / Tujuan Kerja Sama</label>
-<textarea id="kpesan" placeholder="Tuliskan pesan atau bentuk kolaborasi yang diinginkan…"></textarea>
+<textarea id="kpesan" maxlength="2000" placeholder="Tuliskan pesan atau bentuk kolaborasi yang diinginkan…"></textarea>
+<p class="disclaimer">Pesan dan kontak hanya dapat dibaca admin setelah dikirim. Hindari mengirim informasi sensitif.</p>
 <button class="btn" onclick="tambahKontak()">Kirim</button>
-<p class="ok" id="okKontak">✓ Pesanmu terkirim. Kami akan segera merespons!</p>
+<p class="ok" id="okKontak" role="status" aria-live="polite">Pesan terkirim kepada admin.</p>
 </div>
 </section>
 <!-- MATERI EDUKASI -->
@@ -509,11 +517,11 @@ Unduh Panduan Obrolan Hati ke Hati (PDF)
 <div class="faq">
 <div class="faq-item">
 <button class="faq-q" aria-expanded="false" aria-controls="fa1" onclick="toggleFaq(this)">Apakah identitas saya di Ruang Cerita dijamin rahasia? <span class="chev">▾</span></button>
-<div class="faq-a" id="fa1" role="region">Ya, semua pesan di Ruang Cerita bersifat anonim dan tersimpan aman tanpa melacak data pribadi Anda.</div>
+<div class="faq-a" id="fa1" role="region">Pesan forum dan Pohon Dialog dapat dibaca semua pengunjung. Nama/inisial yang Anda tulis ikut ditampilkan; jangan cantumkan informasi pribadi.</div>
 </div>
 <div class="faq-item">
 <button class="faq-q" aria-expanded="false" aria-controls="fa2" onclick="toggleFaq(this)">Siapa yang membaca hasil Tes Refleksi saya? <span class="chev">▾</span></button>
-<div class="faq-a" id="fa2" role="region">Hasil tes hanya diproses oleh sistem untuk memberikan umpan balik (feedback) seketika. Kami tidak menyimpan data hasil tes secara individual.</div>
+<div class="faq-a" id="fa2" role="region">Skor akhir anonim hanya dikirim ke Firebase jika Anda menyetujui kotak persetujuan sebelum memulai tes. Skor yang tersimpan hanya dapat dibaca admin; tanpa persetujuan, skor tidak dikirim.</div>
 </div>
 <div class="faq-item">
 <button class="faq-q" aria-expanded="false" aria-controls="fa3" onclick="toggleFaq(this)">Apakah layanan konseling ini gratis? <span class="chev">▾</span></button>
@@ -685,9 +693,9 @@ soal:[
 {q:'Generasi yang lebih sehat mental dimulai dari…',a:[['Lingkungan yang berani mengubah stigma.',1],['Individu yang lebih kuat menahan diri.',0],['Anak yang lebih patuh dan tidak banyak tanya.',0]]}
 ]}
 };
-let tesAktif=null,idx=0,skor=0;
+let tesAktif=null,idx=0,skor=0,simpanSkorTes=false;
 function bukaTes(t){
-tesAktif=t;idx=0;skor=0;
+tesAktif=t;idx=0;skor=0;simpanSkorTes=document.getElementById('consentTes').checked;
 document.getElementById('tesHub').style.display='none';
 document.getElementById('tesHasil').style.display='none';
 document.getElementById('tesArea').style.display='block';
@@ -721,7 +729,7 @@ set('ruangTes',data);
 const kategori=skor>=8?'Sesuai (Empatik)':(skor>=5?'Cukup':'Perlu Edukasi');
 const perluBantuan=(tesAktif==='orangtua'&&skor<6)||(tesAktif==='anak'&&skor<6)||(tesAktif==='masyarakat'&&skor<6);
 
-/* ALERT REALTIME: masalah terdeteksi → masuk data & tampil di dasbor admin */
+/* Local alert only; test results are not sent to the public database. */
 if(perluBantuan){
 const alerts=get('ruangAlert');
 alerts.push({jenis:tesAktif,skor:skor,waktu:new Date().toLocaleString('id-ID'),status:'baru'});
@@ -737,13 +745,23 @@ h+='<div class="refbox"><strong>🧭 Indikasi pola asuh represif terdeteksi.</st
 }else{
 h+='<div class="refbox" style="border-color:var(--green);background:rgba(46,204,113,.07);"><strong style="color:var(--green)">✓ Respons Anda menunjukkan empati yang baik.</strong><br>Bagikan pemahaman ini kepada orang-orang di sekitarmu. Jika ingin berdiskusi, narahubung kami siap mendengarkan.</div>';
 }
-h+='<p style="color:var(--muted);font-size:14px;margin-top:15px;">Jawabanmu terekam dan akan membantu mengukur dampak kampanye ini. 🙏</p>';
+h+=simpanSkorTes
+ ?'<p id="tesSyncStatus" role="status" aria-live="polite" style="color:var(--muted);font-size:14px;margin-top:15px;">Mengirim skor anonim ke dashboard admin…</p>'
+ :'<p style="color:var(--muted);font-size:14px;margin-top:15px;">Skor tidak dikirim ke server karena persetujuan penyimpanan tidak diberikan. 🙏</p>';
 h+='<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px;">';
 h+='<a href="#kontak" class="btn sm" onclick="document.getElementById(\'tesHub\').style.display=\'grid\';document.getElementById(\'tesHasil\').style.display=\'none\'">📞 Hubungi Narahubung</a>';
 h+='<a href="https://wa.me/6281234567890?text=Halo%20Project%20Ruang%2C%20saya%20baru%20menyelesaikan%20Tes%20Refleksi%20dan%20ingin%20berdiskusi." target="_blank" class="btn green sm">💬 Konsultasi via WhatsApp</a>';
 h+='<button class="btn gold sm" onclick="bukaTes(\''+tesAktif+'\')">Ulangi Tes</button></div></div>';
 const box=document.getElementById('tesHasil');
 box.innerHTML=h;box.style.display='block';
+if(simpanSkorTes){
+const status=document.getElementById('tesSyncStatus');
+simpanHasilTes({jenis:tesAktif,skor}).then(()=>{
+status.textContent='Skor anonim berhasil dikirim dan hanya dapat dilihat admin.';
+}).catch(error=>{
+status.textContent='Skor tidak terkirim: '+error.message;
+});
+}
 box.scrollIntoView({behavior:'smooth',block:'center'});
 }
 function leaf(t,m){
@@ -766,12 +784,15 @@ el.onclick=()=>leaf('🌱 '+(d.nama||'Anonim')+(d.waktu?' ('+d.waktu+')':''),'"'
 v.appendChild(el);
 });
 }
-function tambahDaun(){
+async function tambahDaun(){
 const n=document.getElementById('lnama').value.trim()||'Anonim';
 const p=document.getElementById('lpesan').value.trim();
 if(!p){alert('Tuliskan dulu suara hatimu ya 🌱');return}
-const d=get('ruangDaun');d.push({id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),nama:n,pesan:p,waktu:new Date().toLocaleString('id-ID'),status:'published'});set('ruangDaun',d);
+let result;
+try{result=await simpanKirimanPublik('daun',{nama:n,pesan:p});}
+catch(error){alert('Kiriman gagal disimpan: '+error.message);return}
 document.getElementById('lnama').value='';document.getElementById('lpesan').value='';
+document.getElementById('okDaun').textContent=result.shared?'Terima kasih! Daun tersimpan dan tampil untuk semua pengunjung.':'Mode lokal: daun hanya tersimpan di browser ini.';
 show('okDaun');renderDaun();
 leaf('🌱 '+n,'"'+esc(p)+'"');
 }
@@ -811,33 +832,41 @@ document.getElementById('forumSearch').value='';
 renderForum();
 document.getElementById('forumSearch').focus();
 }
-function tambahForum(){
+async function tambahForum(){
 const n=document.getElementById('fnama').value.trim()||'Anonim';
 const p=document.getElementById('fpesan').value.trim();
 if(!p){alert('Tulis dulu pesanmu.');return}
-const now=new Date();
-const f=get('ruangForum');f.unshift({id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),nama:n,pesan:p,waktu:now.toLocaleString('id-ID'),createdAt:now.toISOString(),status:'published'});set('ruangForum',f);
+let result;
+try{result=await simpanKirimanPublik('forum',{nama:n,pesan:p});}
+catch(error){alert('Pesan gagal disimpan: '+error.message);return}
 document.getElementById('fnama').value='';document.getElementById('fpesan').value='';
+document.getElementById('okForum').textContent=result.shared?'Terima kasih! Pesan tersimpan dan tampil untuk semua pengunjung.':'Mode lokal: pesan hanya tersimpan di browser ini.';
 show('okForum');renderForum();
 }
-function tambahKontak(){
+async function tambahKontak(){
 const n=document.getElementById('knama').value.trim();
 const e=document.getElementById('kemail').value.trim()||'-';
 const p=document.getElementById('kpesan').value.trim();
 if(!n||!p){alert('Isi nama dan pesan dulu ya.');return}
-const d=get('ruangKontak');d.push({nama:n,email:e,pesan:p,waktu:new Date().toLocaleString('id-ID'),status:'pending'});set('ruangKontak',d);
+try{
+await simpanPesanKontak({nama:n,email:e,pesan:p});
+}catch(error){
+alert('Pesan gagal dikirim: '+error.message);
+return;
+}
 document.getElementById('knama').value='';document.getElementById('kemail').value='';document.getElementById('kpesan').value='';
+document.getElementById('okKontak').textContent='Pesan Anda terkirim dan hanya dapat dibaca admin.';
 show('okKontak');
 }
 /* ================= GALERI FOTO (UPLOAD) ================= */
 function renderGaleri(){
 const g=document.getElementById('ggrid');
-const data=get('ruangGaleri').filter(p=>p.status==='approved'||!p.status);
+const data=getPublicGallery();
 g.innerHTML=data.length?'':'<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:30px;">Belum ada media yang disetujui. Jadilah yang pertama mengirim! 📷</p>';
-data.slice().reverse().forEach(p=>{
+data.forEach(p=>{
 const el=document.createElement('div');el.className='gphoto';
-const source=p.src||p.img;
-const mediaType=p.type||(p.img?'image':'video');
+const source=p.src;
+const mediaType=p.type;
 const media=mediaType==='video'?document.createElement('video'):document.createElement('img');
 media.src=source;
 if(mediaType==='video'){media.controls=true;media.preload='metadata';}
@@ -850,38 +879,30 @@ caption.append(title,time);el.appendChild(caption);
 g.appendChild(el);
 });
 }
-function bacaFile(file){
-return new Promise((resolve,reject)=>{
-const reader=new FileReader();
-reader.onload=()=>resolve(reader.result);
-reader.onerror=()=>reject(new Error('File tidak dapat dibaca.'));
-reader.readAsDataURL(file);
-});
-}
-async function simpanFoto(file){
-const imageTypes=['image/jpeg','image/png','image/gif','image/webp'];
-const videoTypes=['video/mp4','video/webm','video/ogg'];
-const type=imageTypes.includes(file.type)?'image':videoTypes.includes(file.type)?'video':'';
-if(!type){alert('Gunakan foto JPG, PNG, GIF, WebP atau video MP4, WebM, OGG.');return}
-if(type==='video'&&file.size>3*1024*1024){alert('Ukuran video maksimal 3 MB.');return}
+async function simpanFoto(file,caption){
 try{
-const src=await bacaFile(file);
-const d=get('ruangGaleri');
-d.push({id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),src,type,cap:document.getElementById('upcap').value.trim(),waktu:new Date().toLocaleString('id-ID'),status:'pending'});
-set('ruangGaleri',d);
-document.getElementById('upcap').value='';
+await simpanMediaGaleri(file,caption);
 const ok=document.getElementById('upok');ok.style.display='block';setTimeout(()=>ok.style.display='none',3500);
 }catch(error){
 console.error('Gagal menyimpan media galeri:',error);
-alert('Media gagal disimpan. Penyimpanan browser mungkin penuh; coba file yang lebih kecil atau hapus data lama.');
+alert('Media gagal dikirim: '+error.message);
 }
 }
-document.getElementById('upfile').addEventListener('change',async e=>{for(const file of e.target.files)await simpanFoto(file);e.target.value='';});
+document.getElementById('upfile').addEventListener('change',async e=>{
+const caption=document.getElementById('upcap').value.trim();
+for(const file of e.target.files)await simpanFoto(file,caption);
+document.getElementById('upcap').value='';
+e.target.value='';
+});
 const uz=document.getElementById('upzone');
 uz.addEventListener('click',e=>{if(e.target.id!=='upfile')document.getElementById('upfile').click();});
 ['dragover','dragenter'].forEach(ev=>uz.addEventListener(ev,e=>{e.preventDefault();uz.classList.add('drag');}));
 ['dragleave','drop'].forEach(ev=>uz.addEventListener(ev,e=>{e.preventDefault();uz.classList.remove('drag');}));
-uz.addEventListener('drop',async e=>{for(const file of e.dataTransfer.files)await simpanFoto(file);});
+uz.addEventListener('drop',async e=>{
+const caption=document.getElementById('upcap').value.trim();
+for(const file of e.dataTransfer.files)await simpanFoto(file,caption);
+document.getElementById('upcap').value='';
+});
 
 /* ================= REALTIME SYNC (antar-tab + Firebase remote) ================= */
 function refreshAll(){renderGaleri();renderDaun();renderForum();renderAlert();renderQR();}
@@ -892,7 +913,7 @@ if(!bar)return;
 if(alerts.length){
 const last=alerts[alerts.length-1];
 const jenis=last.jenis==='orangtua'?'Orang Tua':last.jenis==='anak'?'Anak':'Masyarakat';
-document.getElementById('alertTxt').textContent=`Hasil Tes ${jenis} (skor ${last.skor}/12) mengindikasikan masalah. Data terkirim realtime ke narahubung & dasbor admin. Layanan SEJIWA 119 ext. 8 siap membantu.`;
+document.getElementById('alertTxt').textContent=`Hasil Tes ${jenis} (skor ${last.skor}/12) menunjukkan area yang mungkin perlu perhatian. Ini bukan diagnosis. Jika membutuhkan bantuan, hubungi narahubung atau SEJIWA 119 ext. 8.`;
 bar.style.display='block';
 }else{bar.style.display='none';}
 }
@@ -930,7 +951,10 @@ const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.t
 document.querySelectorAll('.card,.fbox,.tcard,.gphoto,.bubble,.team .card').forEach(el=>{el.classList.add('reveal');io.observe(el);});
 
 /* ================= PENGUNJUNG (lintas perangkat via db.js) ================= */
-countVisit();
+countVisit().catch(error=>{
+console.error('Gagal mencatat kunjungan:',error);
+setRuangSyncStatus('Statistik kunjungan belum tersinkron. Coba muat ulang halaman.');
+});
 
 renderDaun();
 renderForum();

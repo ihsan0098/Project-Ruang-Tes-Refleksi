@@ -1,0 +1,66 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "public": {
+      "daun": {
+        ".read": true,
+        "$entryId": {
+          ".write": "!data.exists() && newData.exists() && newData.hasChildren(['nama', 'pesan', 'createdAt']) && newData.child('nama').isString() && newData.child('nama').val().length <= 40 && newData.child('pesan').isString() && newData.child('pesan').val().length > 0 && newData.child('pesan').val().length <= 500 && newData.child('createdAt').isNumber() && newData.child('createdAt').val() >= now - 300000 && newData.child('createdAt').val() <= now + 300000",
+          "$other": { ".validate": false }
+        }
+      },
+      "forum": {
+        ".read": true,
+        "$entryId": {
+          ".write": "!data.exists() && newData.exists() && newData.hasChildren(['nama', 'pesan', 'createdAt']) && newData.child('nama').isString() && newData.child('nama').val().length <= 40 && newData.child('pesan').isString() && newData.child('pesan').val().length > 0 && newData.child('pesan').val().length <= 1000 && newData.child('createdAt').isNumber() && newData.child('createdAt').val() >= now - 300000 && newData.child('createdAt').val() <= now + 300000",
+          "$other": { ".validate": false }
+        }
+      },
+      "stats": {
+        "views": {
+          ".read": true,
+          ".write": "(!data.exists() && newData.val() === 1) || (data.isNumber() && newData.val() === data.val() + 1)",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "$other": { ".validate": false }
+      }
+    },
+    "private": {
+      ".read": "auth != null && auth.uid === 'SBtTiBYjL4dBMD2HIYJpFKaGmVB2'",
+      "tests": {
+        "$entryId": {
+          ".write": "(auth != null && auth.uid === 'SBtTiBYjL4dBMD2HIYJpFKaGmVB2') || (!data.exists() && newData.exists() && newData.hasChildren(['jenis', 'skor', 'total', 'createdAt']) && newData.child('jenis').isString() && (newData.child('jenis').val() === 'orangtua' || newData.child('jenis').val() === 'anak' || newData.child('jenis').val() === 'masyarakat') && newData.child('skor').isNumber() && newData.child('skor').val() >= 0 && newData.child('skor').val() <= 12 && newData.child('total').val() === 12 && newData.child('createdAt').isNumber() && newData.child('createdAt').val() >= now - 300000 && newData.child('createdAt').val() <= now + 300000)",
+          ".validate": "newData.hasChildren(['jenis', 'skor', 'total', 'createdAt'])",
+          "$other": { ".validate": false }
+        }
+      },
+      "kontak": {
+        "$entryId": {
+          ".write": "(auth != null && auth.uid === 'SBtTiBYjL4dBMD2HIYJpFKaGmVB2') || (!data.exists() && newData.exists() && newData.hasChildren(['nama', 'email', 'pesan', 'status', 'createdAt']) && newData.child('nama').isString() && newData.child('nama').val().length > 0 && newData.child('nama').val().length <= 80 && newData.child('email').isString() && newData.child('email').val().length <= 120 && newData.child('pesan').isString() && newData.child('pesan').val().length > 0 && newData.child('pesan').val().length <= 2000 && newData.child('status').val() === 'baru' && newData.child('createdAt').isNumber() && newData.child('createdAt').val() >= now - 300000 && newData.child('createdAt').val() <= now + 300000)",
+          ".validate": "newData.hasChildren(['nama', 'email', 'pesan', 'status', 'createdAt'])",
+          "$other": { ".validate": false }
+        }
+      }
+    },
+    "gallery": {
+      "pending": {
+        ".read": "auth != null && auth.uid === 'SBtTiBYjL4dBMD2HIYJpFKaGmVB2'",
+        "$entryId": {
+          ".write": "(auth != null && auth.uid === 'SBtTiBYjL4dBMD2HIYJpFKaGmVB2') || (!data.exists() && newData.exists() && newData.hasChildren(['caption', 'contentType', 'createdAt', 'src', 'status', 'type']) && newData.child('createdAt').isNumber() && newData.child('createdAt').val() >= now - 300000 && newData.child('createdAt').val() <= now + 300000)",
+          ".validate": "newData.hasChildren(['caption', 'contentType', 'createdAt', 'src', 'status', 'type']) && newData.child('caption').isString() && newData.child('caption').val().length <= 160 && newData.child('contentType').isString() && newData.child('createdAt').isNumber() && newData.child('src').isString() && newData.child('src').val().length <= 1450000 && newData.child('src').val().matches(/^data:(image\\x2f(jpeg|png|gif|webp)|video\\x2f(mp4|webm|ogg));base64,[A-Za-z0-9+/]+=*$/) && newData.child('status').val() === 'pending' && ((newData.child('type').val() === 'image' && (newData.child('contentType').val() === 'image/jpeg' || newData.child('contentType').val() === 'image/png' || newData.child('contentType').val() === 'image/gif' || newData.child('contentType').val() === 'image/webp')) || (newData.child('type').val() === 'video' && (newData.child('contentType').val() === 'video/mp4' || newData.child('contentType').val() === 'video/webm' || newData.child('contentType').val() === 'video/ogg')))",
+          "$other": { ".validate": false }
+        }
+      },
+      "published": {
+        ".read": true,
+        "$entryId": {
+          ".write": "auth != null && auth.uid === 'SBtTiBYjL4dBMD2HIYJpFKaGmVB2'",
+          ".validate": "newData.hasChildren(['caption', 'contentType', 'createdAt', 'src', 'status', 'type']) && newData.child('caption').isString() && newData.child('caption').val().length <= 160 && newData.child('contentType').isString() && newData.child('createdAt').isNumber() && newData.child('src').isString() && newData.child('src').val().length <= 1450000 && newData.child('src').val().matches(/^data:(image\\x2f(jpeg|png|gif|webp)|video\\x2f(mp4|webm|ogg));base64,[A-Za-z0-9+/]+=*$/) && newData.child('status').val() === 'approved' && ((newData.child('type').val() === 'image' && (newData.child('contentType').val() === 'image/jpeg' || newData.child('contentType').val() === 'image/png' || newData.child('contentType').val() === 'image/gif' || newData.child('contentType').val() === 'image/webp')) || (newData.child('type').val() === 'video' && (newData.child('contentType').val() === 'video/mp4' || newData.child('contentType').val() === 'video/webm' || newData.child('contentType').val() === 'video/ogg')))",
+          "$other": { ".validate": false }
+        }
+      },
+      "$other": { ".validate": false }
+    }
+  }
+}
