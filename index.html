@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Project Ruang — kampanye digital LIDM 2026 Universitas Negeri Padang untuk merangkul kesehatan mental anak remaja laki-laki: film pendek, tes refleksi, pohon dialog, dan forum. Suara yang tak terdengar di balik kata 'laki-laki harus kuat'.">
+<meta name="theme-color" content="#11161a">
+<meta property="og:title" content="Project Ruang — Suara yang Tak Terdengar">
+<meta property="og:description" content="Mendengarkan adalah bentuk cinta tertinggi. Tes refleksi, film, dan ruang aman untuk remaja laki-laki.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+<title>Project Ruang — LIDM 2026 Universitas Negeri Padang</title>
+<style>
+:root{--bg:#11161a;--card:#1a2126;--red:#e74c3c;--blue:#3498db;--gold:#f1c40f;--green:#2ecc71;--light:#f5f6fa;--muted:#95a5a6;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--light);line-height:1.65;overflow-x:hidden;}
+nav{background:rgba(18,23,27,.98);padding:13px 22px;display:flex;justify-content:space-between;align-items:center;position:fixed;width:100%;top:0;z-index:1000;border-bottom:2px solid rgba(231,76,60,.35);}
+nav .logo{font-size:18px;font-weight:800;letter-spacing:3px;}
+nav .logo span{color:var(--red);}
+nav ul{display:flex;list-style:none;gap:14px;flex-wrap:wrap;}
+nav ul li a{color:var(--muted);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:.3s;padding:4px 2px;border-bottom:2px solid transparent;}
+nav ul li a:hover,nav ul li a.active{color:var(--red);border-bottom-color:var(--red);}
+section{padding:95px 22px 70px;display:flex;flex-direction:column;align-items:center;max-width:1150px;margin:0 auto;}
+h2{font-size:30px;margin-bottom:8px;text-align:center;}
+.sub{color:var(--muted);margin-bottom:35px;text-align:center;max-width:680px;}
+h3{font-size:20px;}
+.hero{text-align:center;max-width:840px;}
+.hero h1{font-size:42px;font-weight:800;margin-bottom:18px;line-height:1.25;}
+.hero h1 span{color:var(--red);}
+.hero p{font-size:17px;color:var(--muted);margin-bottom:35px;}
+.btn{background:var(--red);color:#fff;border:none;padding:14px 30px;font-size:14px;font-weight:700;border-radius:6px;cursor:pointer;transition:.3s;display:inline-block;text-decoration:none;text-align:center;}
+.btn:hover{filter:brightness(1.15);transform:translateY(-2px);}
+.btn.gold{background:var(--gold);color:#111;}
+.btn.blue{background:var(--blue);}
+.btn.green{background:var(--green);}
+.btn.outline{background:transparent;border:2px solid var(--light);}
+.btn.sm{padding:9px 20px;font-size:12px;}
+.cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:28px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;width:100%;max-width:1050px;}
+input,textarea{width:100%;background:#0d1114;border:1px solid rgba(255,255,255,.15);color:var(--light);padding:12px;border-radius:6px;font-size:14px;margin-bottom:10px;}
+textarea{min-height:95px;resize:vertical;}
+label{font-size:13px;color:var(--muted);display:block;margin-bottom:5px;}
+.fbox{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px;width:100%;max-width:640px;}
+.ok{color:var(--green);font-size:14px;margin-top:8px;display:none;}
+footer{background:#0b0e11;text-align:center;padding:26px;font-size:13px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);margin-top:70px;}
+.data{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;width:100%;max-width:860px;margin:30px 0;}
+.data .card{border-top:4px solid var(--red);}
+.data h4{color:var(--red);font-size:26px;margin-bottom:8px;}
+.vm ul{margin:10px 0 0 22px;color:var(--muted);}
+.vm li{margin-bottom:8px;}
+.vwrap{width:100%;max-width:860px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 15px 45px rgba(0,0,0,.65);background:#000;margin:38px 0 18px;border:1px solid rgba(255,255,255,.08);}
+.vwrap iframe{width:100%;height:100%;border:none;}
+.gimg{height:210px;background:#22313f;display:flex;align-items:center;justify-content:center;color:#8aa0b4;font-size:13px;font-weight:700;letter-spacing:1px;text-align:center;padding:10px;border-bottom:1px solid rgba(255,255,255,.06);}
+.gimg.sketch{background:#e8e4da;color:#333;}
+.gcap{padding:16px 18px;}
+.gcap h4{margin-bottom:4px;}
+.gcap p{font-size:13px;color:var(--muted);}
+.glbl{width:100%;max-width:1050px;text-align:left;font-size:22px;margin:35px 0 18px;}
+.cardimg{padding:0;overflow:hidden;transition:.3s;}
+.cardimg:hover{transform:translateY(-5px);box-shadow:0 12px 26px rgba(0,0,0,.4);}
+.tcard{cursor:pointer;border-top:4px solid transparent;display:flex;flex-direction:column;transition:.3s;}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,.45);}
+.tcard.p{border-top-color:var(--blue);}
+.tcard.c{border-top-color:var(--gold);}
+.tcard.m{border-top-color:var(--red);}
+.ticon{font-size:38px;margin-bottom:14px;}
+.tcard p{color:var(--muted);font-size:14px;margin-bottom:20px;flex-grow:1;}
+.tsteps{display:none;width:100%;max-width:740px;}
+.q{display:none;}
+.q h3{margin-bottom:22px;font-size:17px;}
+.opt{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);padding:15px 20px;border-radius:8px;cursor:pointer;font-size:15px;margin-bottom:12px;transition:.2s;}
+.opt:hover{background:rgba(52,152,219,.12);border-color:var(--blue);transform:translateX(6px);}
+.pbar{width:100%;height:7px;background:rgba(255,255,255,.1);border-radius:4px;margin-bottom:26px;overflow:hidden;}
+.pbar div{height:100%;background:var(--blue);width:0%;transition:.3s;}
+.res{text-align:center;padding:15px 0;}
+.res h2{color:var(--red);}
+.qbox{background:rgba(255,255,255,.03);border-left:4px solid var(--red);padding:16px;margin:20px 0;font-style:italic;text-align:left;font-size:15px;}
+.refbox{background:rgba(231,76,60,.07);border:1px solid rgba(231,76,60,.35);border-left:4px solid var(--red);padding:18px;margin:18px 0;font-size:14px;text-align:left;border-radius:8px;}
+.scorebadge{display:inline-block;background:rgba(241,196,15,.12);border:1px solid var(--gold);color:var(--gold);padding:6px 18px;border-radius:20px;font-weight:700;margin-bottom:15px;}
+.pvis{position:relative;width:100%;max-width:620px;height:430px;background:radial-gradient(circle,rgba(52,152,219,.09) 0%,transparent 70%);}
+.trunk{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:15px;height:170px;background:#2c3e50;border-radius:8px 8px 0 0;}
+.leaf{position:absolute;width:84px;height:48px;background:rgba(231,76,60,.18);border:2px solid var(--red);border-radius:50% 0 50% 0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;text-align:center;padding:2px;transition:.3s;}
+.leaf:hover{background:var(--red);color:#fff;transform:scale(1.12) rotate(4deg);}
+.leaf.u{background:rgba(46,204,113,.18);border-color:var(--green);}
+.ldetail{width:100%;max-width:620px;background:var(--card);border:1px dashed rgba(255,255,255,.12);padding:20px;border-radius:10px;text-align:center;min-height:85px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-style:italic;margin-bottom:25px;}
+.n1{top:65px;left:50%;transform:translateX(-50%);}
+.n2{top:135px;left:25%;}
+.n3{top:128px;left:63%;}
+.n4{top:205px;left:14%;}
+.n5{top:198px;left:70%;}
+.n6{top:272px;left:36%;}
+.n7{top:266px;left:58%;}
+.bubble{background:var(--card);padding:18px 20px;border-radius:12px;border-top-left-radius:2px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06);max-width:640px;width:100%;}
+.bubble h5{font-size:12px;color:var(--blue);margin-bottom:6px;}
+.bubble p{font-size:15px;}
+.tavatar{width:92px;height:92px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--blue));display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;margin:0 auto 14px;}
+.team h4{font-size:16px;margin-bottom:4px;text-align:center;}
+.team span{font-size:13px;color:var(--muted);text-align:center;display:block;}
+/* ANIMASI & TRANSISI */
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px);}to{opacity:1;transform:none;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,.45);}70%{box-shadow:0 0 0 16px rgba(231,76,60,0);}}
+@keyframes grow{from{transform:scale(.4);opacity:0;}to{transform:scale(1);opacity:1;}}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.show{opacity:1;transform:none;}
+section>*{animation:fadeUp .9s ease both;}
+.hero h1 span{animation:pulse 2.6s infinite;display:inline-block;}
+.ticon{animation:float 3.4s ease-in-out infinite;}
+.leaf{animation:grow .5s ease both;}
+.bubble{animation:fadeIn .6s ease both;}
+.card:hover{transition:transform .35s ease,box-shadow .35s ease;}
+nav{animation:fadeIn .8s ease;}
+.statc{transition:transform .4s;}
+.statc:hover{transform:scale(1.08) rotate(3deg);}
+/* GALERI UPLOAD */
+.upzone{border:2px dashed rgba(255,255,255,.25);border-radius:12px;padding:34px 20px;text-align:center;cursor:pointer;transition:.3s;width:100%;max-width:1050px;background:rgba(255,255,255,.02);}
+.upzone:hover{border-color:var(--blue);background:rgba(52,152,219,.07);}
+.upzone.drag{border-color:var(--blue);background:rgba(52,152,219,.12);}
+.upzone .big{font-size:40px;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;width:100%;max-width:1050px;}
+.gphoto{position:relative;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid rgba(255,255,255,.08);animation:grow .5s ease both;}
+.gphoto img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .5s;}
+.gphoto:hover img{transform:scale(1.07);}
+.gphoto .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.9));padding:26px 14px 12px;font-size:13px;}
+.gphoto .cap strong{display:block;}
+.gphoto .del{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);border:1px solid var(--red);color:var(--red);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;opacity:0;transition:.3s;}
+.gphoto:hover .del{opacity:1;}
+.upok{color:var(--green);font-size:13px;margin-top:10px;display:none;}
+@media(max-width:920px){
+nav ul{display:none;}
+nav .burger{display:block;}
+.hero h1{font-size:28px;}h2{font-size:24px;}
+}
+/* MENU MOBILE */
+nav .burger{display:none;font-size:24px;background:none;border:none;color:var(--light);cursor:pointer;}
+.mobilemenu{display:none;position:fixed;top:52px;left:0;right:0;background:#0d1216;z-index:999;padding:14px 22px 20px;border-bottom:2px solid rgba(231,76,60,.35);}
+.mobilemenu.open{display:block;animation:fadeIn .3s ease;}
+.mobilemenu a{display:block;color:var(--muted);text-decoration:none;padding:10px 4px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06);}
+.mobilemenu a:last-child{border-bottom:none;}
+/* VIDEO KLIK-UNTUK-PLAY */
+.vidposter{position:relative;width:100%;max-width:860px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#0e1317 0%,#1a2126 60%,#24101a 100%);box-shadow:0 15px 45px rgba(0,0,0,.65);margin:38px 0 18px;border:1px solid rgba(255,255,255,.08);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:.3s;}
+.vidposter:hover{transform:scale(1.015);border-color:rgba(231,76,60,.5);}
+.vidposter img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
+.vidposter .vtitle{position:relative;z-index:2;text-align:center;font-size:22px;font-weight:800;letter-spacing:1px;text-shadow:0 2px 12px #000;}
+.vidposter .vsub{position:relative;z-index:2;color:#e5c5b8;font-size:13px;text-shadow:0 2px 8px #000;}
+.vidposter .playbtn{position:relative;z-index:2;width:82px;height:82px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(231,76,60,.55);animation:pulse 2.4s infinite;transition:.3s;}
+.vidposter:hover .playbtn{transform:scale(1.1);}
+.vidposter .playbtn::after{content:'';display:block;width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:24px solid #fff;margin-left:7px;}
+.vidframe{width:100%;max-width:860px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 15px 45px rgba(0,0,0,.65);margin:38px 0 18px;border:1px solid rgba(255,255,255,.08);background:#000;}
+.vidframe iframe{width:100%;height:100%;border:none;}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">PROJECT<span>RUANG</span></div>
+<button class="burger" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+<ul>
+<li><a href="#beranda" class="active">Beranda</a></li>
+<li><a href="#manifesto">Manifesto Film</a></li>
+<li><a href="#tes">Tes Refleksi</a></li>
+<li><a href="#galeri">Galeri</a></li>
+<li><a href="#pohon">Pohon Dialog</a></li>
+<li><a href="#forum">Forum</a></li>
+<li><a href="#tim">Tim</a></li>
+<li><a href="#kontak">Kontak</a></li>
+<li><a href="admin.html" target="_blank" style="color:var(--gold);">Admin</a></li>
+</ul>
+</nav>
+<div class="mobilemenu" id="mm">
+<a href="#beranda">Beranda</a>
+<a href="#manifesto">Manifesto Film</a>
+<a href="#tes">Tes Refleksi</a>
+<a href="#galeri">Galeri</a>
+<a href="#pohon">Pohon Dialog</a>
+<a href="#forum">Forum</a>
+<a href="#tim">Tim</a>
+<a href="#kontak">Kontak</a>
+<a href="admin.html">Admin</a>
+</div>
+<section id="beranda">
+<div class="hero">
+<h1>Suara yang tak terdengar di balik kata <span>"laki-laki harus kuat".</span></h1>
+<p>Project Ruang — kampanye digital edukatif untuk mendobrak stigma emosional dan merangkul kesehatan mental anak remaja laki-laki. Divisi Video Digital Pendidikan (VDP) LIDM 2026, Universitas Negeri Padang.</p>
+<div class="cta">
+<a href="#tes" class="btn gold">Mulai Tes Refleksi</a>
+<a href="#manifesto" class="btn outline">▶ Tonton Film</a>
+</div>
+</div>
+<div class="card" style="margin-top:55px;max-width:820px;">
+<h3 style="margin-bottom:12px;">Tentang Project Ruang</h3>
+<p style="color:var(--muted);">Project Ruang hadir sebagai ruang dialog bagi anak remaja laki-laki yang selama ini terbebani dogma "laki-laki harus kuat". Melalui film pendek, tes refleksi interaktif, pohon dialog, dan forum komunitas, kami mengajak orang tua, anak, dan masyarakat untuk saling mendengarkan — tanpa menghakimi. Karena setiap anak berhak didengarkan, bukan dinilai.</p>
+</div>
+</section>
+<section id="manifesto">
+<h2>Manifesto & Film</h2>
+<p class="sub">Mengapa Project Ruang penting — dan pernyataan sikap kami dalam film.</p>
+<div class="card" style="max-width:860px;">
+<h3 style="color:var(--red);margin-bottom:12px;">Maskulinitas Beracun (Toxic Masculinity)</h3>
+<p style="color:var(--muted);">Dogma sosial "anak laki-laki dilarang cengeng" dan "laki-laki harus kuat" menciptakan tekanan psikologis yang masif. Remaja laki-laki dipaksa menekan emosi, menolak kerentanan, dan tumbuh dalam isolasi emosional. Emosi yang tak punya katup pelepasan bermuara pada depresi, kecemasan, agresi, hingga perilaku menyakiti diri sendiri. Film di bawah ini adalah pernyataan sikap kami: <strong style="color:var(--light)">setiap anak laki-laki berhak didengarkan, bukan dinilai.</strong></p>
+</div>
+<div class="data">
+<div class="card"><h4>1 dari 3</h4><p style="font-size:14px;color:var(--muted);"><strong style="color:var(--light)">I-NAMHS 2022:</strong> 1 dari 3 remaja Indonesia memiliki masalah kesehatan mental.</p></div>
+<div class="card"><h4>70%</h4><p style="font-size:14px;color:var(--muted);"><strong style="color:var(--light)">Pusiknas Polri 2023:</strong> 70% kasus fatal (bunuh diri) didominasi kelompok laki-laki akibat menekan emosi.</p></div>
+</div>
+<div class="card vm" style="max-width:860px;">
+<h3 style="color:var(--blue);margin-bottom:10px;">Visi & Misi</h3>
+<p><strong>Visi:</strong> Mewujudkan generasi muda yang sehat secara mental melalui komunikasi keluarga yang terbuka.</p>
+<p style="margin-top:10px;"><strong>Misi:</strong></p>
+<ul>
+<li>Mematahkan stigma toxic masculinity di lingkungan keluarga dan sosial.</li>
+<li>Menyediakan ruang aman (safe space) bagi remaja laki-laki untuk berekspresi.</li>
+<li>Mengedukasi orang tua tentang mendengarkan secara empatik.</li>
+</ul>
+</div>
+<!-- Video: klik untuk putar (thumbnail pasti tampil, tanpa error) -->
+<div class="vidposter" id="vidposter" onclick="playFilm()">
+<img src="https://i.ytimg.com/vi/bcGpVvJwYKw/maxresdefault.jpg" alt="Film Project Ruang" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/bcGpVvJwYKw/hqdefault.jpg';">
+<div class="vtitle">FILM PROJECT RUANG</div>
+<div class="vsub">Suara yang tak terdengar di balik kata “laki-laki harus kuat”</div>
+<div class="playbtn"></div>
+</div>
+<div class="vidframe" id="vidframe" style="display:none;"></div>
+<p style="color:var(--muted);font-size:13px;">▶ Klik gambar untuk memutar film langsung di web. Atau <a href="https://www.youtube.com/watch?v=bcGpVvJwYKw" target="_blank" rel="noopener" style="color:var(--blue);">buka di YouTube</a>.</p>
+</section>
+<section id="tes">
+<h2>Tes Refleksi</h2>
+<p class="sub">Pilih peranmu — 12 pertanyaan reflektif. Jawabanmu tercatat dan membantu mengukur dampak kampanye ini.</p>
+<div class="grid" id="tesHub">
+<div class="card tcard p" onclick="bukaTes('orangtua')">
+<div class="ticon">👨‍👦</div><h3>Tes Refleksi Orang Tua</h3>
+<p>12 soal mengukur empati, keterbukaan komunikasi, dan pola asuh. Jika terindikasi represif, Anda akan diarahkan ke narahubung dan layanan konseling profesional.</p>
+<a class="btn blue sm">Mulai Tes Orang Tua</a>
+</div>
+<div class="card tcard c" onclick="bukaTes('anak')">
+<div class="ticon">👦</div><h3>Tes Refleksi Anak</h3>
+<p>12 soal mengukur resiliensi dan ruang ekspresi emosionalmu. Dapatkan validasi dan temukan ruang aman untuk bercerita.</p>
+<a class="btn gold sm">Mulai Tes Anak</a>
+</div>
+<div class="card tcard m" onclick="bukaTes('masyarakat')">
+<div class="ticon">🌍</div><h3>Tes Refleksi Masyarakat</h3>
+<p>12 soal mengukur inklusivitas dan bias stigma masyarakat terhadap maskulinitas. Temukan peranmu dalam membangun lingkungan yang lembut.</p>
+<a class="btn sm">Mulai Tes Masyarakat</a>
+</div>
+</div>
+<div class="card tsteps" id="tesArea">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+<strong id="tesLabel" style="font-size:14px;letter-spacing:1px;color:var(--gold);"></strong>
+<button class="btn sm outline" onclick="batalTes()">✕ Batal</button>
+</div>
+<div class="pbar"><div id="pbar"></div></div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:20px;" id="noSoal"></p>
+<div id="soalWrap"></div>
+</div>
+<div class="card tsteps" id="tesHasil"></div>
+</section>
+<section id="galeri">
+<h2>Galeri Foto</h2>
+<p class="sub">Galeri ini adalah ruang untuk mencatat setiap momen kampanye: dokumentasi kegiatan sosialisasi, proses kreatif tim, hingga momen audiens menonton film. Setiap foto yang diunggah di sini tampil realtime untuk semua pengunjung.</p>
+<div class="upzone" id="upzone" onclick="document.getElementById('upfile').click()">
+<div class="big">📷</div>
+<strong style="font-size:16px;">Klik untuk unggah foto</strong>
+<p style="color:var(--muted);font-size:13px;margin-top:6px;">atau seret &amp; letakkan file di sini — bisa pilih beberapa foto sekaligus</p>
+<input type="file" id="upfile" accept="image/*" multiple style="display:none;">
+</div>
+<div style="width:100%;max-width:1050px;margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+<input id="upcap" placeholder="Keterangan foto (opsional), mis. Sosialisasi di SMAN 3 Padang" style="flex:1;min-width:220px;margin-bottom:0;">
+<p class="upok" id="upok">✓ Foto berhasil diunggah &amp; tampil di galeri!</p>
+</div>
+<div class="ggrid" id="ggrid"></div>
+</section>
+<section id="pohon">
+<h2>Pohon Dialog</h2>
+<p class="sub">Klik daun untuk membaca suara hati yang terpendam — dan tanam daunmu sendiri.</p>
+<div class="pvis" id="pvis">
+<div class="trunk"></div>
+<div class="leaf n1" onclick="leaf('Luka Fisik & Mental','“Ayah, luka jatuh dari sepeda tidak seberapa dibanding kata-kata kasar yang membentak eksistensiku.”')">Daun 1</div>
+<div class="leaf n2" onclick="leaf('Tuntutan Gender','“Aku dituntut kuat secara sosial, tetapi tidak pernah diajarkan berdamai dengan kegagalan.”')">Daun 2</div>
+<div class="leaf n3" onclick="leaf('Topeng Ketegaran','“Menangis bukan berarti aku lemah. Aku hanya manusia yang sedang kelelahan.”')">Daun 3</div>
+<div class="leaf n4" onclick="leaf('Ruang Seni Rafa','“Melalui goresan sketsa di kamar sepi ini, aku melepas belenggu kata yang tak terucap.”')">Daun 4</div>
+<div class="leaf n5" onclick="leaf('Penerimaan Tulus','“Aku tidak butuh solusi instan. Aku hanya butuh telinga yang sudi mendengar.”')">Daun 5</div>
+<div class="leaf n6" onclick="leaf('Harapan','“Someday, aku ingin ayah bertanya: bagaimana perasaanmu hari ini?”')">Daun 6</div>
+<div class="leaf n7" onclick="leaf('Kebisuan','“Kalimat terpanjang yang pernah aku ucapkan di rumah hanyalah… diam.”')">Daun 7</div>
+</div>
+<div class="ldetail" id="ldetail">Klik salah satu daun di atas untuk memunculkan suara hati anak…</div>
+<div class="fbox">
+<h3 style="margin-bottom:15px;">🌱 Tanam Daunmu — Tulis Pesanmu</h3>
+<label for="lnama">Nama / Inisial (boleh anonim)</label>
+<input id="lnama" placeholder="mis. Anonim">
+<label for="lpesan">Suara hatimu</label>
+<textarea id="lpesan" placeholder="Tuliskan pesan, pengalaman, atau harapanmu…"></textarea>
+<button class="btn" onclick="tambahDaun()">Tanam di Pohon Dialog</button>
+<p class="ok" id="okDaun">✓ Daunmu sudah tertanam! Lihat pohonnya di atas.</p>
+</div>
+</section>
+<section id="forum">
+<h2>Ruang Cerita (Forum)</h2>
+<p class="sub">Dinding pesan anonim — tempat berbagi perasaan dan saling menguatkan.</p>
+<div id="forumList" style="width:100%;max-width:640px;"></div>
+<div class="fbox" style="margin-top:25px;">
+<h3 style="margin-bottom:15px;">💬 Tinggalkan Pesan Dukungan</h3>
+<label for="fnama">Nama / Inisial (boleh anonim)</label>
+<input id="fnama" placeholder="Seseorang yang peduli">
+<label for="fpesan">Pesan dukungan</label>
+<textarea id="fpesan" placeholder="Tulis kata-kata penguat di sini…"></textarea>
+<button class="btn gold" onclick="tambahForum()">Kirim ke Forum</button>
+<p class="ok" id="okForum">✓ Pesanmu sudah tampil di dinding!</p>
+</div>
+</section>
+<section id="tim">
+<h2>Tim Kami</h2>
+<p class="sub">Orang-orang di balik Project Ruang — LIDM 2026 Universitas Negeri Padang.</p>
+<div class="grid team">
+<div class="card"><div class="tavatar">S</div><h4>Shelly Alfidenia</h4><span>Ketua / Sutradara</span></div>
+<div class="card"><div class="tavatar">A</div><h4>Aji Sulaksana</h4><span>Editor / Motion Graphic / Penyelaras / Talent Ayah</span></div>
+<div class="card"><div class="tavatar">E</div><h4>Egazia Evanggelis</h4><span>Penulis Naskah</span></div>
+<div class="card"><div class="tavatar">F</div><h4>Falyanzuril Ihsan</h4><span>Videografer</span></div>
+<div class="card" style="border:1px solid var(--gold);"><div class="tavatar">🎓</div><h4 style="color:var(--gold);">Dr. Lailatur Rahmi, M.Pd</h4><span>Dosen Pendamping</span></div>
+</div>
+</section>
+<section id="kontak">
+<h2>Kontak Narahubung & Kemitraan</h2>
+<p class="sub">Hubungi kami untuk kolaborasi, pertanyaan, atau dukungan kampanye.</p>
+<div style="display:flex;gap:32px;flex-wrap:wrap;justify-content:center;width:100%;">
+<div class="card" style="max-width:430px;">
+<h3 style="color:var(--red);margin-bottom:12px;">📞 Narahubung</h3>
+<p style="color:var(--muted);margin-bottom:6px;"><strong style="color:var(--light)">Email:</strong> hello@projectruang.id</p>
+<p style="color:var(--muted);margin-bottom:6px;"><strong style="color:var(--light)">WhatsApp:</strong> +62 812-3456-7890</p>
+<p style="color:var(--muted);margin-bottom:6px;"><strong style="color:var(--light)">Jam aktif:</strong> Senin–Jumat, 09.00–17.00 WIB</p>
+<p style="color:var(--muted);margin-bottom:15px;font-size:14px;"><strong style="color:var(--light)">Kemitraan (Pentahelix):</strong> Instansi Akademik • Instansi Pemerintah (BKKBN) • Pihak Swasta (Biro Psikologi) • Media</p>
+<a href="https://wa.me/6281234567890" target="_blank" class="btn green sm">WhatsApp</a>
+<a href="mailto:hello@projectruang.id" class="btn blue sm">Email</a>
+<div class="refbox" style="margin-top:18px;">Butuh bantuan darurat? Layanan kesehatan mental gratis: <strong>119 ext. 8</strong> (Kemenkes SEJIWA).</div>
+</div>
+<div class="fbox" style="max-width:430px;">
+<h3 style="margin-bottom:15px;">✉️ Kirim Pesan / Ajukan Kerja Sama</h3>
+<label for="knama">Nama / Instansi</label>
+<input id="knama" placeholder="Nama lengkap / instansi">
+<label for="kemail">Email / WhatsApp</label>
+<input id="kemail" placeholder="email@contoh.com">
+<label for="kpesan">Pesan / Tujuan Kerja Sama</label>
+<textarea id="kpesan" placeholder="Tuliskan pesan atau bentuk kolaborasi yang diinginkan…"></textarea>
+<button class="btn" onclick="tambahKontak()">Kirim</button>
+<p class="ok" id="okKontak">✓ Pesanmu terkirim. Kami akan segera merespons!</p>
+</div>
+</section>
+<footer>
+&copy; 2026 Project Ruang — Divisi Video Digital Pendidikan (VDP) LIDM 2026, Universitas Negeri Padang. Hak Cipta Dilindungi.<br>
+<span style="opacity:.6;">Dashboard Admin: buka <strong>admin.html</strong> (halaman terpisah)</span>
+</footer>
+<script src="db.js"></script>
+<script>
+/* ================= VIDEO ================= */
+function playFilm(){
+document.getElementById('vidposter').style.display='none';
+const f=document.getElementById('vidframe');
+f.innerHTML='<iframe src="https://www.youtube.com/embed/bcGpVvJwYKw?autoplay=1&rel=0" title="Film Project Ruang" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+f.style.display='block';
+f.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ================= NAV ================= */
+document.querySelectorAll('nav ul li a, .mobilemenu a').forEach(a=>{
+a.addEventListener('click',function(e){
+if(this.getAttribute('href').endsWith('.html'))return;
+e.preventDefault();
+document.querySelectorAll('nav ul li a').forEach(x=>x.classList.remove('active'));
+this.classList.add('active');
+const t=document.querySelector(this.getAttribute('href'));
+if(t) window.scrollTo({top:t.offsetTop-58,behavior:'smooth'});
+document.getElementById('mm').classList.remove('open');
+});
+});
+function get(k){try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return[]}}
+function set(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+function show(id){const el=document.getElementById(id);el.style.display='block';setTimeout(()=>el.style.display='none',4000)}
+const BANK={
+orangtua:{
+label:'TES REFLEKSI ORANG TUA',
+hasil:{judul:'Buka Ruang Dialog Sekarang',pesan:'Jangan Biarkan Ia Berjuang Sendirian.',quote:'"Terkadang, telinga yang mendengarkan adalah kekuatan terbesar yang bisa kita berikan untuk anak laki-laki kita."'},
+soal:[
+{q:'Kapan terakhir kali Anda bertanya tentang perasaan mendalam anak laki-laki Anda?',a:[['Hari ini / minggu ini, secara intim.',1],['Beberapa bulan lalu, hanya saat masalah besar.',0],['Hampir tidak pernah — fokus ke urusan akademis.',0]]},
+{q:'Bagaimana pandangan Anda saat melihat anak laki-laki Anda menangis?',a:[['Memintanya berhenti agar jadi pria tangguh.',0],['Tidak nyaman, mengalihkan pembicaraan.',0],['Duduk mendampingi tanpa menghakimi.',1]]},
+{q:'Reaksi Anda jika anak tertarik hobi yang dianggap "kurang maskulin" (seni, menari)?',a:[['Mendukung penuh — kebahagiaan anak di atas stereotip.',1],['Mendukung, sambil mengedukasi menghadapi komentar.',1],['Kurang setuju — arahkan ke hobi yang lebih umum.',0]]},
+{q:'Apakah Anda memberi anak kebebasan mengekspresikan kemarahan dengan sehat?',a:[['Ya, saya ajarkan cara menyampaikannya.',1],['Kadang, kalau suasana sedang baik.',0],['Tidak — anak laki-laki harus bisa menahan diri.',0]]},
+{q:'Seberapa sering Anda dan anak menghabiskan waktu bercerita tanpa gawai?',a:[['Rutin, setiap hari/minggu.',1],['Sesekali saat ada waktu luang.',0],['Hampir tidak pernah.',0]]},
+{q:'Saat anak membuat kesalahan, reaksi pertama Anda biasanya…',a:[['Bertanya dulu apa yang terjadi.',1],['Mengingatkan sambil marah.',0],['Langsung menghukum/membentak.',0]]},
+{q:'Apakah anak Anda pernah bercerita tentang masalah di sekolah kepada Anda?',a:[['Sering, ia merasa aman bercerita.',1],['Kadang, jika saya menanyakan lebih dulu.',0],['Tidak pernah, saya tidak tahu apa yang ia rasakan.',0]]},
+{q:'Bagaimana Anda menanggapi perasaan cemas anak menjelang ujian?',a:[['Menenangkan dan mendengarkan keluhannya.',1],['Berkata "jangan berlebihan, itu biasa saja".',0],['Menekankan pentingnya nilai di atas segalanya.',0]]},
+{q:'Apakah Anda membandingkan anak dengan anak orang lain?',a:[['Tidak, setiap anak punya jalannya.',1],['Kadang tanpa sadar.',0],['Sering, sebagai bentuk motivasi.',0]]},
+{q:'Jika anak terlihat menarik diri dan diam berhari-hari, Anda…',a:[['Mendekat dan menanyakan apa yang ia rasakan.',1],['Mengira itu hanya masa-masa remaja biasa.',0],['Memarahi karena dianggap tidak sopan.',0]]},
+{q:'Apakah Anda pernah mengucapkan "laki-laki jangan cengeng" kepada anak?',a:[['Tidak pernah.',1],['Sekali dua kali, tak bermaksud buruk.',0],['Sering, itu nasihat yang wajar.',0]]},
+{q:'Sejauh mana Anda memahami kesehatan mental remaja?',a:[['Aktif belajar: baca, ikut webinar, tanya ahli.',1],['Tahu sedikit dari media sosial.',0],['Kurang paham, dianggap hal tabu.',0]]}
+]},
+anak:{
+label:'TES REFLEKSI ANAK',
+hasil:{judul:'Kamu Tidak Sendirian',pesan:'Perasaanmu Valid. Suaramu Penting.',quote:'"Berani bercerita bukan tanda lemah — itu bentuk keberanian paling jujur seorang pria muda."'},
+soal:[
+{q:'Ketika kamu sedih atau kecewa, biasanya kamu…',a:[['Menyimpan sendiri, takut merepotkan orang lain.',0],['Sesekali bercerita walaupun tidak selesai.',1],['Berani bercerita ke orang yang aku percaya.',1]]},
+{q:'Menurutmu, menangis itu…',a:[['Memalukan — anak laki-laki tidak boleh menangis.',0],['Boleh saja, kalau tidak ada yang melihat.',1],['Hal yang manusiawi — semua orang boleh menangis.',1]]},
+{q:'Jika kamu boleh meminta satu hal dari orang tuamu, itu adalah…',a:[['Waktu bercerita tanpa dihakimi.',1],['Dukungan tanpa syarat untuk hal yang aku sukai.',1],['Lebih banyak kebebasan dan kepercayaan.',1]]},
+{q:'Saat temanmu mengejek kamu "cengeng" karena menunjukkan perasaan, kamu…',a:[['Tetap jujur — perasaanku bukan urusan mereka.',1],['Diam, tapi terus memikirkannya.',0],['Berhenti menunjukkan perasaan selamanya.',0]]},
+{q:'Kalau kamu gagal atau kalah dalam sesuatu, biasanya kamu…',a:[['Belajar darinya dan mencoba lagi.',1],['Kecewa tapi tak bercerita ke siapa pun.',0],['Menyalahkan diri terus-menerus.',0]]},
+{q:'Apakah kamu punya orang dewasa yang bisa kamu ajak bicara tentang masalah?',a:[['Ya, dan aku nyaman dengan dia.',1],['Ada, tapi jarang aku manfaatkan.',0],['Tidak ada satu orang pun.',0]]},
+{q:'Menurutmu, "laki-laki harus kuat" artinya…',a:[['Berani jujur dengan perasaan sendiri.',1],['Tidak boleh terlihat sedih atau takut.',0],['Harus selalu kuat sendirian tanpa bantuan.',0]]},
+{q:'Ketika stres karena pelajaran atau tuntutan, kamu melepaskannya dengan…',a:[['Cara sehat: olahraga, seni, bercerita.',1],['Main gawai sampai larut malam.',0],['Menyendiri dan memendekan semua.',0]]},
+{q:'Kalau ayah/ibu bertanya "bagaimana perasaanmu hari ini?", kamu…',a:[['Senang dan jujur menceritakan.',1],['Jawab singkat "biasa aja".',0],['Bingung, karena jarang ditanya.',0]]},
+{q:'Apakah kamu pernah merasa harus berpura-pura baik-baik saja?',a:[['Jarang, aku berani jujur.',1],['Sering, tapi ingin berubah.',0],['Selalu, tidak ada tempat untuk jujur.',0]]},
+{q:'Jika temanmu sedih dan bercerita, kamu…',a:[['Mendengarkan tanpa menghakimi.',1],['Bercanda agar suasana cair.',0],['Bilang "jangan lemah, cowok harus kuat".',0]]},
+{q:'Apa yang kamu lakukan kalau merasa sangat berat dan tidak bisa menahan?',a:[['Bercerita atau mencari bantuan.',1],['Menulis/menggambar perasaanku.',1],['Menahan sendiri sampai kuat.',0]]}
+]},
+masyarakat:{
+label:'TES REFLEKSI MASYARAKAT',
+hasil:{judul:'Ubah Lingkungan, Ubah Generasi',pesan:'Stigma Berkurang Saat Kita Mulai Mendengarkan.',quote:'"Tidak ada anak yang terlalu keras. Yang ada adalah lingkungan yang belum cukup lembut untuk mendengarnya."'},
+soal:[
+{q:'Ketika mendengar "anak laki-laki jangan cengeng", sikap Anda…',a:[['Setuju — begitulah membesarkan pria sejati.',0],['Netral — pernah terdengar, tak pernah dipikirkan.',0],['Tidak setuju — emosi tidak dibeda-bedakan gender.',1]]},
+{q:'Melihat anak laki-laki menangis di tempat umum, Anda berpikir…',a:[['"Seharusnya dibesarkan lebih tegar."',0],['"Mungkin ada masalah berat." (lalu pergi)',0],['"Dia berani jujur dengan perasaannya — luar biasa."',1]]},
+{q:'Apa kontribusi terbaik lingkungan bagi kesehatan mental remaja?',a:[['Nasihat keras agar mereka kuat.',0],['Kegiatan produktif agar teralihkan.',0],['Ruang aman: mendengarkan tanpa menghakimi.',1]]},
+{q:'Tetangga/kerabat memarahi anaknya "karena cowok boleh kasar", Anda…',a:[['Menegur dengan bijak dan menyampaikan pandangan.',1],['Diam, itu urusan keluarganya.',0],['Setuju, itu bentuk pendidikan.',0]]},
+{q:'Menurut Anda, kesetaraan emosi antara laki-laki dan perempuan adalah…',a:[['Hak yang sama — semua manusia boleh merasa.',1],['Perempuan lebih berhak menunjukkan emosi.',0],['Laki-laki memang harus lebih tahan emosi.',0]]},
+{q:'Saat melihat konten "anak laki-laki dilarang lembut", Anda…',a:[['Tidak setuju dan meluruskan pemahaman.',1],['Scroll saja, bukan urusan saya.',0],['Setuju dan membagikannya.',0]]},
+{q:'Sekolah di lingkungan Anda menghukum anak laki-laki yang menangis. Pandangan Anda?',a:[['Salah — menangis bukan pelanggaran.',1],['Netral, tergantung kebijakan sekolah.',0],['Wajar, untuk mendisiplinkan.',0]]},
+{q:'Jika ada kampanye kesehatan mental untuk remaja laki-laki, Anda…',a:[['Ikut mendukung dan menyebarkan.',1],['Ikut tonton kalau ada waktu.',0],['Kurang tertarik, itu hal pribadi.',0]]},
+{q:'Berpikir "cowok yang banyak curhat itu lemah" adalah…',a:[['Stigma yang harus dihapus.',1],['Lucu tapi tidak bermaksud buruk.',0],['Pendapat yang benar.',0]]},
+{q:'Peran masyarakat dalam menghentikan toxic masculinity adalah…',a:[['Memberi contoh lewat perkataan dan sikap sehari-hari.',1],['Meninggalkannya kepada keluarga masing-masing.',0],['Tidak ada, itu urusan individu.',0]]},
+{q:'Jika anak remaja laki-laki meminta bantuan psikolog, Anda memandangnya sebagai…',a:[['Tindakan berani dan bijak.',1],['Hal yang memalukan keluarga.',0],['Tanda ia terlalu dramatis.',0]]},
+{q:'Generasi yang lebih sehat mental dimulai dari…',a:[['Lingkungan yang berani mengubah stigma.',1],['Individu yang lebih kuat menahan diri.',0],['Anak yang lebih patuh dan tidak banyak tanya.',0]]}
+]}
+};
+let tesAktif=null,idx=0,skor=0;
+function bukaTes(t){
+tesAktif=t;idx=0;skor=0;
+document.getElementById('tesHub').style.display='none';
+document.getElementById('tesHasil').style.display='none';
+document.getElementById('tesArea').style.display='block';
+document.getElementById('tesLabel').textContent=BANK[t].label;
+renderSoal();
+document.getElementById('tesArea').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function batalTes(){
+document.getElementById('tesArea').style.display='none';
+document.getElementById('tesHub').style.display='grid';
+}
+function renderSoal(){
+const S=BANK[tesAktif].soal[idx];
+document.getElementById('noSoal').textContent='Pertanyaan '+(idx+1)+' dari 12';
+document.getElementById('pbar').style.width=(idx/12*100)+'%';
+let h='<h3>'+S.q+'</h3>';
+S.a.forEach((o,i)=>{h+='<div class="opt" onclick="jawab('+o[1]+')">'+o[0]+'</div>'});
+document.getElementById('soalWrap').innerHTML=h;
+}
+function jawab(b){
+skor+=b;idx++;
+if(idx<12){renderSoal();}
+else{selesaiTes();}
+}
+function selesaiTes(){
+document.getElementById('pbar').style.width='100%';
+const cfg=BANK[tesAktif];
+const data=get('ruangTes');
+data.push({jenis:tesAktif,skor:skor,total:12,waktu:new Date().toLocaleString('id-ID')});
+set('ruangTes',data);
+const kategori=skor>=8?'Sesuai (Empatik)':(skor>=5?'Cukup':'Perlu Edukasi');
+const perluBantuan=tesAktif==='orangtua'&&skor<6;
+document.getElementById('tesArea').style.display='none';
+let h='<div class="res"><div class="scorebadge">Skor: '+skor+' / 12 — '+kategori+'</div>';
+h+='<h2>'+cfg.hasil.judul+'</h2><p style="font-size:18px;font-weight:600;margin-bottom:15px;">'+cfg.hasil.pesan+'</p>';
+h+='<div class="qbox" style="text-align:left;">'+cfg.hasil.quote+'</div>';
+if(perluBantuan){
+h+='<div class="refbox"><strong>🧭 Indikasi pola asuh represif terdeteksi.</strong><br>Anda sangat kami anjurkan berkonsultasi dengan narahubung dan layanan profesional:<br><br>• <strong>Narahubung Project Ruang:</strong> WhatsApp +62 812-3456-7890 / hello@projectruang.id<br>• <strong>Layanan SEJIWA Kemenkes:</strong> 119 ext. 8 (gratis, 24 jam)<br>• <strong>Biro Psikologi / Konseling:</strong> hubungi fasilitas terdekat di kota Anda</div>';
+}else{
+h+='<div class="refbox" style="border-color:var(--green);background:rgba(46,204,113,.07);"><strong style="color:var(--green)">✓ Respons Anda menunjukkan empati yang baik.</strong><br>Bagikan pemahaman ini kepada orang-orang di sekitarmu. Jika ingin berdiskusi, narahubung kami siap mendengarkan.</div>';
+}
+h+='<p style="color:var(--muted);font-size:14px;margin-top:15px;">Jawabanmu terekam dan akan membantu mengukur dampak kampanye ini. 🙏</p>';
+h+='<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px;">';
+h+='<a href="#kontak" class="btn sm" onclick="document.getElementById(\'tesHub\').style.display=\'grid\';document.getElementById(\'tesHasil\').style.display=\'none\'">📞 Hubungi Narahubung</a>';
+h+='<a href="https://wa.me/6281234567890?text=Halo%20Project%20Ruang%2C%20saya%20baru%20menyelesaikan%20Tes%20Refleksi%20dan%20ingin%20berdiskusi." target="_blank" class="btn green sm">💬 Konsultasi via WhatsApp</a>';
+h+='<button class="btn gold sm" onclick="bukaTes(\''+tesAktif+'\')">Ulangi Tes</button></div></div>';
+const box=document.getElementById('tesHasil');
+box.innerHTML=h;box.style.display='block';
+box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function leaf(t,m){
+const d=document.getElementById('ldetail');
+d.style.opacity=0;
+setTimeout(()=>{d.innerHTML='<strong style="color:var(--red)">'+t+'</strong><br><br>'+m;d.style.color='var(--light)';d.style.fontStyle='normal';d.style.opacity=1;},200);
+}
+const POS=[{t:'42px',l:'18%'},{t:'42px',l:'74%'},{t:'105px',l:'6%'},{t:'105px',l:'82%'},{t:'180px',l:'2%'},{t:'185px',l:'84%'},{t:'250px',l:'10%'},{t:'255px',l:'80%'},{t:'315px',l:'20%'},{t:'315px',l:'68%'},{t:'360px',l:'38%'},{t:'360px',l:'56%'},{t:'28px',l:'46%'},{t:'150px',l:'44%'}];
+function renderDaun(){
+const v=document.getElementById('pvis');
+v.querySelectorAll('.leaf.u').forEach(e=>e.remove());
+get('ruangDaun').slice(-14).forEach((d,i)=>{
+const el=document.createElement('div');
+el.className='leaf u';
+const p=POS[i%POS.length];
+el.style.top=p.t;el.style.left=p.l;el.style.transform='none';
+el.textContent='🌱 '+(d.nama||'Anonim');
+el.onclick=()=>leaf('🌱 '+d.nama+' ('+d.waktu+')','"'+esc(d.pesan)+'"');
+v.appendChild(el);
+});
+}
+function tambahDaun(){
+const n=document.getElementById('lnama').value.trim()||'Anonim';
+const p=document.getElementById('lpesan').value.trim();
+if(!p){alert('Tuliskan dulu suara hatimu ya 🌱');return}
+const d=get('ruangDaun');d.push({nama:n,pesan:p,waktu:new Date().toLocaleString('id-ID')});set('ruangDaun',d);
+document.getElementById('lnama').value='';document.getElementById('lpesan').value='';
+show('okDaun');renderDaun();
+leaf('🌱 '+n,'"'+esc(p)+'"');
+}
+function renderForum(){
+const list=document.getElementById('forumList');
+const f=get('ruangForum');
+const awal=[
+{nama:'@Anonim_1',pesan:'"Kamu hebat sudah bertahan sejauh ini. Gambar-gambarmu sangat berbicara."'},
+{nama:'@TemanSeperjuangan',pesan:'"Menangis bukan berarti lemah. Kita berhak didengar."'},
+{nama:'@SeorangAyah',pesan:'"Film ini menyadarkanku. Malam ini aku akan memeluk anakku dan mendengarkannya bercerita."'}
+];
+list.innerHTML='';
+awal.concat(f).forEach(p=>{
+const el=document.createElement('div');el.className='bubble';
+el.innerHTML='<h5>'+esc(p.nama)+'</h5><p>'+esc(p.pesan)+'</p>';
+list.appendChild(el);
+});
+}
+function tambahForum(){
+const n=document.getElementById('fnama').value.trim()||'Anonim';
+const p=document.getElementById('fpesan').value.trim();
+if(!p){alert('Tulis dulu pesanmu.');return}
+const f=get('ruangForum');f.unshift({nama:n,pesan:p,waktu:new Date().toLocaleString('id-ID')});set('ruangForum',f);
+document.getElementById('fnama').value='';document.getElementById('fpesan').value='';
+show('okForum');renderForum();
+}
+function tambahKontak(){
+const n=document.getElementById('knama').value.trim();
+const e=document.getElementById('kemail').value.trim()||'-';
+const p=document.getElementById('kpesan').value.trim();
+if(!n||!p){alert('Isi nama dan pesan dulu ya.');return}
+const d=get('ruangKontak');d.push({nama:n,email:e,pesan:p,waktu:new Date().toLocaleString('id-ID')});set('ruangKontak',d);
+document.getElementById('knama').value='';document.getElementById('kemail').value='';document.getElementById('kpesan').value='';
+show('okKontak');
+}
+/* ================= GALERI FOTO (UPLOAD) ================= */
+function renderGaleri(){
+const g=document.getElementById('ggrid');
+const data=get('ruangGaleri');
+g.innerHTML=data.length?'':'<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:30px;">Belum ada foto. Jadilah yang pertama mengunggah! 📷</p>';
+data.slice().reverse().forEach((p,i)=>{
+const el=document.createElement('div');el.className='gphoto';
+el.innerHTML='<img src="'+p.img+'" alt="'+esc(p.cap||'Foto galeri')+'" loading="lazy"><div class="cap"><strong>'+esc(p.cap||'Tanpa keterangan')+'</strong><span style="color:#bbb;font-size:11px;">'+p.waktu+'</span></div><button class="del" onclick="hapusFoto('+(data.length-1-i)+')">✕ Hapus</button>';
+g.appendChild(el);
+});
+}
+function hapusFoto(i){
+if(!confirm('Hapus foto ini dari galeri?'))return;
+const d=get('ruangGaleri');d.splice(i,1);set('ruangGaleri',d);renderGaleri();
+}
+function simpanFoto(file){
+if(!file||!file.type.startsWith('image/')){alert('Pilih file gambar ya.');return}
+const r=new FileReader();
+r.onload=function(){
+const d=get('ruangGaleri');
+d.push({img:r.result,cap:document.getElementById('upcap').value.trim(),waktu:new Date().toLocaleString('id-ID')});
+set('ruangGaleri',d);
+document.getElementById('upcap').value='';
+renderGaleri();
+const ok=document.getElementById('upok');ok.style.display='block';setTimeout(()=>ok.style.display='none',3500);
+};
+r.readAsDataURL(file);
+}
+document.getElementById('upfile').addEventListener('change',e=>{[...e.target.files].forEach(simpanFoto);e.target.value='';});
+const uz=document.getElementById('upzone');
+['dragover','dragenter'].forEach(ev=>uz.addEventListener(ev,e=>{e.preventDefault();uz.classList.add('drag');}));
+['dragleave','drop'].forEach(ev=>uz.addEventListener(ev,e=>{e.preventDefault();uz.classList.remove('drag');}));
+uz.addEventListener('drop',e=>{[...e.dataTransfer.files].forEach(simpanFoto);});
+
+/* ================= REALTIME SYNC (antar-tab + Firebase remote) ================= */
+function refreshAll(){renderGaleri();renderDaun();renderForum();}
+window.addEventListener('storage',e=>{
+if(['ruangTes','ruangDaun','ruangForum','ruangKontak','ruangGaleri','ruangViews'].includes(e.key)){
+refreshAll();
+}
+});
+document.addEventListener('ruang:remote',refreshAll);
+
+/* ================= SCROLL REVEAL ================= */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target);}}),{threshold:.12});
+document.querySelectorAll('.card,.fbox,.tcard,.gphoto,.bubble,.team .card').forEach(el=>{el.classList.add('reveal');io.observe(el);});
+
+/* ================= PENGUNJUNG (lintas perangkat via db.js) ================= */
+countVisit();
+
+renderDaun();
+renderForum();
+renderGaleri();
+</script>
+</body>
+</html>
