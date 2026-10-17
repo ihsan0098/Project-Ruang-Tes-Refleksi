@@ -161,6 +161,7 @@ const daun=get('ruangDaun');
 const forum=get('ruangForum');
 const kontak=get('ruangKontak');
 const galeri=get('ruangGaleri');
+const alerts=get('ruangAlert');
 const views=parseInt(localStorage.getItem('ruangViews')||'0');
 const nOrang=tes.filter(t=>t.jenis==='orangtua').length;
 const nAnak=tes.filter(t=>t.jenis==='anak').length;
@@ -174,7 +175,8 @@ document.getElementById('stats').innerHTML=
 <div class="stat" style="border-top-color:var(--green)"><p>Daun Dialog</p><h3>${daun.length}</h3><small>Ditanam pengunjung</small></div>
 <div class="stat" style="border-top-color:var(--gold)"><p>Pesan Forum</p><h3>${forum.length}</h3><small>Dinding cerita</small></div>
 <div class="stat" style="border-top-color:var(--red)"><p>Pesan Kontak</p><h3>${kontak.length}</h3><small>Dari form narahubung</small></div>
-<div class="stat" style="border-top-color:var(--red)"><p>Galeri Foto</p><h3>${galeri.length}</h3><small>Diunggah pengunjung</small></div>`;
+<div class="stat" style="border-top-color:var(--red)"><p>Galeri Foto</p><h3>${galeri.length}</h3><small>Diunggah pengunjung</small></div>
+<div class="stat" style="border-top-color:var(--red);background:rgba(231,76,60,.12);"><p>🚨 Kasus Terdeteksi</p><h3>${alerts.length}</h3><small>Perlu tindak lanjut narahubung</small></div>`;
 const n=tes.length||1;
 const ok=tes.filter(t=>t.skor>=8).length, cu=tes.filter(t=>t.skor>=5&&t.skor<8).length, re=tes.filter(t=>t.skor<5).length;
 document.getElementById('l1').textContent=Math.round(ok/n*100)+'%';
@@ -191,6 +193,7 @@ document.getElementById('tbodyKontak').innerHTML=kontak.length?kontak.slice().re
 function exportCSV(){
 let csv='Kategori;Nama/Skor;Detail;Waktu\n';
 get('ruangTes').forEach(t=>csv+=`Tes (${t.jenis});Skor ${t.skor}/12;${t.skor>=8?'Sesuai':t.skor>=5?'Cukup':'Perlu Edukasi'};${t.waktu}\n`);
+get('ruangAlert').forEach(a=>csv+=`🚨 Kasus Terdeteksi (${a.jenis});Skor ${a.skor}/12;${a.status};${a.waktu}\n`);
 get('ruangDaun').forEach(d=>csv+=`Daun Dialog;${d.nama};${d.pesan.replace(/;/g,',')};${d.waktu}\n`);
 get('ruangForum').forEach(f=>csv+=`Forum;${f.nama};${f.pesan.replace(/;/g,',')};${f.waktu}\n`);
 get('ruangKontak').forEach(c=>csv+=`Kontak;${c.nama};${c.email};${c.pesan.replace(/;/g,',')};${c.waktu}\n`);
@@ -202,7 +205,7 @@ a.click();
 }
 function resetData(){
 if(confirm('Yakin hapus SEMUA data tes, daun, forum, kontak, dan pengunjung?')){
-['ruangTes','ruangDaun','ruangForum','ruangKontak','ruangGaleri','ruangViews'].forEach(k=>localStorage.removeItem(k));
+['ruangTes','ruangDaun','ruangForum','ruangKontak','ruangGaleri','ruangViews','ruangAlert'].forEach(k=>localStorage.removeItem(k));
 render();
 }
 }
