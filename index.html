@@ -190,9 +190,6 @@ nav .burger{display:none;font-size:24px;background:none;border:none;color:var(--
 .qrcard h4{font-size:15px;margin-bottom:4px;}
 .qrcard p{font-size:12px;color:var(--muted);}
 .qrbtn{margin-top:10px;display:inline-block;font-size:12px;padding:8px 16px;}
-.alertbar{display:none;width:100%;max-width:900px;background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.4);border-left:4px solid var(--red);border-radius:10px;padding:16px 20px;margin-bottom:22px;font-size:14px;}
-.alertbar strong{color:var(--red);}
-.alertbar span{color:var(--muted);}
 @media(max-width:600px){.qrcard{min-width:100%;}}
 /* Polished visual system */
 :root{--bg:#0b1014;--card:#121a20;--red:#f05b4f;--blue:#62aee8;--gold:#f5cb62;--green:#49d49a;--muted:#a3b0b8;--line:rgba(255,255,255,.09);}
@@ -303,10 +300,8 @@ body,#edukasi{background:#fff!important;color:#111!important;}
 .tes-welcome p,.tes-welcome li{font-size:13px;color:var(--muted);line-height:1.75;}
 .tes-welcome ul{list-style:none;display:grid;gap:7px;align-content:center;}
 .tes-welcome li::before{content:"✓";color:var(--green);font-weight:900;margin-right:9px;}
-.consent-card{width:100%;max-width:1050px;display:flex;align-items:flex-start;gap:13px;padding:16px 18px;margin:0 0 20px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025);cursor:pointer;}
-.consent-card input{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0;accent-color:var(--tes-accent);}
-.consent-card strong{display:block;color:var(--light);font-size:13px;margin-bottom:3px;}
-.consent-card span span{display:block;color:var(--muted);font-size:12px;line-height:1.65;}
+.tes-data-notice{width:100%;max-width:1050px;margin:0 0 20px;padding:13px 16px;border:1px solid rgba(98,174,232,.2);border-left:3px solid var(--blue);border-radius:12px;background:rgba(98,174,232,.045);color:var(--muted);font-size:12px;line-height:1.7;}
+.tes-data-notice strong{color:#d8efff;}
 .tes-hub{max-width:1050px;grid-template-columns:repeat(3,minmax(0,1fr));}
 .tcard{width:100%;min-height:265px;text-align:left;color:var(--light);font:inherit;position:relative;overflow:hidden;border:1px solid var(--line);border-top:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(18,26,32,.96) 58%);padding:25px;cursor:default;}
 .tcard::after{content:"";position:absolute;width:150px;height:150px;right:-62px;top:-70px;border-radius:50%;background:var(--role-glow);filter:blur(2px);opacity:.5;transition:transform .35s,opacity .35s;}
@@ -473,7 +468,41 @@ footer{margin-top:30px;padding:34px 20px;background:linear-gradient(180deg,#0b11
 .lightbox-stage img,.lightbox-stage video{display:block;width:100%;max-height:min(72dvh,760px);object-fit:contain;border-radius:10px;background:#050708;}
 .lightbox-caption{margin:13px 55px 0;text-align:center;color:#d2dce1;font-size:13px;overflow-wrap:anywhere;}
 @media(max-width:920px){.hero h1{font-size:clamp(42px,8vw,66px);}.team{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}}
+.pvis{position:relative;width:min(100%,900px);aspect-ratio:900/620;height:auto;margin:-5px 0 4px;overflow:visible;background:radial-gradient(ellipse at 50% 58%,rgba(92,139,105,.13),transparent 58%);}
+.pvis::before{content:"";position:absolute;inset:10% 8% 2%;border-radius:50%;background:radial-gradient(ellipse,rgba(87,123,89,.12),transparent 68%);filter:blur(20px);pointer-events:none;}
+.tree-art{position:relative;display:block;width:100%;height:100%;overflow:visible;isolation:isolate;}
+.tree-ground{fill:url(#groundGlow);}
+.tree-branch{fill:none;stroke:url(#bark);stroke-linecap:round;stroke-linejoin:round;}
+.tree-branch-shine{fill:none;stroke:url(#barkShine);stroke-linecap:round;stroke-linejoin:round;opacity:.72;}
+.tree-root{fill:none;stroke:url(#rootBark);stroke-linecap:round;stroke-linejoin:round;}
+.tree-canopy-leaf{fill:url(#canopyLeaf);stroke:rgba(180,211,143,.24);stroke-width:1;}
+.tree-canopy-leaf.deep{fill:url(#canopyLeafDeep);}
+.tree-leaf{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:filter .2s,transform .2s;}
+.tree-leaf-shape{fill:url(#messageLeaf);stroke:rgba(213,234,177,.82);stroke-width:1.5;filter:url(#leafShadow);}
+.tree-leaf.community .tree-leaf-shape{fill:url(#communityLeaf);stroke:rgba(161,228,190,.9);}
+.tree-leaf-vein{fill:none;stroke:rgba(246,250,217,.72);stroke-width:1.35;stroke-linecap:round;}
+.tree-leaf-index{fill:#f8f6dc;font-size:10px;font-weight:800;letter-spacing:.35px;text-anchor:middle;dominant-baseline:central;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+.tree-leaf:hover,.tree-leaf:focus{filter:brightness(1.16) drop-shadow(0 4px 7px rgba(0,0,0,.42));transform:scale(1.12);}
+.tree-leaf:focus{outline:none;}
+.tree-leaf:focus .tree-leaf-shape{stroke:#fff3ac;stroke-width:3;}
+.tree-caption{fill:#c2d0c3;font-size:12px;font-weight:700;letter-spacing:2px;text-anchor:middle;opacity:.72;}
+.tree-floor{fill:none;stroke:rgba(154,184,144,.28);stroke-width:2;}
+.tree-instruction{display:flex;align-items:center;justify-content:center;gap:8px;color:#aebdaf;font-size:12px;letter-spacing:.3px;margin:-2px 0 14px;}
+.tree-instruction::before{content:"";width:7px;height:7px;border-radius:50%;background:#a7ca83;box-shadow:0 0 12px rgba(167,202,131,.6);}
+.ldetail{margin-bottom:26px;}
+.tree-leaf:focus-visible{outline:none;}
+.tree-leaf:focus-visible .tree-leaf-shape{stroke:#fff3ac;stroke-width:3;}
+.tree-3d-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block;border-radius:22px;touch-action:pan-y;}
+.tree-3d-messages{position:absolute;inset:0;z-index:2;pointer-events:none;}
+.tree-3d-hit{position:absolute;width:27px;height:17px;padding:0;border:1px solid rgba(205,228,161,.8);border-radius:50% 8% 50% 8%;background:linear-gradient(145deg,#a5c878 0%,#56864d 48%,#315a3a 100%);box-shadow:0 2px 7px rgba(0,0,0,.48),inset 1px 1px 2px rgba(255,255,255,.3);color:#f4f4d8;font-size:7px;font-weight:800;line-height:1;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);transition:filter .18s,scale .18s;}
+.tree-3d-hit::after{content:"";position:absolute;left:18%;top:50%;width:64%;height:1px;background:rgba(239,247,200,.7);transform:rotate(-12deg);pointer-events:none;}
+.tree-3d-hit:hover,.tree-3d-hit:focus-visible{filter:brightness(1.28) drop-shadow(0 0 8px rgba(212,235,157,.85));scale:1.16;outline:2px solid #fff1a7;outline-offset:3px;}
+.tree-3d-hit.community{background:linear-gradient(145deg,#a6d58b 0%,#53a66d 48%,#276344 100%);border-color:#b8e3a7;}
+.tree-3d-hit[hidden]{display:none;}
+.tree-3d-canvas:active{cursor:grabbing;}
+.tree-instruction{position:relative;z-index:3;}
 @media(max-width:600px){#beranda{min-height:auto;padding-top:128px;}.hero h1{font-size:clamp(39px,11vw,54px);letter-spacing:-1.8px;}.hero p{font-size:15px;}.card,.fbox{border-radius:14px;}.gphoto img,.gphoto video{height:220px;}.forum-tools-row{gap:5px;}.edu-banner{padding:22px;}.sync-status{white-space:normal;}.gallery-search{max-width:none;}.lightbox-stage{grid-template-columns:34px minmax(0,1fr) 34px;gap:5px;}.lightbox-nav{width:34px;height:38px;}.lightbox-caption{margin:11px 0 0;}}
+@media(max-width:600px){.pvis{width:calc(100% + 18px);margin:-5px -9px 3px;}.tree-caption{font-size:14px;}.tree-instruction{font-size:11px;margin-bottom:12px;}}
 </style>
 </head>
 <body>
@@ -565,15 +594,9 @@ footer{margin-top:30px;padding:34px 20px;background:linear-gradient(180deg,#0b11
 </div>
 <div class="tes-welcome">
 <div><h3>Mulai dari rasa ingin tahu, bukan penilaian.</h3><p>Refleksi ini membantu membuka percakapan tentang empati dan kesehatan emosional remaja laki-laki. Hasilnya adalah bahan renungan, bukan label tentang dirimu.</p></div>
-<ul><li>Jawaban per soal hanya digunakan selama sesi</li><li>Skor anonim hanya dikirim dengan izinmu</li><li>Kamu bisa kembali dan mengubah jawaban</li></ul>
+<ul><li>Jawaban per soal hanya digunakan selama sesi</li><li>Hasil akhir dicatat otomatis secara anonim</li><li>Kamu bisa kembali dan mengubah jawaban</li></ul>
 </div>
-<div class="alertbar" id="alertBar" role="alert">
-<strong>🧭 Perhatian:</strong> <span id="alertTxt"></span>
-</div>
-<label class="consent-card">
-<input id="consentTes" type="checkbox">
-<span><strong>Izinkan penyimpanan skor anonim (opsional)</strong><span>Jika dicentang, hanya skor akhir tanpa nama yang dikirim ke Firebase dan dapat dilihat admin untuk statistik kampanye. Jawaban per pertanyaan tidak dikirim. Jika tidak dicentang, skor tidak dikirim ke server.</span></span>
-</label>
+<p class="tes-data-notice"><strong>Catatan privasi:</strong> Setelah tes selesai, kategori pengisi, skor akhir, dan waktu pengisian akan tersimpan di riwayat admin secara realtime. Nama, kontak, dan jawaban per soal tidak dikirim. Data ini hanya dapat dibaca admin dan digunakan untuk evaluasi kampanye.</p>
 <div class="grid tes-hub" id="tesHub">
 <article class="card tcard p">
 <span class="ticon" aria-hidden="true">👨‍👦</span><h3>Orang Tua</h3>
@@ -639,17 +662,55 @@ footer{margin-top:30px;padding:34px 20px;background:linear-gradient(180deg,#0b11
 <h2>Pohon Dialog</h2>
 <p class="sub">Klik daun untuk membaca suara hati yang terpendam — dan tanam daunmu sendiri.</p>
 <p class="sync-status" data-sync-status role="status" aria-live="polite">Memeriksa status sinkronisasi…</p>
-<div class="pvis" id="pvis">
-<div class="trunk"></div>
-<div class="leaf n1" onclick="leaf('Luka Fisik & Mental','“Ayah, luka jatuh dari sepeda tidak seberapa dibanding kata-kata kasar yang membentak eksistensiku.”')">Daun 1</div>
-<div class="leaf n2" onclick="leaf('Tuntutan Gender','“Aku dituntut kuat secara sosial, tetapi tidak pernah diajarkan berdamai dengan kegagalan.”')">Daun 2</div>
-<div class="leaf n3" onclick="leaf('Topeng Ketegaran','“Menangis bukan berarti aku lemah. Aku hanya manusia yang sedang kelelahan.”')">Daun 3</div>
-<div class="leaf n4" onclick="leaf('Ruang Seni Rafa','“Melalui goresan sketsa di kamar sepi ini, aku melepas belenggu kata yang tak terucap.”')">Daun 4</div>
-<div class="leaf n5" onclick="leaf('Penerimaan Tulus','“Aku tidak butuh solusi instan. Aku hanya butuh telinga yang sudi mendengar.”')">Daun 5</div>
-<div class="leaf n6" onclick="leaf('Harapan','“Someday, aku ingin ayah bertanya: bagaimana perasaanmu hari ini?”')">Daun 6</div>
-<div class="leaf n7" onclick="leaf('Kebisuan','“Kalimat terpanjang yang pernah aku ucapkan di rumah hanyalah… diam.”')">Daun 7</div>
+<div class="pvis">
+<svg class="tree-art" id="pvis" viewBox="0 0 900 620" role="group" aria-label="Pohon Dialog. Pilih daun untuk membaca suara hati.">
+<defs>
+<linearGradient id="bark" x1="0" y1="0" x2="1" y2=".15"><stop stop-color="#392d27"/><stop offset=".28" stop-color="#78543a"/><stop offset=".52" stop-color="#a8784a"/><stop offset=".73" stop-color="#604332"/><stop offset="1" stop-color="#302a25"/></linearGradient>
+<linearGradient id="rootBark" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#49392d"/><stop offset=".5" stop-color="#97704a"/><stop offset="1" stop-color="#3c3028"/></linearGradient>
+<linearGradient id="barkShine" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#e0b477" stop-opacity="0"/><stop offset=".48" stop-color="#e0b477" stop-opacity=".7"/><stop offset="1" stop-color="#e0b477" stop-opacity="0"/></linearGradient>
+<linearGradient id="canopyLeaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#91b979"/><stop offset=".55" stop-color="#4d8158"/><stop offset="1" stop-color="#24543f"/></linearGradient>
+<linearGradient id="canopyLeafDeep" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#719663"/><stop offset="1" stop-color="#234638"/></linearGradient>
+<linearGradient id="messageLeaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d3df9a"/><stop offset=".48" stop-color="#88ae70"/><stop offset="1" stop-color="#477854"/></linearGradient>
+<linearGradient id="communityLeaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9e5a2"/><stop offset=".5" stop-color="#6db783"/><stop offset="1" stop-color="#327458"/></linearGradient>
+<radialGradient id="groundGlow"><stop stop-color="#728e68" stop-opacity=".26"/><stop offset="1" stop-color="#728e68" stop-opacity="0"/></radialGradient>
+<filter id="leafShadow" x="-40%" y="-50%" width="180%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#07100c" flood-opacity=".55"/></filter>
+<filter id="treeSoftGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="13"/></filter>
+</defs>
+<ellipse class="tree-ground" cx="450" cy="536" rx="255" ry="52"/>
+<ellipse cx="450" cy="527" rx="185" ry="22" fill="#0b1014" opacity=".34" filter="url(#treeSoftGlow)"/>
+<g aria-hidden="true">
+<path class="tree-root" stroke-width="25" d="M451 487 C424 516 375 525 318 538 M450 488 C470 519 527 526 585 540 M446 497 C429 533 421 545 395 557 M458 497 C471 530 485 543 512 558 M435 501 C397 514 367 512 347 520 M465 501 C504 512 533 510 556 518"/>
+<g class="tree-branch">
+<path stroke-width="46" d="M450 518 C433 445 463 384 448 316 C433 249 450 181 455 108"/>
+<path stroke-width="38" d="M448 408 C397 381 361 339 319 291 C282 248 238 217 183 199"/>
+<path stroke-width="38" d="M451 374 C509 345 546 302 588 257 C632 209 682 185 743 164"/>
+<path stroke-width="30" d="M445 315 C393 284 370 241 355 196 C342 156 310 131 274 111"/>
+<path stroke-width="30" d="M458 285 C503 247 528 207 541 161 C555 119 584 92 625 76"/>
+<path stroke-width="34" d="M445 465 C395 448 355 436 308 415 C267 397 232 367 191 338"/>
+<path stroke-width="34" d="M462 447 C511 427 554 407 598 378 C639 351 680 335 723 324"/>
+<path stroke-width="24" d="M446 239 C419 207 407 174 402 141 C396 111 380 92 352 78"/>
+<path stroke-width="24" d="M460 226 C486 194 499 163 505 130 C511 103 527 81 552 63"/>
+</g>
+<g class="tree-branch-shine" stroke-width="5">
+<path d="M438 494 C427 424 454 379 439 316 C426 249 441 181 445 110"/>
+<path d="M435 400 C385 371 348 329 308 282 C272 240 232 214 182 199"/>
+<path d="M460 367 C517 339 553 294 596 249 C641 202 685 181 740 164"/>
+<path d="M436 308 C385 278 361 235 345 190 C332 151 304 127 272 111"/>
+<path d="M463 277 C508 238 533 199 547 156 C560 115 587 89 624 76"/>
+<path d="M435 457 C386 439 347 428 301 407 C261 390 228 361 190 338"/>
+<path d="M466 440 C515 419 559 399 603 371 C643 344 682 331 722 324"/>
+</g>
+<path d="M448 496 C429 437 462 380 447 317 C435 259 450 193 455 109 C462 192 462 255 475 316 C489 381 460 437 466 496Z" fill="url(#bark)" opacity=".92"/>
+<path d="M452 490 C442 426 469 378 456 315 C445 255 458 188 462 130" fill="none" stroke="#d2a36b" stroke-width="5" stroke-linecap="round" opacity=".48"/>
+</g>
+<g id="treeCanopy" aria-hidden="true"></g>
+<path class="tree-floor" d="M205 546 Q450 574 695 546"/>
+<text class="tree-caption" x="450" y="590">RUANG UNTUK BERTUMBUH</text>
+<g id="treeMessages" aria-label="Daun berisi suara hati"></g>
+</svg>
 </div>
-<div class="ldetail" id="ldetail">Klik salah satu daun di atas untuk memunculkan suara hati anak…</div>
+<p class="tree-instruction" id="treeInstruction">Seret pohon untuk melihat dari berbagai sisi · pilih daun untuk membaca ceritanya</p>
+<div class="ldetail" id="ldetail" aria-live="polite" aria-atomic="true">Pilih salah satu daun untuk memunculkan suara hati yang ingin didengar…</div>
 <div class="fbox">
 <h3 style="margin-bottom:15px;">🌱 Tanam Daunmu — Tulis Pesanmu</h3>
 <label for="lnama">Nama / Inisial (boleh anonim)</label>
@@ -687,9 +748,9 @@ footer{margin-top:30px;padding:34px 20px;background:linear-gradient(180deg,#0b11
 <p class="sub">Orang-orang di balik Project Ruang — LIDM 2026 Universitas Negeri Padang.</p>
 <div class="grid team">
 <div class="card"><div class="tavatar">S</div><h4>Shelly Alfidenia</h4><span>Ketua / Sutradara</span></div>
-<div class="card"><div class="tavatar">A</div><h4>Aji Sulaksana</h4><span>Editor / Motion Graphic / Penyelaras / Talent Ayah</span></div>
+<div class="card"><div class="tavatar">A</div><h4>Aji Sulaksana</h4><span>Editor / Motion Graphic / Penyelaras </span></div>
 <div class="card"><div class="tavatar">E</div><h4>Egazia Evanggelis</h4><span>Penulis Naskah</span></div>
-<div class="card"><div class="tavatar">F</div><h4>Falyanzuril Ihsan</h4><span>Videografer</span></div>
+<div class="card"><div class="tavatar">F</div><h4>Falyanzuril Ihsan</h4><span>Videografer / Website</span></div>
 <div class="card" style="border:1px solid var(--gold);"><div class="tavatar">🎓</div><h4 style="color:var(--gold);">Dr. Lailatur Rahmi, M.Pd</h4><span>Dosen Pendamping</span></div>
 </div>
 </section>
@@ -754,7 +815,7 @@ Cetak / simpan sebagai PDF
 </div>
 <div class="faq-item">
 <button class="faq-q" aria-expanded="false" aria-controls="fa2" onclick="toggleFaq(this)">Siapa yang membaca hasil Tes Refleksi saya? <span class="chev">▾</span></button>
-<div class="faq-a" id="fa2" role="region">Skor akhir anonim hanya dikirim ke Firebase jika Anda menyetujui kotak persetujuan sebelum memulai tes. Skor yang tersimpan hanya dapat dibaca admin; tanpa persetujuan, skor tidak dikirim.</div>
+<div class="faq-a" id="fa2" role="region">Setelah tes selesai, kategori pengisi, skor akhir, dan waktu pengisian dicatat otomatis di Firebase dan hanya dapat dibaca admin. Nama, kontak, dan jawaban per soal tidak dikirim.</div>
 </div>
 <div class="faq-item">
 <button class="faq-q" aria-expanded="false" aria-controls="fa3" onclick="toggleFaq(this)">Apakah layanan konseling ini gratis? <span class="chev">▾</span></button>
@@ -782,6 +843,7 @@ Cetak / simpan sebagai PDF
 <footer>
 &copy; 2026 Project Ruang — Divisi Video Digital Pendidikan (VDP) LIDM 2026, Universitas Negeri Padang. Hak Cipta Dilindungi.<br>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
 <script src="db.js"></script>
 <script>
 /* ================= VIDEO ================= */
@@ -928,9 +990,9 @@ soal:[
 {q:'Generasi yang lebih sehat mental dimulai dari…',a:[['Lingkungan yang berani mengubah stigma.',1],['Individu yang lebih kuat menahan diri.',0],['Anak yang lebih patuh dan tidak banyak tanya.',0]]}
 ]}
 };
-let tesAktif=null,idx=0,skor=0,answers=[],simpanSkorTes=false;
+let tesAktif=null,idx=0,skor=0,answers=[];
 function bukaTes(t){
-tesAktif=t;idx=0;skor=0;answers=[];simpanSkorTes=document.getElementById('consentTes').checked;
+tesAktif=t;idx=0;skor=0;answers=[];
 document.getElementById('tesHub').style.display='none';
 document.getElementById('tesHasil').style.display='none';
 document.getElementById('tesArea').style.display='block';
@@ -988,13 +1050,6 @@ set('ruangTes',data);
 const kategori=skor>=8?'Banyak Sikap Empatik':(skor>=5?'Ruang untuk Bertumbuh':'Mulai dari Satu Percakapan');
 const perluBantuan=(tesAktif==='orangtua'&&skor<6)||(tesAktif==='anak'&&skor<6)||(tesAktif==='masyarakat'&&skor<6);
 
-/* Local alert only; test results are not sent to the public database. */
-if(perluBantuan){
-const alerts=get('ruangAlert');
-alerts.push({jenis:tesAktif,skor:skor,waktu:new Date().toLocaleString('id-ID'),status:'baru'});
-set('ruangAlert',alerts);
-}
-
 document.getElementById('tesArea').style.display='none';
 const percent=Math.round(skor/12*100);
 let h='<div class="res result-intro"><div class="scorebadge">Refleksi selesai · '+skor+' dari 12</div>';
@@ -1007,9 +1062,7 @@ h+='<div class="refbox"><strong>🧭 Anda mungkin terbantu dengan dukungan tamba
 }else{
 h+='<div class="refbox" style="border-color:var(--green);background:rgba(46,204,113,.07);"><strong style="color:var(--green)">✓ Respons Anda menunjukkan empati yang baik.</strong><br>Bagikan pemahaman ini kepada orang-orang di sekitarmu. Jika ingin berdiskusi, narahubung kami siap mendengarkan.</div>';
 }
-h+=simpanSkorTes
- ?'<p id="tesSyncStatus" role="status" aria-live="polite" style="color:var(--muted);font-size:14px;margin-top:15px;">Mengirim skor anonim ke dashboard admin…</p>'
- :'<p style="color:var(--muted);font-size:14px;margin-top:15px;">Skor tidak dikirim ke server karena persetujuan penyimpanan tidak diberikan. 🙏</p>';
+h+='<p id="tesSyncStatus" role="status" aria-live="polite" style="color:var(--muted);font-size:14px;margin-top:15px;">Mencatat hasil anonim ke riwayat admin…</p>';
 h+='<div class="result-actions">';
 h+='<a href="#kontakForm" class="btn sm">💬 Hubungi narahubung</a>';
 h+='<button class="btn blue sm" type="button" onclick="bagikanHasilTes()">↗ Bagikan refleksi</button>';
@@ -1019,14 +1072,12 @@ h+='<p id="resultShareStatus" class="result-share-status" role="status" aria-liv
 h+='</div>';
 const box=document.getElementById('tesHasil');
 box.innerHTML=h;box.style.display='block';
-if(simpanSkorTes){
-const status=document.getElementById('tesSyncStatus');
 simpanHasilTes({jenis:tesAktif,skor}).then(()=>{
-status.textContent='Skor anonim berhasil dikirim dan hanya dapat dilihat admin.';
+document.getElementById('tesSyncStatus').textContent='Hasil anonim tercatat di riwayat admin secara realtime.';
 }).catch(error=>{
-status.textContent='Skor tidak terkirim: '+error.message;
+console.error('Gagal mencatat hasil tes ke riwayat admin:',error);
+document.getElementById('tesSyncStatus').textContent='Hasil belum tersinkron ke admin: '+error.message;
 });
-}
 box.scrollIntoView({behavior:'smooth',block:'center'});
 }
 async function bagikanHasilTes(){
@@ -1046,22 +1097,343 @@ console.error('Gagal membagikan hasil refleksi:',error);
 function leaf(t,m){
 const d=document.getElementById('ldetail');
 d.style.opacity=0;
-setTimeout(()=>{d.innerHTML='<strong style="color:var(--red)">'+esc(t)+'</strong><br><br>'+m;d.style.color='var(--light)';d.style.fontStyle='normal';d.style.opacity=1;},200);
+const title=document.createElement('strong');
+title.style.color='var(--red)';
+title.textContent=t;
+d.replaceChildren(title,document.createElement('br'),document.createElement('br'),document.createTextNode(m||''));
+d.style.color='var(--light)';
+d.style.fontStyle='normal';
+d.style.opacity=1;
 }
-const POS=[{t:'42px',l:'18%'},{t:'42px',l:'74%'},{t:'105px',l:'6%'},{t:'105px',l:'82%'},{t:'180px',l:'2%'},{t:'185px',l:'84%'},{t:'250px',l:'10%'},{t:'255px',l:'80%'},{t:'315px',l:'20%'},{t:'315px',l:'68%'},{t:'360px',l:'38%'},{t:'360px',l:'56%'},{t:'28px',l:'46%'},{t:'150px',l:'44%'}];
-function renderDaun(){
-const v=document.getElementById('pvis');
-v.querySelectorAll('.leaf.u').forEach(e=>e.remove());
-get('ruangDaun').slice(-POS.length).reverse().forEach((d,i)=>{
-const el=document.createElement('div');
-el.className='leaf u';
-const p=POS[i%POS.length];
-el.style.top=p.t;el.style.left=p.l;el.style.transform='none';
-el.textContent='🌱 '+(d.nama||'Anonim');
-el.setAttribute('aria-label','Pesan dari '+(d.nama||'Anonim')+(d.waktu?' pada '+d.waktu:''));
-el.onclick=()=>leaf('🌱 '+(d.nama||'Anonim')+(d.waktu?' ('+d.waktu+')':''),'"'+esc(d.pesan)+'"');
-v.appendChild(el);
+const DAUN_CONTOH=[
+{nama:'Luka Fisik & Mental',pesan:'“Ayah, luka jatuh dari sepeda tidak seberapa dibanding kata-kata kasar yang membentak eksistensiku.”'},
+{nama:'Tuntutan Gender',pesan:'“Aku dituntut kuat secara sosial, tetapi tidak pernah diajarkan berdamai dengan kegagalan.”'},
+{nama:'Topeng Ketegaran',pesan:'“Menangis bukan berarti aku lemah. Aku hanya manusia yang sedang kelelahan.”'},
+{nama:'Ruang Seni Rafa',pesan:'“Melalui goresan sketsa di kamar sepi ini, aku melepas belenggu kata yang tak terucap.”'},
+{nama:'Penerimaan Tulus',pesan:'“Aku tidak butuh solusi instan. Aku hanya butuh telinga yang sudi mendengar.”'},
+{nama:'Harapan',pesan:'“Someday, aku ingin ayah bertanya: bagaimana perasaanmu hari ini?”'},
+{nama:'Kebisuan',pesan:'“Kalimat terpanjang yang pernah aku ucapkan di rumah hanyalah… diam.”'}
+];
+const POS=[{x:239,y:215,r:-31},{x:344,y:150,r:27},{x:402,y:224,r:-24},{x:517,y:198,r:30},{x:605,y:233,r:-27},{x:705,y:177,r:24},{x:298,y:307,r:30},{x:378,y:292,r:-28},{x:526,y:309,r:25},{x:628,y:349,r:-24},{x:263,y:386,r:-24},{x:356,y:424,r:28},{x:494,y:411,r:-25},{x:586,y:390,r:28},{x:450,y:112,r:-24},{x:550,y:112,r:27},{x:180,y:254,r:23},{x:742,y:278,r:-22},{x:313,y:236,r:24},{x:481,y:160,r:-24},{x:665,y:260,r:24},{x:220,y:337,r:-24},{x:419,y:350,r:26},{x:550,y:354,r:-23},{x:335,y:368,r:25}];
+const SVG_NS='http://www.w3.org/2000/svg';
+function buatDaunSvg(message,index,community){
+const g=document.createElementNS(SVG_NS,'g');
+const pos=POS[index%POS.length];
+g.setAttribute('class','tree-leaf'+(community?' community':''));
+g.setAttribute('transform','translate('+pos.x+' '+pos.y+') rotate('+pos.r+')');
+g.setAttribute('role','button');
+g.setAttribute('tabindex','0');
+g.setAttribute('aria-label','Suara hati '+(index+1)+' dari '+(message.nama||'Anonim')+'. Tekan Enter untuk membaca.');
+g.innerHTML='<path class="tree-leaf-shape" d="M-32 0 C-18-23 14-24 34-1 C17 20-12 23-32 0Z"/><path class="tree-leaf-vein" d="M-29 1 Q0-2 29-2 M-7 0 Q-4-8 1-13 M8-1 Q11 5 17 9"/><text class="tree-leaf-index" x="0" y="1">'+String(index+1).padStart(2,'0')+'</text>';
+g.querySelector('.tree-leaf-index').setAttribute('transform','rotate('+(-pos.r)+' 0 1)');
+const open=()=>leaf(community?'🌱 '+(message.nama||'Anonim')+(message.waktu?' ('+message.waktu+')':''):message.nama,message.pesan);
+g.addEventListener('click',open);
+g.addEventListener('keydown',event=>{
+if(event.key==='Enter'||event.key===' '){event.preventDefault();open();}
 });
+return g;
+}
+let pohon3d=null;
+function initPohon3d(){
+if(pohon3d||!window.THREE)return;
+const THREE=window.THREE;
+const stage=document.querySelector('.pvis');
+const fallback=document.getElementById('pvis');
+let renderer=null;
+let messageLayer=null;
+try{
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x111a15);
+scene.fog=new THREE.Fog(0x111a15,18,34);
+const camera=new THREE.PerspectiveCamera(33,1,.1,80);
+camera.position.set(9.5,8.5,15.5);
+camera.lookAt(0,4.05,0);
+renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.6));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=.78;
+renderer.domElement.className='tree-3d-canvas';
+renderer.domElement.setAttribute('aria-hidden','true');
+stage.appendChild(renderer.domElement);
+messageLayer=document.createElement('div');
+messageLayer.className='tree-3d-messages';
+messageLayer.setAttribute('role','group');
+messageLayer.setAttribute('aria-label','Daun interaktif berisi suara hati');
+stage.appendChild(messageLayer);
+
+scene.add(new THREE.HemisphereLight(0xc9d8b8,0x30271e,.5));
+const sun=new THREE.DirectionalLight(0xffe0aa,3.3);
+sun.intensity=.92;
+sun.position.set(-7,12,9);
+sun.castShadow=true;
+sun.shadow.mapSize.set(1024,1024);
+sun.shadow.camera.left=-8;sun.shadow.camera.right=8;
+sun.shadow.camera.top=11;sun.shadow.camera.bottom=-4;
+sun.shadow.bias=-.00025;
+scene.add(sun);
+const rim=new THREE.DirectionalLight(0x9fc6a1,2.2);
+rim.intensity=.42;
+rim.position.set(7,7,-8);
+scene.add(rim);
+const fill=new THREE.PointLight(0xffbb76,.16,18);
+fill.position.set(-4,4,5);
+scene.add(fill);
+
+const ground=new THREE.Mesh(
+new THREE.PlaneGeometry(50,50),
+new THREE.MeshStandardMaterial({color:0x101810,roughness:1})
+);
+ground.rotation.x=-Math.PI/2;ground.position.y=-.16;ground.receiveShadow=true;scene.add(ground);
+const shadow=new THREE.Mesh(
+new THREE.CircleGeometry(3.6,56),
+new THREE.MeshBasicMaterial({color:0x080d09,transparent:true,opacity:.42,depthWrite:false})
+);
+shadow.rotation.x=-Math.PI/2;shadow.scale.set(1,.62,1);shadow.position.y=-.145;scene.add(shadow);
+
+const barkCanvas=document.createElement('canvas');
+barkCanvas.width=256;barkCanvas.height=512;
+const barkCtx=barkCanvas.getContext('2d');
+const barkGradient=barkCtx.createLinearGradient(0,0,256,0);
+[['#30241d',0],['#664a33',.18],['#3c2c22',.34],['#896646',.54],['#4b3829',.75],['#2b211b',1]].forEach(([color,stop])=>barkGradient.addColorStop(stop,color));
+barkCtx.fillStyle=barkGradient;barkCtx.fillRect(0,0,256,512);
+for(let i=0;i<150;i++){
+const x=Math.random()*256;
+barkCtx.beginPath();barkCtx.moveTo(x,0);
+barkCtx.bezierCurveTo(x-12,150+Math.random()*80,x+10,330+Math.random()*70,x+(Math.random()-.5)*9,512);
+barkCtx.strokeStyle=i%4===0?'rgba(232,192,139,.2)':'rgba(15,11,9,.24)';
+barkCtx.lineWidth=.7+Math.random()*2.6;barkCtx.stroke();
+}
+for(let i=0;i<1200;i++){
+barkCtx.fillStyle=i%2?'rgba(18,12,9,.13)':'rgba(244,207,153,.11)';
+barkCtx.fillRect(Math.random()*256,Math.random()*512,1+Math.random()*3,1+Math.random()*8);
+}
+const barkTexture=new THREE.CanvasTexture(barkCanvas);
+barkTexture.wrapS=THREE.RepeatWrapping;barkTexture.wrapT=THREE.RepeatWrapping;
+barkTexture.repeat.set(1,2.4);barkTexture.encoding=THREE.sRGBEncoding;
+const barkMaterial=new THREE.MeshStandardMaterial({map:barkTexture,color:0xb59c7e,roughness:.93});
+const tree=new THREE.Group();scene.add(tree);
+
+function cabang(points,rootRadius,tipRadius){
+const curve=new THREE.CatmullRomCurve3(points);
+const segments=Math.max(16,points.length*9),sides=9;
+const frames=curve.computeFrenetFrames(segments,false);
+const positions=[],uvs=[],indices=[];
+for(let i=0;i<=segments;i++){
+const t=i/segments,point=curve.getPointAt(t);
+const radius=tipRadius+(rootRadius-tipRadius)*Math.pow(1-t,1.16);
+for(let j=0;j<=sides;j++){
+const angle=j/sides*Math.PI*2;
+const normal=frames.normals[i].clone().multiplyScalar(Math.cos(angle)).addScaledVector(frames.binormals[i],Math.sin(angle));
+positions.push(point.x+normal.x*radius,point.y+normal.y*radius,point.z+normal.z*radius);
+uvs.push(j/sides,t*curve.getLength()*.42);
+if(i<segments&&j<sides){
+const a=i*(sides+1)+j,b=(i+1)*(sides+1)+j;
+indices.push(a,b,a+1,b,b+1,a+1);
+}
+}
+}
+const geometry=new THREE.BufferGeometry();
+geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));
+geometry.setIndex(indices);geometry.computeVertexNormals();
+const mesh=new THREE.Mesh(geometry,barkMaterial);
+mesh.castShadow=true;mesh.receiveShadow=true;tree.add(mesh);
+return curve;
+}
+
+cabang([
+new THREE.Vector3(0,0,0),new THREE.Vector3(-.12,1.2,.05),
+new THREE.Vector3(.13,2.8,-.08),new THREE.Vector3(-.05,4.5,.04),
+new THREE.Vector3(.13,6.2,-.04),new THREE.Vector3(.04,7.7,.02)
+],.58,.045);
+for(let i=0;i<7;i++){
+const angle=i*2.399963229728653;
+const x=Math.cos(angle),z=Math.sin(angle);
+const length=1.45+(i%3)*.25;
+cabang([
+new THREE.Vector3(0,.08,0),new THREE.Vector3(x*.45,.35,z*.45),
+new THREE.Vector3(x*1.02,.2,z*1.02),new THREE.Vector3(x*1.72,-.16,z*1.72),
+new THREE.Vector3(x*length,-.12,z*length)
+],.25,.018);
+}
+
+let seed=92837;
+const random=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646;};
+const mainTips=[];
+const sideTips=[];
+for(let i=0;i<25;i++){
+const level=i%5;
+const angle=i*2.399963229728653;
+const y=2.05+level*.88+(random()-.5)*.34;
+const reach=2.15+(random()-.5)*.58-level*.08;
+const sideBend=(random()-.5)*.48;
+const start=new THREE.Vector3(Math.sin(y*1.2)*.09,y,Math.cos(y*1.2)*.08);
+const middle=new THREE.Vector3(Math.cos(angle)*reach*.54-Math.sin(angle)*sideBend,y+.52+random()*.48,Math.sin(angle)*reach*.54+Math.cos(angle)*sideBend);
+const end=new THREE.Vector3(Math.cos(angle)*reach,y+1.02+random()*.55,Math.sin(angle)*reach);
+const primary=cabang([start,middle,end],.19+(4-level)*.018,.018);
+mainTips.push(primary.getPointAt(.98));
+for(let side=0;side<2;side++){
+const t=side===0?.48:.76;
+const base=primary.getPointAt(t);
+const direction=angle+(side===0?-.72:.72);
+const secondaryLength=.92+random()*.42;
+const secondaryEnd=new THREE.Vector3(
+base.x+Math.cos(direction)*secondaryLength,
+base.y+.43+random()*.5,
+base.z+Math.sin(direction)*secondaryLength
+);
+const secondary=cabang([base,base.clone().lerp(secondaryEnd,.52).add(new THREE.Vector3(0,.13,0)),secondaryEnd],.083,.009);
+sideTips.push(secondary.getPointAt(.98));
+for(let twig=0;twig<2;twig++){
+const twigBase=secondary.getPointAt(.58+twig*.2);
+const twigAngle=direction+(twig===0?-.82:.82);
+const twigEnd=new THREE.Vector3(
+twigBase.x+Math.cos(twigAngle)*(.48+random()*.22),
+twigBase.y+.36+random()*.26,
+twigBase.z+Math.sin(twigAngle)*(.48+random()*.22)
+);
+const twigCurve=cabang([twigBase,twigBase.clone().lerp(twigEnd,.5).add(new THREE.Vector3(0,.1,0)),twigEnd],.038,.004);
+sideTips.push(twigCurve.getPointAt(.98));
+}
+}
+}
+
+const leafShape=new THREE.Shape();
+leafShape.moveTo(0,-.48);
+leafShape.quadraticCurveTo(-.2,-.19,-.15,.16);
+leafShape.quadraticCurveTo(-.08,.42,0,.58);
+leafShape.quadraticCurveTo(.17,.22,.17,-.08);
+leafShape.quadraticCurveTo(.14,-.37,0,-.48);
+const leafGeometry=new THREE.ShapeGeometry(leafShape,7);
+const leafColors=[0x24482f,0x315b38,0x3d6b3f,0x4d7944,0x64864b,0x315439];
+const leafMaterials=leafColors.map(color=>new THREE.MeshStandardMaterial({color,roughness:.8,side:THREE.DoubleSide}));
+const leaves=leafColors.map(()=>[]);
+const addLeaf=(position,size)=>{
+const direction=new THREE.Vector3((random()-.5)*1.5,.3+random()*1.3,(random()-.5)*1.5).normalize();
+const rotation=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,0,1),direction);
+rotation.multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),random()*Math.PI*2));
+leaves[Math.floor(random()*leaves.length)].push({position,rotation,size});
+};
+for(let i=0;i<1650;i++){
+const theta=random()*Math.PI*2;
+const cosPhi=random()*2-1;
+const sinPhi=Math.sqrt(1-cosPhi*cosPhi);
+const radius=Math.cbrt(random());
+const position=new THREE.Vector3(
+Math.cos(theta)*sinPhi*3.15*radius,
+5.6+cosPhi*2.05*radius,
+Math.sin(theta)*sinPhi*2.65*radius
+);
+addLeaf(position,.29+random()*.31);
+}
+mainTips.forEach(tip=>{for(let i=0;i<19;i++)addLeaf(tip.clone().add(new THREE.Vector3((random()-.5)*.95,(random()-.5)*.72,(random()-.5)*.95)),.29+random()*.28);});
+sideTips.forEach(tip=>{for(let i=0;i<7;i++)addLeaf(tip.clone().add(new THREE.Vector3((random()-.5)*.62,(random()-.5)*.52,(random()-.5)*.62)),.26+random()*.25);});
+leaves.forEach((items,index)=>{
+const mesh=new THREE.InstancedMesh(leafGeometry,leafMaterials[index],items.length);
+const dummy=new THREE.Object3D();
+items.forEach((item,i)=>{
+dummy.position.copy(item.position);dummy.quaternion.copy(item.rotation);
+dummy.scale.set(item.size,item.size,item.size);dummy.updateMatrix();mesh.setMatrixAt(i,dummy.matrix);
+});
+mesh.instanceMatrix.needsUpdate=true;tree.add(mesh);
+});
+
+const messageLeaves=new THREE.Group();tree.add(messageLeaves);
+const messageMaterial=new THREE.MeshStandardMaterial({color:0xc9df8d,emissive:0x1d2a12,roughness:.5,side:THREE.DoubleSide});
+const visitorMaterial=new THREE.MeshStandardMaterial({color:0x91d5a0,emissive:0x14281a,roughness:.48,side:THREE.DoubleSide});
+const state={scene,camera,renderer,tree,stage,fallback,messageLayer,messageLeaves,leafGeometry,messageMaterial,visitorMaterial,items:[],drag:null};
+function render(){
+const width=stage.clientWidth,height=stage.clientHeight;
+if(!width||!height)return;
+renderer.setSize(width,height,false);
+camera.aspect=width/height;camera.updateProjectionMatrix();
+tree.updateMatrixWorld(true);
+renderer.render(scene,camera);
+state.items.forEach(item=>{
+const point=item.mesh.position.clone().applyMatrix4(tree.matrixWorld).project(camera);
+const visible=point.z>-1&&point.z<1;
+item.button.hidden=!visible;
+if(visible){
+item.button.style.left=((point.x*.5+.5)*width)+'px';
+item.button.style.top=((-point.y*.5+.5)*height)+'px';
+}
+});
+}
+state.render=render;
+state.resizeObserver=new ResizeObserver(render);
+state.resizeObserver.observe(stage);
+let pointer=null;
+renderer.domElement.addEventListener('pointerdown',event=>{
+pointer={x:event.clientX,y:event.clientY,id:event.pointerId};
+renderer.domElement.setPointerCapture(event.pointerId);
+});
+renderer.domElement.addEventListener('pointermove',event=>{
+if(!pointer||pointer.id!==event.pointerId)return;
+tree.rotation.y+=(event.clientX-pointer.x)*.008;
+tree.rotation.x=Math.max(-.12,Math.min(.12,tree.rotation.x+(event.clientY-pointer.y)*.002));
+pointer.x=event.clientX;pointer.y=event.clientY;render();
+});
+['pointerup','pointercancel','lostpointercapture'].forEach(type=>renderer.domElement.addEventListener(type,()=>{pointer=null;}));
+render();
+fallback.style.display='none';
+pohon3d=state;
+}catch(error){
+if(renderer){renderer.dispose();renderer.domElement.remove();}
+if(messageLayer)messageLayer.remove();
+console.error('Gagal membuat pohon 3D; ilustrasi pohon cadangan tetap digunakan:',error);
+}
+}
+function renderPesanPohon3d(messages,communityCount){
+if(!pohon3d)return;
+const state=pohon3d;
+state.messageLeaves.clear();state.messageLayer.replaceChildren();state.items=[];
+messages.forEach((message,index)=>{
+const spot=POS[index%POS.length];
+const angle=index*2.399963229728653;
+const position=new THREE.Vector3((spot.x-450)/100,5.5-(spot.y-215)/110,1.05+Math.sin(angle)*.3);
+const community=index<communityCount;
+const mesh=new THREE.Mesh(state.leafGeometry,community?state.visitorMaterial:state.messageMaterial);
+mesh.position.copy(position);mesh.rotation.set((index%3-1)*.3,angle,Math.sin(angle)*.28);mesh.scale.set(.52,.52,.52);
+state.messageLeaves.add(mesh);
+const button=document.createElement('button');
+button.type='button';button.className='tree-3d-hit'+(community?' community':'');
+button.textContent=String(index+1).padStart(2,'0');
+button.setAttribute('aria-label','Suara hati '+(index+1)+' dari '+(message.nama||'Anonim')+'. Tekan untuk membaca.');
+button.addEventListener('click',()=>leaf(community?'🌱 '+(message.nama||'Anonim')+(message.waktu?' ('+message.waktu+')':''):message.nama,message.pesan));
+state.messageLayer.appendChild(button);state.items.push({mesh,button});
+});
+state.render();
+}
+function renderCanopy(){
+const canopy=document.getElementById('treeCanopy');
+if(canopy.childElementCount)return;
+for(let i=0;i<58;i++){
+const angle=i*2.399963229728653;
+const radius=78+Math.sqrt(i)*37;
+const x=450+Math.cos(angle)*radius*1.42;
+const y=184+Math.sin(angle)*radius*.83;
+if(x<105||x>795||y<30||y>435)continue;
+const leaf=document.createElementNS(SVG_NS,'path');
+leaf.setAttribute('class','tree-canopy-leaf'+(i%4===0?' deep':''));
+leaf.setAttribute('d','M'+(x-14)+' '+y+' C'+(x-4)+' '+(y-17)+' '+(x+14)+' '+(y-14)+' '+(x+17)+' '+(y+1)+' C'+(x+7)+' '+(y+13)+' '+(x-7)+' '+(y+13)+' '+(x-14)+' '+y+'Z');
+leaf.setAttribute('transform','rotate('+((i*37)%70-35)+' '+x+' '+y+')');
+canopy.appendChild(leaf);
+}
+}
+function renderDaun(){
+renderCanopy();
+const v=document.getElementById('treeMessages');
+v.replaceChildren();
+const kiriman=get('ruangDaun').slice(-POS.length).reverse();
+const pesanContoh=DAUN_CONTOH.map(message=>({...message}));
+[...kiriman,...pesanContoh].slice(0,POS.length).forEach((message,index)=>{
+v.appendChild(buatDaunSvg(message,index,index<kiriman.length));
+});
+initPohon3d();
+renderPesanPohon3d([...kiriman,...pesanContoh].slice(0,POS.length),kiriman.length);
 }
 async function tambahDaun(){
 const n=document.getElementById('lnama').value.trim()||'Anonim';
@@ -1251,20 +1623,9 @@ document.getElementById('upcap').value='';
 });
 
 /* ================= REALTIME SYNC (antar-tab + Firebase remote) ================= */
-function refreshAll(){renderGaleri();renderDaun();renderForum();renderAlert();renderQR();}
-function renderAlert(){
-const bar=document.getElementById('alertBar');
-const alerts=get('ruangAlert');
-if(!bar)return;
-if(alerts.length){
-const last=alerts[alerts.length-1];
-const jenis=last.jenis==='orangtua'?'Orang Tua':last.jenis==='anak'?'Anak':'Masyarakat';
-document.getElementById('alertTxt').textContent=`Hasil Tes ${jenis} (skor ${last.skor}/12) menunjukkan area yang mungkin perlu perhatian. Ini bukan diagnosis. Jika membutuhkan bantuan, hubungi narahubung atau SEJIWA 119 ext. 8.`;
-bar.style.display='block';
-}else{bar.style.display='none';}
-}
+function refreshAll(){renderGaleri();renderDaun();renderForum();renderQR();}
 window.addEventListener('storage',e=>{
-if(['ruangTes','ruangDaun','ruangForum','ruangKontak','ruangGaleri','ruangViews','ruangAlert'].includes(e.key)){
+if(['ruangTes','ruangDaun','ruangForum','ruangKontak','ruangGaleri','ruangViews'].includes(e.key)){
 refreshAll();
 }
 });
@@ -1305,7 +1666,6 @@ setRuangSyncStatus('Statistik kunjungan belum tersinkron. Coba muat ulang halama
 renderDaun();
 renderForum();
 renderGaleri();
-renderAlert();
 renderQR();
 </script>
 </body>

@@ -160,8 +160,9 @@ footer{padding:30px 0 4px;}
 
 <div class="tblwrap" id="riwayatDashboard">
 <h3>🧾 Riwayat Pengisi Tes Refleksi</h3>
+<p style="color:var(--muted);font-size:12px;margin:-8px 0 14px;">Diperbarui realtime saat peserta menyelesaikan tes. Data hanya berisi kategori pengisi, skor akhir, dan waktu — tanpa nama atau jawaban per soal.</p>
 <table>
-<thead><tr><th>Waktu</th><th>Kategori</th><th>Skor</th><th>Hasil</th></tr></thead>
+<thead><tr><th>Waktu</th><th>Kategori Pengisi</th><th>Skor</th><th>Hasil</th></tr></thead>
 <tbody id="tbodyTes"></tbody>
 </table>
 </div>
@@ -241,7 +242,7 @@ const nAnak=tes.filter(t=>t.jenis==='anak').length;
 const nMas=tes.filter(t=>t.jenis==='masyarakat').length;
 document.getElementById('stats').innerHTML=
 `<div class="stat" style="border-top-color:var(--gold)"><p>Statistik Pengunjung</p><h3>${views.toLocaleString('id-ID')}</h3><small>Total sesi pengunjung lintas perangkat · realtime</small></div>
-<div class="stat" style="border-top-color:var(--blue)"><p>Total Skor Tes Tersimpan</p><h3>${tes.length}</h3><small>Hanya yang menyetujui penyimpanan</small></div>
+<div class="stat" style="border-top-color:var(--blue)"><p>Tes Refleksi Tercatat</p><h3>${tes.length}</h3><small>Hasil anonim · diperbarui realtime</small></div>
 <div class="stat"><p>Tes Orang Tua</p><h3>${nOrang}</h3><small>Skor tersimpan</small></div>
 <div class="stat"><p>Tes Anak</p><h3>${nAnak}</h3><small>Skor tersimpan</small></div>
 <div class="stat"><p>Tes Masyarakat</p><h3>${nMas}</h3><small>Skor tersimpan</small></div>
@@ -258,7 +259,7 @@ document.getElementById('l2').textContent=Math.round(cu/n*100)+'%';
 document.getElementById('f2').style.width=(cu/n*100)+'%';
 document.getElementById('l3').textContent=Math.round(re/n*100)+'%';
 document.getElementById('f3').style.width=(re/n*100)+'%';
-document.getElementById('tbodyTes').innerHTML=tes.length?tes.slice().reverse().map(t=>`<tr><td>${esc(t.waktu)}</td><td>${t.jenis==='orangtua'?'Orang Tua':t.jenis==='anak'?'Anak':'Masyarakat'}</td><td>${t.skor}/12</td><td>${badge(t.skor)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada hasil tes yang disetujui untuk disimpan.</td></tr>';
+document.getElementById('tbodyTes').innerHTML=tes.length?tes.slice().reverse().map(t=>`<tr><td>${esc(t.waktu)}</td><td>${t.jenis==='orangtua'?'Orang Tua':t.jenis==='anak'?'Remaja laki-laki':'Masyarakat'}</td><td>${t.skor}/12</td><td>${badge(t.skor)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada hasil tes refleksi.</td></tr>';
 document.getElementById('tbodyDaun').innerHTML=daun.length?daun.slice().reverse().map(d=>`<tr><td>${esc(d.waktu)}</td><td>${esc(d.nama)}</td><td>${esc(d.pesan)}</td></tr>`).join(''):'<tr><td colspan="3" style="color:var(--muted)">Belum ada daun.</td></tr>';
 document.getElementById('tbodyForum').innerHTML=forum.length?forum.map(f=>`<tr><td>${esc(f.waktu)}</td><td>${esc(f.nama)}</td><td>${esc(f.pesan)}</td></tr>`).join(''):'<tr><td colspan="3" style="color:var(--muted)">Belum ada pesan forum.</td></tr>';
 document.getElementById('tbodyKontak').innerHTML=kontak.length?kontak.slice().reverse().map(c=>`<tr><td>${esc(c.waktu)}</td><td>${esc(c.nama)}</td><td>${esc(c.email)}</td><td>${esc(c.pesan)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Belum ada pesan masuk.</td></tr>';
