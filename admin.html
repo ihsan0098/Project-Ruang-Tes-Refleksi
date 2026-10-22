@@ -113,6 +113,50 @@ tbody tr:hover{background:rgba(255,255,255,.025);}
 #adminSync{display:inline-block;padding:8px 12px;border:1px solid rgba(119,185,231,.16);border-radius:999px;background:rgba(119,185,231,.055);color:#b8d9ed!important;font-size:11px!important;line-height:1.5;}
 footer{padding:30px 0 4px;}
 @media(max-width:640px){body{padding-top:22px;}.top{align-items:flex-start;}.top>div{display:flex;gap:7px;flex-wrap:wrap;}.top .act,.btnout{font-size:11px;padding:8px 10px;}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}.stat{min-height:124px;padding:15px;}.stat h3{font-size:28px;}.stat p{font-size:9px;}.stat small{font-size:10px;}.mediaqueue{grid-template-columns:1fr;}}
+/* Refined dashboard depth and interaction polish */
+body{position:relative;isolation:isolate;overflow-x:hidden;background-color:#090e12;background-image:radial-gradient(ellipse at 12% 4%,rgba(231,76,60,.12),transparent 34%),radial-gradient(ellipse at 91% 16%,rgba(52,152,219,.12),transparent 36%),radial-gradient(ellipse at 55% 100%,rgba(46,204,113,.055),transparent 38%),linear-gradient(155deg,#0b1014,#0a1015 54%,#0b1114);}
+body::before{content:"";position:fixed;z-index:-1;inset:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle at 18% 27%,rgba(255,255,255,.15) 0 1px,transparent 1.8px),radial-gradient(circle at 83% 64%,rgba(119,185,231,.16) 0 1px,transparent 1.8px);background-size:181px 181px,239px 239px;mask-image:linear-gradient(to bottom,black,transparent 90%);}
+.logo{position:relative;text-shadow:0 5px 24px rgba(0,0,0,.35);letter-spacing:3.5px;}
+.logo::after{content:"";position:absolute;left:50%;bottom:-11px;width:56px;height:2px;transform:translateX(-50%);border-radius:99px;background:linear-gradient(90deg,var(--red),var(--blue));box-shadow:0 0 16px rgba(52,152,219,.35);}
+.wrap{perspective:1400px;}
+.loginbox,.stat,.chartbox,.tblwrap,.mediacard{background:linear-gradient(145deg,rgba(24,32,39,.94),rgba(17,23,28,.9));border-color:rgba(255,255,255,.085);box-shadow:0 18px 48px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.loginbox{position:relative;overflow:hidden;animation:admin-enter .7s cubic-bezier(.2,.75,.25,1) both;transition:transform .35s,border-color .3s,box-shadow .35s;}
+.loginbox::before{content:"";position:absolute;pointer-events:none;inset:0 0 auto;height:110px;background:radial-gradient(ellipse at 50% 0,rgba(231,76,60,.15),transparent 72%);}
+.loginbox:hover{transform:translateY(-3px) rotateX(.5deg);border-color:rgba(231,76,60,.42);box-shadow:0 26px 58px rgba(0,0,0,.32),0 0 32px rgba(231,76,60,.045),inset 0 1px 0 rgba(255,255,255,.065);}
+.loginbox h2,.loginbox p,.loginbox form{position:relative;}
+input{border-radius:10px;border-color:rgba(255,255,255,.12);box-shadow:inset 0 2px 10px rgba(0,0,0,.18);transition:border-color .25s,box-shadow .25s,background .25s;}
+input:focus{outline:none;border-color:rgba(119,185,231,.62);background:#10171c;box-shadow:0 0 0 4px rgba(119,185,231,.1),inset 0 2px 10px rgba(0,0,0,.16);}
+button,.act,.btnout{transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .25s,filter .25s,border-color .25s;}
+button:hover,.act:hover,.btnout:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 10px 24px rgba(0,0,0,.22);}
+button:active,.act:active,.btnout:active{transform:translateY(0) scale(.985);}
+button:focus-visible,.act:focus-visible,.btnout:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid rgba(119,185,231,.78);outline-offset:3px;}
+.top{position:relative;padding:0 0 18px;border-bottom:1px solid rgba(255,255,255,.07);}
+.top h1{text-shadow:0 6px 25px rgba(0,0,0,.27);}
+.admin-links a{background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.015));box-shadow:inset 0 1px 0 rgba(255,255,255,.035);transition:transform .23s,border-color .23s,background .23s,box-shadow .23s;}
+.admin-links a:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.06);}
+.stat{position:relative;overflow:hidden;border-radius:16px;transform:translateZ(0);transition:transform .32s cubic-bezier(.2,.75,.25,1),border-color .28s,box-shadow .32s,background .28s;}
+.stat::after{content:"";position:absolute;top:-45px;right:-38px;width:105px;height:105px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.075),transparent 70%);pointer-events:none;transition:transform .35s,opacity .35s;opacity:.55;}
+.stat:hover{transform:translateY(-5px) rotateX(1deg);border-color:rgba(119,185,231,.27);box-shadow:0 25px 48px rgba(0,0,0,.3),0 0 25px rgba(119,185,231,.04),inset 0 1px 0 rgba(255,255,255,.07);}
+.stat:hover::after{transform:scale(1.28);opacity:.9;}
+.stat h3{text-shadow:0 5px 20px rgba(255,255,255,.08);}
+.chartbox,.tblwrap{border-radius:17px;transition:border-color .28s,box-shadow .32s,transform .32s;}
+.chartbox:hover,.tblwrap:hover{border-color:rgba(119,185,231,.17);box-shadow:0 24px 52px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.055);}
+.bar .fill{box-shadow:0 0 16px rgba(119,185,231,.2);transition:width .65s cubic-bezier(.2,.75,.25,1),filter .25s;}
+table{border-spacing:0 3px;}
+th{position:sticky;top:0;z-index:1;background:rgba(18,25,31,.97);backdrop-filter:blur(12px);}
+tbody tr{transition:background .2s,transform .2s;}
+tbody tr:hover{background:rgba(119,185,231,.055);transform:translateX(2px);}
+td:first-child{border-radius:8px 0 0 8px;}
+td:last-child{border-radius:0 8px 8px 0;}
+.badge{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);}
+.mediacard{overflow:hidden;transition:transform .3s,border-color .28s,box-shadow .3s;}
+.mediacard:hover{transform:translateY(-4px) rotateX(1deg);border-color:rgba(119,185,231,.25);box-shadow:0 20px 40px rgba(0,0,0,.28);}
+.mediacard img,.mediacard video{transition:transform .55s cubic-bezier(.2,.75,.25,1),filter .35s;}
+.mediacard:hover img,.mediacard:hover video{transform:scale(1.035);filter:saturate(1.08);}
+.actions{border-top:1px solid rgba(255,255,255,.06);}
+@keyframes admin-enter{from{opacity:0;transform:translateY(14px) scale(.99);}to{opacity:1;transform:translateY(0) scale(1);}}
+@media(max-width:640px){.loginbox{padding:30px 23px;}.stat{border-radius:14px;}.stat:hover,.mediacard:hover{transform:translateY(-2px);}.tblwrap{padding:15px;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important;}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
 </style>
 </head>
 <body>

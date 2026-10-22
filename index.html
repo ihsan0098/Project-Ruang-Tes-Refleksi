@@ -254,13 +254,42 @@ input:focus,textarea:focus{border-color:rgba(98,174,232,.75);box-shadow:0 0 0 3p
 .back-top{position:fixed;right:clamp(18px,3vw,28px);bottom:92px;z-index:1100;width:44px;height:44px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(18,26,32,.88);backdrop-filter:blur(12px);color:var(--light);font-size:18px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s,border-color .2s;}
 .back-top.visible{opacity:1;visibility:visible;transform:none;}
 .back-top:hover{border-color:var(--red);color:var(--red);}
-.forum-tools{width:100%;max-width:640px;margin:0 0 16px;}
-.forum-tools input{margin-bottom:6px;}
-.forum-count{color:var(--muted);font-size:12px;}
+.forum-intro-card{width:100%;max-width:720px;display:flex;align-items:center;gap:15px;padding:17px 20px;margin:-6px 0 18px;border:1px solid rgba(119,185,231,.16);border-radius:16px;background:linear-gradient(110deg,rgba(119,185,231,.09),rgba(24,35,39,.72) 62%,rgba(73,212,154,.055));}
+.forum-intro-icon{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border:1px solid rgba(119,185,231,.22);border-radius:14px;background:rgba(119,185,231,.1);font-size:21px;}
+.forum-intro-copy{min-width:0;flex:1;}
+.forum-intro-copy strong{display:block;color:#e9f0ec;font-size:13px;letter-spacing:.15px;}
+.forum-intro-copy span{display:block;margin-top:3px;color:var(--muted);font-size:11px;line-height:1.55;}
+.forum-live{flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:6px 9px;border:1px solid rgba(73,212,154,.16);border-radius:999px;background:rgba(73,212,154,.06);color:#a5ddbf;font-size:10px;font-weight:700;}
+.forum-live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(73,212,154,.55);}
+.forum-tools{width:100%;max-width:720px;margin:0 0 12px;padding:12px 14px 10px;border:1px solid rgba(255,255,255,.08);border-radius:15px;background:linear-gradient(145deg,rgba(22,31,36,.86),rgba(15,22,26,.92));}
+.forum-tools>label{font-size:11px;font-weight:700;letter-spacing:.35px;color:#c5d0d4;}
+.forum-tools input{margin:5px 0 9px;padding:11px 13px;background:rgba(6,11,14,.58);border-radius:10px;font-size:13px;}
+.forum-count{display:inline-flex;align-items:center;min-height:28px;padding:5px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.035);color:#b8c5c9;font-size:10px;}
 .forum-tools-row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.forum-clear{background:none;border:0;color:var(--blue);font-size:12px;cursor:pointer;}
-.forum-clear:hover{text-decoration:underline;}
-.feedempty{border:1px dashed rgba(255,255,255,.13);}
+.forum-clear{padding:6px 9px;border:1px solid transparent;border-radius:8px;background:none;color:#93c9e7;font-size:11px;cursor:pointer;transition:background .2s,border-color .2s;}
+.forum-clear:hover{border-color:rgba(98,174,232,.18);background:rgba(98,174,232,.07);text-decoration:none;}
+.forum-chat{width:100%;max-width:720px;height:clamp(280px,42vh,420px);min-height:280px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:19px;background:radial-gradient(ellipse at 4% 0%,rgba(98,174,232,.07),transparent 48%),radial-gradient(ellipse at 100% 100%,rgba(73,212,154,.045),transparent 44%),linear-gradient(180deg,rgba(7,12,15,.8),rgba(12,18,21,.88));border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:inset 0 8px 28px rgba(0,0,0,.2),0 14px 34px rgba(0,0,0,.13);scroll-behavior:smooth;}
+.forum-chat:focus-visible{outline:2px solid rgba(98,174,232,.62);outline-offset:3px;}
+.forum-chat .bubble{position:relative;width:fit-content;max-width:min(82%,560px);padding:13px 16px;margin:0;border:1px solid rgba(255,255,255,.075);border-radius:16px 16px 16px 5px;background:linear-gradient(145deg,rgba(31,45,49,.98),rgba(20,29,32,.98));box-shadow:0 7px 18px rgba(0,0,0,.19);}
+.forum-chat .bubble:nth-child(even){align-self:flex-end;border-radius:16px 16px 5px 16px;border-color:rgba(98,174,232,.16);background:linear-gradient(145deg,rgba(40,65,73,.92),rgba(24,41,47,.98));}
+.forum-chat .bubble h5{display:flex;align-items:center;gap:7px;margin:0 0 5px;color:#9bd0eb;font-size:11px;}
+.forum-chat .bubble h5::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px rgba(73,212,154,.38);}
+.forum-chat .bubble p{color:#edf2f1;font-size:13px;line-height:1.7;overflow-wrap:anywhere;white-space:pre-wrap;}
+.forum-chat .bubble time{display:block;margin-top:7px;color:#9eafb3;font-size:10px;text-align:right;}
+.forum-chat .feedempty{width:100%;margin:auto;border:1px dashed rgba(255,255,255,.13);background:rgba(255,255,255,.025);color:var(--muted);text-align:center;padding:22px 16px;border-radius:12px;font-size:13px;}
+.forum-chat::-webkit-scrollbar{width:8px;}
+.forum-chat::-webkit-scrollbar-track{background:transparent;}
+.forum-chat::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:999px;}
+.forum-compose{width:100%;max-width:720px;margin-top:15px!important;padding:clamp(17px,3vw,24px);border-color:rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(23,33,38,.98),rgba(15,22,26,.98));}
+.forum-compose h3{display:flex;align-items:center;gap:9px;margin-bottom:7px!important;font-size:17px;}
+.forum-compose>p:first-of-type{margin:0 0 16px;color:var(--muted);font-size:12px;}
+.forum-compose textarea{min-height:76px;margin-bottom:12px;}
+.forum-compose-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.forum-compose-actions .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:160px;background:linear-gradient(120deg,#f1c96b,#e9b851);box-shadow:0 7px 20px rgba(233,184,81,.16);}
+.forum-compose-actions .btn::after{content:"↗";font-size:15px;transition:transform .2s;}
+.forum-compose-actions .btn:hover::after{transform:translate(2px,-2px);}
+.forum-compose-actions .disclaimer{flex:1 1 260px;margin:0;}
+@media(max-width:600px){.forum-intro-card{gap:10px;padding:13px;margin-top:-4px;}.forum-intro-icon{width:38px;height:38px;flex-basis:38px;border-radius:12px;font-size:18px;}.forum-intro-copy strong{font-size:12px;}.forum-intro-copy span{font-size:10px;}.forum-live{padding:5px 7px;font-size:9px;}.forum-tools{padding:11px 12px 9px;}.forum-chat{height:clamp(280px,48vh,380px);min-height:280px;padding:13px;gap:10px;border-radius:15px;}.forum-chat .bubble{max-width:90%;padding:11px 13px;}.forum-compose-actions .btn{width:100%;}}
 footer{border-top-color:rgba(255,255,255,.08);padding:32px 18px;margin-top:40px;}
 @media(max-width:920px){nav .burger{display:block;}.hero h1{font-size:clamp(38px,8vw,60px);}.hero-kicker{font-size:10px;}}
 @media(max-width:600px){
@@ -286,6 +315,57 @@ body,#edukasi{background:#fff!important;color:#111!important;}
 @media(prefers-reduced-motion:reduce){
 *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
 .reveal{opacity:1;transform:none;}
+}
+/* Global depth, glass and motion polish */
+html{scroll-behavior:smooth;scroll-padding-top:88px;}
+body{background-color:#0a1014;background-image:radial-gradient(ellipse at 50% -18%,rgba(105,63,69,.21),transparent 48%),radial-gradient(ellipse at 4% 35%,rgba(68,132,151,.08),transparent 30%),radial-gradient(ellipse at 96% 72%,rgba(148,77,57,.075),transparent 32%),linear-gradient(180deg,#0a1014 0%,#0d1418 52%,#0a1014 100%);}
+body::before{z-index:0;background-image:radial-gradient(circle at 12% 19%,rgba(119,185,231,.12) 0 1px,transparent 1.8px),radial-gradient(circle at 81% 34%,rgba(245,203,98,.1) 0 1px,transparent 1.8px),radial-gradient(circle at 66% 81%,rgba(112,213,169,.11) 0 1px,transparent 1.8px);background-size:173px 173px,227px 227px,191px 191px;opacity:.42;mask-image:linear-gradient(to bottom,black,transparent 88%);}
+nav{transform:translateZ(0);background:rgba(9,15,19,.76);border-bottom-color:rgba(255,255,255,.1);box-shadow:0 14px 40px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.025) inset;}
+nav .logo{transition:letter-spacing .3s ease;}
+nav .logo:hover{letter-spacing:4px;}
+nav ul li a{transition:color .22s,border-color .22s,transform .22s;}
+nav ul li a:hover{transform:translateY(-2px);}
+section:not(#beranda){isolation:isolate;}
+section:not(#beranda)::before{content:"";position:absolute;z-index:-1;top:0;left:50%;width:min(78vw,820px);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(119,185,231,.22),rgba(240,120,104,.2),transparent);}
+section h2{text-shadow:0 8px 30px rgba(0,0,0,.24);}
+.hero{text-shadow:0 10px 34px rgba(0,0,0,.14);perspective:1000px;}
+.hero-kicker{box-shadow:0 12px 38px rgba(240,120,104,.07),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .35s ease,box-shadow .35s ease;}
+.hero-kicker:hover{transform:translateY(-3px) rotateX(5deg);box-shadow:0 18px 42px rgba(240,120,104,.12),inset 0 1px 0 rgba(255,255,255,.1);}
+.hero h1 span{filter:drop-shadow(0 8px 24px rgba(240,120,104,.13));}
+.btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .26s cubic-bezier(.2,.8,.2,1),box-shadow .26s,filter .26s;}
+.btn::before{content:"";position:absolute;z-index:-1;inset:-40% auto -40% -45%;width:34%;transform:skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transition:left .55s ease;}
+.btn:hover::before{left:120%;}
+.btn:hover{transform:translateY(-3px);box-shadow:0 15px 32px rgba(0,0,0,.25);}
+.btn:active{transform:translateY(-1px) scale(.985);}
+.card,.fbox,.qrcard,.faq-item,.chartbox,.tblwrap{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 16px 44px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.035);transition:transform .35s cubic-bezier(.2,.75,.25,1),border-color .3s,box-shadow .35s,background .3s;}
+.grid>.card:hover,.data .card:hover,.team .card:hover{transform:translateY(-6px) rotateX(1.2deg);border-color:rgba(119,185,231,.24);box-shadow:0 24px 48px rgba(0,0,0,.27),0 4px 20px rgba(119,185,231,.045),inset 0 1px 0 rgba(255,255,255,.06);}
+.tcard{transform-style:preserve-3d;perspective:900px;}
+.tcard .ticon{transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s;}
+.tcard:hover .ticon{transform:translateZ(15px) rotate(-5deg) scale(1.07);filter:drop-shadow(0 8px 12px rgba(0,0,0,.24));}
+.gphoto{transform:perspective(900px) translateZ(0);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .3s;}
+.gphoto:hover{transform:perspective(900px) translateY(-5px) rotateX(1.5deg) rotateY(-1deg);}
+.gphoto img,.gphoto video{transition:transform .65s cubic-bezier(.2,.75,.25,1),filter .4s;}
+.gphoto:hover img,.gphoto:hover video{transform:scale(1.035);filter:saturate(1.08);}
+.faq-item{transform:translateZ(0);}
+.faq-item.open{border-color:rgba(119,185,231,.25);box-shadow:0 16px 38px rgba(0,0,0,.2),0 0 25px rgba(119,185,231,.035);}
+.upzone{transition:transform .28s,border-color .28s,background .28s,box-shadow .28s;}
+.tree-3d-canvas{filter:drop-shadow(0 24px 32px rgba(0,0,0,.22));}
+.ldetail{box-shadow:0 16px 40px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.04);transition:opacity .2s,transform .3s,box-shadow .3s;}
+.forum-chat,.forum-intro-card,.forum-tools,.forum-compose{box-shadow:0 20px 50px rgba(0,0,0,.17),inset 0 1px 0 rgba(255,255,255,.035);}
+.forum-intro-card{transition:transform .3s,border-color .3s,box-shadow .3s;}
+.forum-intro-card:hover{transform:translateY(-2px);border-color:rgba(119,185,231,.25);box-shadow:0 18px 40px rgba(0,0,0,.2),0 0 28px rgba(119,185,231,.04);}
+.forum-chat .bubble{animation:message-arrive .42s cubic-bezier(.2,.75,.25,1) both;}
+.forum-chat .bubble:nth-child(2){animation-delay:35ms;}
+.forum-chat .bubble:nth-child(3){animation-delay:70ms;}
+.forum-chat .bubble:nth-child(4){animation-delay:105ms;}
+.forum-chat .bubble:nth-child(5){animation-delay:140ms;}
+.forum-chat .bubble:nth-child(6){animation-delay:175ms;}
+@keyframes message-arrive{from{opacity:0;transform:translateY(9px) scale(.985);}to{opacity:1;transform:translateY(0) scale(1);}}
+.scroll-progress span{transition:width .08s linear;}
+::selection{background:rgba(119,185,231,.27);color:#fff;}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto;}
+.forum-chat .bubble{animation:none;}
 }
 /* Tes refleksi */
 #tes{--tes-accent:#9b9eff;}
@@ -407,7 +487,8 @@ label{font-size:12px;font-weight:700;letter-spacing:.15px;color:#c3cdd2;}
 .vidposter img{opacity:.42;transition:transform .7s,opacity .3s;}
 .vidposter:hover img{transform:scale(1.04);opacity:.55;}
 .vidposter .playbtn{background:linear-gradient(145deg,#f07868,#d84e54);}
-.tavatar{background:linear-gradient(145deg,rgba(240,120,104,.85),rgba(92,155,190,.95));box-shadow:0 10px 24px rgba(0,0,0,.2);}
+.tavatar{overflow:hidden;border:2px solid rgba(255,255,255,.2);background:linear-gradient(145deg,rgba(240,120,104,.85),rgba(92,155,190,.95));box-shadow:0 10px 24px rgba(0,0,0,.2);}
+.tavatar img{display:block;width:100%;height:100%;border-radius:inherit;object-fit:cover;}
 .team .card{transition:transform .25s,border-color .25s;}
 .team .card:hover{transform:translateY(-5px);border-color:rgba(119,185,231,.32);}
 .team h4{font-size:15px;}
@@ -503,6 +584,33 @@ footer{margin-top:30px;padding:34px 20px;background:linear-gradient(180deg,#0b11
 .tree-instruction{position:relative;z-index:3;}
 @media(max-width:600px){#beranda{min-height:auto;padding-top:128px;}.hero h1{font-size:clamp(39px,11vw,54px);letter-spacing:-1.8px;}.hero p{font-size:15px;}.card,.fbox{border-radius:14px;}.gphoto img,.gphoto video{height:220px;}.forum-tools-row{gap:5px;}.edu-banner{padding:22px;}.sync-status{white-space:normal;}.gallery-search{max-width:none;}.lightbox-stage{grid-template-columns:34px minmax(0,1fr) 34px;gap:5px;}.lightbox-nav{width:34px;height:38px;}.lightbox-caption{margin:11px 0 0;}}
 @media(max-width:600px){.pvis{width:calc(100% + 18px);margin:-5px -9px 3px;}.tree-caption{font-size:14px;}.tree-instruction{font-size:11px;margin-bottom:12px;}}
+/* Final visual overrides keep the finish consistent across all sections. */
+html{scroll-behavior:smooth;scroll-padding-top:88px;}
+body{background-color:#0a1014;background-image:radial-gradient(ellipse at 50% -18%,rgba(105,63,69,.21),transparent 48%),radial-gradient(ellipse at 4% 35%,rgba(68,132,151,.08),transparent 30%),radial-gradient(ellipse at 96% 72%,rgba(148,77,57,.075),transparent 32%),linear-gradient(180deg,#0a1014 0%,#0d1418 52%,#0a1014 100%);}
+body::before{z-index:-1;background-image:radial-gradient(circle at 12% 19%,rgba(119,185,231,.12) 0 1px,transparent 1.8px),radial-gradient(circle at 81% 34%,rgba(245,203,98,.1) 0 1px,transparent 1.8px),radial-gradient(circle at 66% 81%,rgba(112,213,169,.11) 0 1px,transparent 1.8px);background-size:173px 173px,227px 227px,191px 191px;opacity:.42;mask-image:linear-gradient(to bottom,black,transparent 88%);}
+.card,.fbox,.faq-item{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 16px 44px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.035);transition:transform .35s cubic-bezier(.2,.75,.25,1),border-color .3s,box-shadow .35s,background .3s;}
+.grid>.card:hover,.data .card:hover,.team .card:hover{transform:translateY(-6px) rotateX(1.2deg);border-color:rgba(119,185,231,.24);box-shadow:0 24px 48px rgba(0,0,0,.27),0 4px 20px rgba(119,185,231,.045),inset 0 1px 0 rgba(255,255,255,.06);}
+.gphoto:hover{transform:perspective(900px) translateY(-5px) rotateX(1.5deg) rotateY(-1deg);}
+.faq-item.open{border-color:rgba(119,185,231,.25);box-shadow:0 16px 38px rgba(0,0,0,.2),0 0 25px rgba(119,185,231,.035);}
+.forum-chat .bubble{animation:message-arrive .42s cubic-bezier(.2,.75,.25,1) both;}
+.forum-chat .bubble:nth-child(2){animation-delay:35ms;}
+.forum-chat .bubble:nth-child(3){animation-delay:70ms;}
+.forum-chat .bubble:nth-child(4){animation-delay:105ms;}
+.forum-chat .bubble:nth-child(5){animation-delay:140ms;}
+.forum-chat .bubble:nth-child(6){animation-delay:175ms;}
+section.menu-transition>*{animation:menu-content-enter .68s cubic-bezier(.2,.75,.25,1) both;}
+section.menu-transition>*:nth-child(2){animation-delay:45ms;}
+section.menu-transition>*:nth-child(3){animation-delay:90ms;}
+section.menu-transition>*:nth-child(4){animation-delay:135ms;}
+section.menu-transition>*:nth-child(5){animation-delay:180ms;}
+section.menu-transition>*:nth-child(6){animation-delay:225ms;}
+section.menu-transition>*:nth-child(7){animation-delay:270ms;}
+section.menu-transition>*:nth-child(n+8){animation-delay:315ms;}
+@keyframes menu-content-enter{from{opacity:.25;translate:0 18px;filter:blur(5px);}to{opacity:1;translate:0 0;filter:blur(0);}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}.reveal{opacity:1;transform:none;}.forum-chat .bubble{animation:none!important;}section.menu-transition>*{animation:none!important;}}
+.footer-copy{max-width:900px;margin:0 auto;}
+.footer-logos{width:min(100%,148px);margin:13px auto 0;}
+.footer-logos img{display:block;width:100%;height:auto;}
 </style>
 </head>
 <body>
@@ -726,32 +834,39 @@ footer{margin-top:30px;padding:34px 20px;background:linear-gradient(180deg,#0b11
 <h2>Ruang Cerita (Forum)</h2>
 <p class="sub">Dinding pesan anonim — tempat berbagi perasaan dan saling menguatkan.</p>
 <p class="sync-status" data-sync-status role="status" aria-live="polite">Memeriksa status sinkronisasi…</p>
+<div class="forum-intro-card">
+<span class="forum-intro-icon" aria-hidden="true">💬</span>
+<div class="forum-intro-copy"><strong>Satu ruang, banyak cerita</strong><span>Berbagi dengan aman. Baca dengan empati, balas dengan dukungan.</span></div>
+<span class="forum-live">Ruang terbuka</span>
+</div>
 <div class="forum-tools">
 <label for="forumSearch">Cari cerita di forum</label>
 <input id="forumSearch" type="search" placeholder="Cari nama atau kata dalam pesan…" oninput="renderForum()">
 <div class="forum-tools-row"><span class="forum-count" id="forumCount" aria-live="polite"></span><button class="forum-clear" type="button" onclick="clearForumSearch()">Hapus pencarian</button></div>
 </div>
-<div id="forumList" style="width:100%;max-width:640px;" aria-live="polite" aria-relevant="additions"></div>
-<div class="fbox" style="margin-top:25px;">
-<h3 style="margin-bottom:15px;">💬 Tinggalkan Pesan Dukungan</h3>
+<div id="forumList" class="forum-chat" role="log" aria-label="Percakapan Ruang Cerita" aria-live="polite" aria-relevant="additions text" tabindex="0"></div>
+<div class="fbox forum-compose">
+<h3 style="margin-bottom:15px;">💬 Tulis Pesan Dukungan</h3>
 <label for="fnama">Nama / Inisial (boleh anonim)</label>
 <input id="fnama" maxlength="40" placeholder="Seseorang yang peduli">
 <label for="fpesan">Pesan dukungan</label>
 <textarea id="fpesan" maxlength="1000" placeholder="Tulis kata-kata penguat di sini…"></textarea>
-<button class="btn gold" onclick="tambahForum()">Kirim ke Forum</button>
-<p class="ok" id="okForum" role="status" aria-live="polite">Terima kasih! Pesan Anda langsung tampil di Ruang Cerita.</p>
+<div class="forum-compose-actions">
+<button class="btn gold" type="button" onclick="tambahForum()">Kirim pesan</button>
 <p class="disclaimer">Kiriman dapat dibaca semua pengunjung. Hindari nama lengkap, nomor telepon, alamat, atau informasi pribadi.</p>
+</div>
+<p class="ok" id="okForum" role="status" aria-live="polite">Terima kasih! Pesan Anda langsung tampil di Ruang Cerita.</p>
 </div>
 </section>
 <section id="tim">
 <h2>Tim Kami</h2>
 <p class="sub">Orang-orang di balik Project Ruang — LIDM 2026 Universitas Negeri Padang.</p>
 <div class="grid team">
-<div class="card"><div class="tavatar">S</div><h4>Shelly Alfidenia</h4><span>Ketua / Sutradara</span></div>
-<div class="card"><div class="tavatar">A</div><h4>Aji Sulaksana</h4><span>Editor / Motion Graphic / Penyelaras </span></div>
-<div class="card"><div class="tavatar">E</div><h4>Egazia Evanggelis</h4><span>Penulis Naskah</span></div>
-<div class="card"><div class="tavatar">F</div><h4>Falyanzuril Ihsan</h4><span>Videografer / Website</span></div>
-<div class="card" style="border:1px solid var(--gold);"><div class="tavatar">🎓</div><h4 style="color:var(--gold);">Dr. Lailatur Rahmi, M.Pd</h4><span>Dosen Pendamping</span></div>
+<div class="card"><div class="tavatar"><img src="Foto%20Tim/shelly-avatar.png" alt="Shelly Alfidenia" loading="lazy" decoding="async"></div><h4>Shelly Alfidenia</h4><span>Ketua / Sutradara</span></div>
+<div class="card"><div class="tavatar"><img src="Foto%20Tim/aji-avatar.png" alt="Aji Sulaksana" loading="lazy" decoding="async"></div><h4>Aji Sulaksana</h4><span>Editor / Motion Graphic / Penyelaras </span></div>
+<div class="card"><div class="tavatar"><img src="Foto%20Tim/egazia-avatar.png" alt="Egazia Evanggelis" loading="lazy" decoding="async"></div><h4>Egazia Evanggelis</h4><span>Penulis Naskah</span></div>
+<div class="card"><div class="tavatar"><img src="Foto%20Tim/falyanzuril-avatar.png" alt="Falyanzuril Ihsan" loading="lazy" decoding="async"></div><h4>Falyanzuril Ihsan</h4><span>Videografer / Website</span></div>
+<div class="card" style="border:1px solid var(--gold);"><div class="tavatar"><img src="Foto%20Tim/lailatur-rahmi-avatar.png" alt="Dr. Lailatur Rahmi, M.Pd" loading="lazy" decoding="async"></div><h4 style="color:var(--gold);">Dr. Lailatur Rahmi, M.Pd</h4><span>Dosen Pendamping</span></div>
 </div>
 </section>
 <section id="kontak">
@@ -841,7 +956,10 @@ Cetak / simpan sebagai PDF
 </div>
 <button class="back-top" id="backTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
 <footer>
-&copy; 2026 Project Ruang — Divisi Video Digital Pendidikan (VDP) LIDM 2026, Universitas Negeri Padang. Hak Cipta Dilindungi.<br>
+<div class="footer-copy">&copy; 2026 Project Ruang — Divisi Video Digital Pendidikan (VDP) LIDM 2026, Universitas Negeri Padang. Hak Cipta Dilindungi.</div>
+<div class="footer-logos">
+<img src="Baground%20Logo/Logo%20footer%20transparan.png" alt="Logo LIDM, Kemendikbudristek, Diktisaintek Berdampak, Indonesia Emas 2045, dan Universitas Negeri Padang">
+</div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
 <script src="db.js"></script>
@@ -856,10 +974,27 @@ f.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 /* ================= NAV ================= */
+const sectionTransitionTimers=new WeakMap();
+function animateSectionTransition(section){
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+clearTimeout(sectionTransitionTimers.get(section));
+section.classList.remove('menu-transition');
+void section.offsetWidth;
+section.classList.add('menu-transition');
+sectionTransitionTimers.set(section,setTimeout(()=>{
+section.classList.remove('menu-transition');
+sectionTransitionTimers.delete(section);
+},1200));
+}
 document.querySelectorAll('nav ul li a, .mobilemenu a').forEach(a=>{
 a.addEventListener('click',function(){
 if(this.getAttribute('href').endsWith('.html'))return;
 const target=this.getAttribute('href');
+if(target.startsWith('#')){
+const destination=document.getElementById(target.slice(1));
+const section=destination?.closest('section[id]');
+if(section)animateSectionTransition(section);
+}
 document.querySelectorAll('nav ul li a').forEach(x=>x.classList.toggle('active',x.getAttribute('href')===target));
 document.getElementById('mm').classList.remove('open');
 document.querySelector('.burger').setAttribute('aria-expanded','false');
@@ -1449,6 +1584,7 @@ leaf('🌱 '+n,'"'+esc(p)+'"');
 }
 function renderForum(){
 const list=document.getElementById('forumList');
+const wasNearBottom=list.scrollHeight-list.clientHeight-list.scrollTop<72;
 const f=get('ruangForum');
 const query=document.getElementById('forumSearch').value.trim().toLocaleLowerCase('id-ID');
 const matching=f.filter(p=>(p.nama||'Anonim').toLocaleLowerCase('id-ID').includes(query)||(p.pesan||'').toLocaleLowerCase('id-ID').includes(query));
@@ -1477,6 +1613,7 @@ const author=document.createElement('h5');author.textContent=p.nama;
 const message=document.createElement('p');message.textContent=p.pesan;
 el.append(author,message);list.appendChild(el);
 });
+if(wasNearBottom)list.scrollTop=list.scrollHeight;
 }
 function clearForumSearch(){
 document.getElementById('forumSearch').value='';
