@@ -609,8 +609,8 @@ section.menu-transition>*:nth-child(n+8){animation-delay:315ms;}
 @keyframes menu-content-enter{from{opacity:.25;translate:0 18px;filter:blur(5px);}to{opacity:1;translate:0 0;filter:blur(0);}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}.reveal{opacity:1;transform:none;}.forum-chat .bubble{animation:none!important;}section.menu-transition>*{animation:none!important;}}
 .footer-copy{max-width:900px;margin:0 auto;}
-.footer-logos{width:min(100%,148px);margin:13px auto 0;}
-.footer-logos img{display:block;width:100%;height:auto;}
+.footer-logos{position:relative;width:min(100%,650px);aspect-ratio:11/1;margin:13px auto 0;overflow:hidden;}
+.footer-logos img{position:absolute;top:39.5%;left:60%;display:block;width:125%;max-width:none;height:auto;transform:translate(-50%,-50%);}
 </style>
 </head>
 <body>
@@ -875,7 +875,9 @@ section.menu-transition>*:nth-child(n+8){animation-delay:315ms;}
 <div style="display:flex;gap:32px;flex-wrap:wrap;justify-content:center;width:100%;">
 <div class="card" style="max-width:430px;">
 <h3 style="color:var(--red);margin-bottom:12px;">💬 Narahubung</h3>
-<p style="color:var(--muted);margin-bottom:15px;">Kirim pesan melalui formulir. Sertakan email atau nomor WhatsApp aktif agar admin dapat menghubungi Anda kembali.</p>
+<p style="color:var(--muted);margin-bottom:15px;">Hubungi narahubung atau kirim pesan melalui formulir.</p>
+<p style="color:var(--muted);margin-bottom:10px;"><strong style="color:var(--light)">DP3AP2KB</strong><br><a href="https://wa.me/6287869680724" target="_blank" rel="noopener noreferrer" style="color:var(--blue);">+62 878-6968-0724</a></p>
+<p style="color:var(--muted);margin-bottom:15px;"><strong style="color:var(--light)">KBK3</strong><br><a href="https://wa.me/62895700178300" target="_blank" rel="noopener noreferrer" style="color:var(--blue);">+62 895-7001-78300</a></p>
 <p style="color:var(--muted);margin-bottom:15px;font-size:14px;"><strong style="color:var(--light)">Kemitraan (Pentahelix):</strong> Instansi Akademik • Instansi Pemerintah (BKKBN) • Pihak Swasta (Biro Psikologi) • Media</p>
 <a href="#kontakForm" class="btn blue sm">Kirim pesan ke admin</a>
 <div class="refbox" style="margin-top:18px;">Butuh bantuan darurat? Layanan kesehatan mental gratis: <strong>119 ext. 8</strong> (Kemenkes SEJIWA).</div>
